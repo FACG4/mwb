@@ -10,29 +10,33 @@ import { faStroopwafel, } from '@fortawesome/free-solid-svg-icons';
 library.add(faStroopwafel);
 
 
-const signUp = () => {
+const signIn = () => {
     return (
         <div className="sign">
-            <div>
+            <div className="logo--container">
+                <h1><span>M</span>arket <span>W</span>ithout <span>B</span>old</h1>
+                <p>The Beautiful and the Banned!</p>
                 <img src={logo} />
             </div>
             <div id="input--wraper">
-                <Input placeholder='Username'  icon={faStroopwafel} />
                 <Input placeholder='Email'  icon={faStroopwafel} />
                 <Input placeholder='Password'  icon={faStroopwafel} />
-                <Input placeholder='Phone number'  icon={faStroopwafel} />
-                <Input placeholder='Address'  icon={faStroopwafel} />
-                <Input placeholder='M-pesa number'  icon={faStroopwafel} />
+                <div className='checkbox--container'>
+                    
+                    <Input type='checkbox' />
+                    <label>Keep me logged in</label>
+                </div>
+
             </div>
             <div id="button">
                 <GrayButton title={'sign Up'} />
             </div>
-           
-
-            
+            <div className="signup--link">
+                <p>Don’t have account?</p><a href="">Sign up now</a>
+            </div>
         </div>
     )
 
 }
 
-export default signUp;
+export default signIn;

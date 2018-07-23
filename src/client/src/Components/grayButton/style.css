@@ -2,7 +2,10 @@ button {
     background: #fff;
     width: 60%;
     padding: 15px;
-    box-shadow: 0px 2px #bfbbbb;    
+    -webkit-box-shadow: 0px 2px #bfbbbb;
+    box-shadow: 0px 2px #1d1c1c;
     color: #32689A;
     font-size: 1em;
+    outline: none;
+    border: 0;
 }
