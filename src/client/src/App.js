@@ -5,13 +5,16 @@ import './App.css';
 
 
 import SignIn from './Pages/signIn/';
+import SignUp from './Pages/signUp';
+
 
 
 class App extends Component {
   render() {
     return (
        <Fragment>
-        <SignIn />
+        {/* <SignIn /> */}
+        <SignUp />
       </Fragment>
     );
   }

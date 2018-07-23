@@ -20,3 +20,10 @@ img {
 #input--wraper {
     width: 75%;
 }
+
+.logo--continer span {
+    position: absolute;
+    left: 30px;
+    font-size: 1.5em;
+    color: #fff;
+}

@@ -4,10 +4,10 @@ import GrayButton from './../../Components/grayButton/';
 import Input from './../../Components/Input/';
 import './style.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faStroopwafel, } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faUnlockAlt} from '@fortawesome/free-solid-svg-icons';
 
 
-library.add(faStroopwafel);
+library.add(faEnvelope,faUnlockAlt);
 
 
 const signIn = () => {
@@ -19,8 +19,8 @@ const signIn = () => {
                 <img src={logo} />
             </div>
             <div id="input--wraper">
-                <Input placeholder='Email'  icon={faStroopwafel} />
-                <Input placeholder='Password'  icon={faStroopwafel} />
+                <Input placeholder='Email'  icon={faEnvelope} />
+                <Input placeholder='Password'  icon={faUnlockAlt} />
                 <div className='checkbox--container'>
                     
                     <Input type='checkbox' />
