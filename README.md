@@ -5,13 +5,13 @@ Artisans in Kenya can’t trade online because they don’t have bank accounts o
 ## user Stories:
 
 - Users are able to singup to our system 
-- Users are able to login to our system 
+- Users are able to login to our system
 - Users are able to edit profile info
 - Users are able to view items in their shop
 - Users are able to add new item
 - Users are able to remove item from the shop
 - Users are able to view order List
-- Users are able to update order state 
+- Users are able to update order state
 - Users are able to enter order traking number
 - Users are able to view notifications  
 
@@ -19,7 +19,7 @@ Artisans in Kenya can’t trade online because they don’t have bank accounts o
 
 - Express.js
 - React.js
-- postgresql 
+- postgresql
 - CSS3
 
 # How to start the program locally:
