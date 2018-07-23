@@ -1,0 +1,32 @@
+BEGIN;
+
+DROP TABLE IF EXISTS users, items, orders CASCADE;
+
+CREATE TABLE users(
+  id SERIAL PRIMARY KEY,
+  username VARCHAR NOT NULL,
+  email VARCHAR UNIQUE NOT NULL,
+  password VARCHAR NOT NULL,
+  phone VARCHAR UNIQUE NOT NULL,
+  address VARCHAR NOT NULL,
+  m_pesa VARCHAR NOT NULL
+);
+
+CREATE TABLE items(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  description VARCHAR,
+  image VARCHAR
+);
+
+CREATE TABLE orders(
+  id SERIAL PRIMARY KEY,
+  item_id INTEGER NOT NULL REFERENCES items(id),
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  quantity INTEGER NOT NULL,
+  status INTEGER NOT NULL,
+  delivery_time DATE NOT NULL,
+  tracking_number VARCHAR UNIQUE
+);
+
+COMMIT;
