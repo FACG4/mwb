@@ -1,0 +1,98 @@
+* {
+  padding: 0px;
+  margin: 0px;
+
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #E7E7E7;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+  transition: 0.3s;
+  color: #32689A;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.crossIcon {
+  color: #A73542;
+}
+
+.sideBarImg {
+  border-radius: 50%;
+  height: 90px;
+  width: 90px;
+}
+
+.sideBarImgDiv {
+  text-align: center;
+}
+
+.headerDiv {
+  width: 100%;
+  height: 68px;
+  background-color: #32689A;
+  display: flex;
+  flex-flow: row;
+}
+
+.headerTitle {
+  color: white;
+  font-family: lato;
+  padding-top: 17px;
+  padding-left: 450px
+}
+
+.menuIcon, .notificationIcon {
+  color: white;
+  font-size: 30px;
+  padding-top: 17px;
+}
+
+.menuIcon {
+  padding-left: 10px;
+  padding-right: 110px;
+}
+
+.notificationIcon {
+  padding-left: 580px;
+}
+
+@media screen and (max-width: 600px) {
+  .headerTitle {
+    padding-left: 20px
+  }
+  .notificationIcon {
+    padding-left: 100px;
+  }
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
