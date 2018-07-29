@@ -25,3 +25,6 @@ Artisans in Kenya can’t trade online because they don’t have bank accounts o
 # How to start the program locally:
 - `npm run`
 - `npm test (run tests) `
+
+Figma prototype: 
+https://www.figma.com/proto/EjORhZFF4WbIIVlIhKo8NQ3y/MWB?node-id=130%3A18&scaling=scale-down
