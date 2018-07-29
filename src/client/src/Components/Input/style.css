@@ -1,0 +1,29 @@
+input {
+    border: 0;
+    border-bottom: 1px solid #fff;
+    padding: 8px 25px;
+    outline: none;
+    width: 100%;
+    margin-bottom: 10px;
+    background: #32689A;
+    color: #fff;
+
+}
+
+input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1; /* Firefox */
+}
+
+.input-container {
+    display: flex;
+    padding: 2%;
+    position: relative;
+}
+
+.input-container svg {
+    position: absolute;
+    font-size: 1.2em;
+    bottom: 22px;
+    color: #fff;
+}
