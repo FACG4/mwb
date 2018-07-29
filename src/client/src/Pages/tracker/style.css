@@ -1,0 +1,39 @@
+.track--form {
+    background: #E7E7E7;
+    margin: 25px 15px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 5px #54525280;
+}
+
+.track--form h2 {
+    color: #505050;
+    text-align: center;
+}
+
+.track--form p {
+    color: #7F7C7C;
+
+}
+
+.track--form input {
+    background: #fff;
+}
+
+.track--form input[type="text"] {
+    padding: 14px 25px;
+}
+.track--form input[type="submit"]{
+    background: #A73542;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0px 3px #1d1c1c69;
+}
+
+.track--form input[type="text"]::placeholder{
+    color: rgba(34, 33, 33, 0.774)
+}
+
+.track--form input[type="text"]{
+    color: #000;
+}

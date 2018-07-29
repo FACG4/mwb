@@ -1,15 +1,13 @@
 import React, { Component, Fragment } from 'react';
 
-import './App.css';
+import Tracker from './Pages/tracker';
 
-
-import SignIn from './Pages/signIn';
 
 class App extends Component {
   render() {
     return (
-       <Fragment>
-         <SignIn />
+      <Fragment>
+        <Tracker />
       </Fragment>
     );
   }
