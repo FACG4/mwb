@@ -1,4 +1,4 @@
-import React, { Fragment} from 'react';
+import React, { Fragment, Component } from 'react';
 import logo from './../../logo.png';
 import GrayButton from './../../Components/grayButton/';
 import Input from './../../Components/Input/';
@@ -11,31 +11,58 @@ import { faEnvelope, faUnlockAlt, faUser, faPhoneVolume, faMapMarkerAlt, faAddre
 
 library.add(faEnvelope, faUnlockAlt, faUser, faPhoneVolume, faMapMarkerAlt, faAddressCard, faArrowLeft);
 
-
-const signUp = () => {
-    return (
-        <div className="sign">
-            <div className='logo--continer'>
-                <span><FontAwesomeIcon icon={faArrowLeft} /></span>
-                <img src={logo} />
+/* eslint-disable react/jsx-filename-extension */
+class SignUp extends Component {
+  constructor(props) {
+        super(props);
+        this.state = {};
+    }
+    handelSubmit = (e) => {
+        e.preventDefault();
+        const { username, email, password, phone, address, mPesa } = e.target;
+        this.setState({
+            singUpData : {
+                username: username.value,
+                email: email.value,
+                password: password.value,
+                phone: phone.value,
+                address: address.value,
+                mPesa: mPesa.value,
+            }
+        });
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: this.state.singUpData
+        })
+    }
+    render(){
+        return (
+            <form onSubmit={this.handelSubmit}>
+            <div className="sign">
+                <div className='logo--continer'>
+                    <span><FontAwesomeIcon icon={faArrowLeft} /></span>
+                    <img src={logo} />
+                </div>
+                <div id="input--wraper">
+                    <Input placeholder='Username'  icon={faUser} name="username" />
+                    <Input placeholder='Email'  icon={faEnvelope} type='email' name="email" />
+                    <Input placeholder='Password'  icon={faUnlockAlt} type='password' name="password" />
+                    <Input placeholder='Phone number'  icon={faPhoneVolume} type='number' name="phone" />
+                     <Input placeholder='Address'  icon={faMapMarkerAlt} name="address" />
+                    <Input placeholder='M-pesa number'  icon={faAddressCard} name="mPesa" /> 
+                </div>
+                <div id="button">
+                    <Input value={'Sign Up'} type="submit"  />
+                </div>
             </div>
-            <div id="input--wraper">
-                <Input placeholder='Username'  icon={faUser} />
-                <Input placeholder='Email'  icon={faEnvelope} type='email' />
-                <Input placeholder='Password'  icon={faUnlockAlt} type='password' />
-                <Input placeholder='Phone number'  icon={faPhoneVolume} type='number' />
-                 <Input placeholder='Address'  icon={faMapMarkerAlt} />
-                <Input placeholder='M-pesa number'  icon={faAddressCard}  /> 
-            </div>
-            <div id="button">
-                <GrayButton title={'Sign Up'} />
-            </div>
-           
-
-            
-        </div>
-    )
-
+            </form>
+        )
+    
+    }
+    
 }
 
-export default signUp;
+export default SignUp;
