@@ -22,12 +22,16 @@ id SERIAL PRIMARY KEY,
 itemID INTEGER REFERENCES items(id),
 userID INTEGER REFERENCES users(id),
 quantity INTEGER,
-status INTEGER,
+status VARCHAR,
 deliveryTime TIMESTAMP,
 trakingNumber VARCHAR
 );
 
-INSERT INTO users(username, email, password, address, mPesaNumber) VALUES
-('Israa','israamm@gmail.com','dfgh', 'Beach Camp', '1234'),
-('Sallam','sallamtanna2015@hotmail.com','123','Naser Street', '2345');
+insert into users(username, email, password, address, mPesaNumber)values('salalm','sas','sdcdsc','dcsdc','sddc');
+insert into items(title, description, image)values('jewellery','sas','https://wallpaperbrowse.com/media/images/4052451-images.jpg' );
+insert into orders(itemID, userID, quantity, status, trakingNumber)values(1,1,1,'sallam','1');
+insert into orders(itemID, userID, quantity, status, trakingNumber)values(1,1,1,'israa','2');
+insert into orders(itemID, userID, quantity, status, trakingNumber)values(1,1,1,'Ramy','3');
+
+
 COMMIT;
