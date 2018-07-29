@@ -11,6 +11,10 @@ library.add(faEnvelope,faUnlockAlt);
 
 
 const signIn = () => {
+    const test= (e) => {
+        console.log(e.data)
+        console.log('sasasasa');
+    }
     return (
         <div className="sign">
             <div className="logo--container">
@@ -19,7 +23,7 @@ const signIn = () => {
                 <img src={logo} />
             </div>
             <div id="input--wraper">
-                <Input placeholder='Email'  icon={faEnvelope} />
+                <Input placeholder='Email'  icon={faEnvelope} name='email' />
                 <Input placeholder='Password'  icon={faUnlockAlt} />
                 <div className='checkbox--container'>
                     
@@ -29,7 +33,7 @@ const signIn = () => {
 
             </div>
             <div id="button">
-                <GrayButton title={'sign Up'} />
+                <GrayButton title={'sign Up'} onClick={test} />
             </div>
             <div className="signup--link">
                 <p>Don’t have account?</p><a href="">Sign up now</a>

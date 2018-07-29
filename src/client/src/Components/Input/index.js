@@ -7,7 +7,7 @@ const Input = (props) => {
     return (
         <div className="input-container">     
             <FontAwesomeIcon icon={props.icon} />
-            <input placeholder={props.placeholder} name={props.name} value={props.value} type={props.type} />
+            <input {...props}  />
         </div>
 
     )

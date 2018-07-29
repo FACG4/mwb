@@ -13,8 +13,8 @@ class App extends Component {
   render() {
     return (
        <Fragment>
-        {/* <SignIn /> */}
-        <SignUp />
+        <SignIn />
+        {/* <SignUp /> */}
       </Fragment>
     );
   }
