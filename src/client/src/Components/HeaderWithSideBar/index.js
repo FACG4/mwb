@@ -24,9 +24,9 @@ return (
 <div id="mySidenav" className="sidenav">
 <a href="javascript:void(0)" className="closebtn" onClick={closeNav}><span className="crossIcon">&times;</span></a>
 <div className="sideBarImgDiv"><img src={logo} className="sideBarImg" alt="LOGO" /></div>
-    <a href="#" className="sideMenuLabel"><i className="fas fa-home sideMenuLabel"></i> Home</a>
+    <a href="/" className="sideMenuLabel"><i className="fas fa-home sideMenuLabel"></i> Home</a>
     <a href="#"><i className="fas fa-user"></i> Profile</a>
-    <a href="#"><i className="fas fa-sign-out-alt"></i> Logout</a>
+    <a href="/login"><i className="fas fa-sign-out-alt"></i> Logout</a>
 </div>
 </div>)}
 
