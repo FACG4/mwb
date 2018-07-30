@@ -25,6 +25,7 @@ class SignUp extends Component {
       const {
         username, email, password, phone, address, mPesa,
       } = e.target;
+      const { singUpData } = this.state;
       this.setState({
         singUpData: {
           username: username.value,
@@ -41,7 +42,7 @@ class SignUp extends Component {
         headers: {
           'content-type': 'application/json',
         },
-        body: this.state.singUpData,
+        body: singUpData,
       });
     }
 

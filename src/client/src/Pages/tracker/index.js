@@ -73,7 +73,15 @@ class Tracker extends Component {
           <Input placeholder="Enter Tracking Number" type="text" name="trakerNumber" />
           <Input value="send" type="submit" />
         </form>
-        <Popup onClick={this.hiddenPopUp} isVisible={isModalVisible} tittle="Success!" icon={faCheckCircle} message="The item has added successfully!" linkText="OK" color="green" />
+        <Popup
+          onClick={this.hiddenPopUp}
+          isVisible={isModalVisible}
+          tittle="Success!"
+          icon={faCheckCircle}
+          message="The item has added successfully!"
+          linkText="OK"
+          color="green"
+        />
       </Fragment>
     );
   }

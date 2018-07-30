@@ -15,9 +15,11 @@ class SignIn extends Component {
     this.state = { };
   }
 
+
     handleSingIn = (e) => {
       e.preventDefault();
       const { email, password, keepLogin } = e.target;
+      const { singInData } = this.state;
       this.setState({
         singInData: {
           email: email.value,
@@ -30,7 +32,7 @@ class SignIn extends Component {
         headers: {
           'content-type': 'application/json',
         },
-        body: this.state.singInData,
+        body: singInData,
       });
     }
 
@@ -41,22 +43,22 @@ class SignIn extends Component {
             <div className="logo--container">
               <h1>
                 <span>
-M
+                  M
                 </span>
-arket
+                  arket
                 {' '}
                 <span>
-W
+                  W
                 </span>
-ithout
+                  ithout
                 {' '}
                 <span>
-B
+                  B
                 </span>
-old
+                  orders
               </h1>
               <p>
-The Beautiful and the Banned!
+                The Beautiful and the Banned!
               </p>
               <img src={logo} alt="logo" />
             </div>
@@ -65,9 +67,9 @@ The Beautiful and the Banned!
               <Input placeholder="Password" icon={faUnlockAlt} name="password" />
               <div className="checkbox--container">
 
-                <Input type="checkbox" name="keepLogin" />
-                <label>
-Keep me logged in
+                <Input type="checkbox" name="keepLogin" id="keep-login" />
+                <label htmlFor="keep-login">
+                  Keep me logged in
                 </label>
               </div>
 
@@ -79,7 +81,7 @@ Keep me logged in
               <p>
 Don’t have account?
               </p>
-              <a href="">
+              <a href="/signup">
 Sign up now
               </a>
             </div>
