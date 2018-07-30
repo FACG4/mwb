@@ -7,11 +7,6 @@ const controllers = require('./controllers/index');
 
 const app = express();
 
-
-// const option = {
-//   origin: 'http://localhost:3004',
-//   credentials: true,
-// };
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

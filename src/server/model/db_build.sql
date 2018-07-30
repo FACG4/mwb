@@ -24,14 +24,7 @@ userID INTEGER REFERENCES users(id),
 quantity INTEGER,
 status VARCHAR,
 deliveryTime VARCHAR,
-trakingNumber VARCHAR
+trackingNumber VARCHAR
 );
-
-insert into users(username, email, password, address, mPesaNumber)values('salalm','sas','sdcdsc','dcsdc','sddc');
-insert into items(title, description, image)values('jewellery','sas','https://wallpaperbrowse.com/media/images/4052451-images.jpg' );
-insert into orders(itemID, userID, quantity, status, trakingNumber)values(1,1,1,'sallam','1');
-insert into orders(itemID, userID, quantity, status, trakingNumber)values(1,1,1,'israa','2');
-insert into orders(itemID, userID, quantity, status, trakingNumber,deliveryTime)values(1,1,1,'Ramy','3','2018-07-16');
-
 
 COMMIT;

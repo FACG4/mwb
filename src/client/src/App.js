@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import HeaderWithSideBar from './Components/HeaderWithSideBar/index';
-
+import SignIn from './Pages/signIn';
 
 class App extends Component {
   render() {
-    return (<div>
-
-
-      <HeaderWithSideBar title="Home" />
-    </div>
+    return (
+      <Fragment>
+        <SignIn />
+      </Fragment>
     );
   }
 }
