@@ -4,31 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-=======
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node index",
-    "dev": "NODE_ENV=development node index",
-    "dummy": "NODE_ENV=development  node ./database/pg/utils/createDummy.js",
-    "db:init": "NODE_ENV=test node ./database/pg/initializeDB.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "env2": "^2.2.2",
     "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
-    "knex": "^0.14.6",
-    "path": "^0.12.7",
->>>>>>> 9282e70afe7d89313945fb9a43f5623ef6e090b0
     "pg": "^7.4.3"
   }
 }

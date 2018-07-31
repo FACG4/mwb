@@ -14,36 +14,36 @@ library.add(
   faEnvelope, faUnlockAlt, faUser, faPhoneVolume, faMapMarkerAlt, faAddressCard, faArrowLeft,
 );
 
+const initState = {
+  username: "",
+  email: "",
+  password: "",
+  phone: "",
+  address: "",
+  mPesa: ""
+}
+
 class SignUp extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state =  {...initState} ;
   }
+
+    handleInputChange = (e) => {
+      this.setState({[e.target.name]:e.target.value})
+    }
 
     handelSubmit = (e) => {
       e.preventDefault();
-      const {
-        username, email, password, phone, address, mPesa,
-      } = e.target;
-      const { singUpData } = this.state;
-      this.setState({
-        singUpData: {
-          username: username.value,
-          email: email.value,
-          password: password.value,
-          phone: phone.value,
-          address: address.value,
-          mPesa: mPesa.value,
-        },
-      });
+      this.setState({...initState})
 
       fetch('/signup', {
         method: 'POST',
         headers: {
-          'content-type': 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: singUpData,
-      });
+        body: JSON.stringify(this.state),
+      }).then(console.log(this.state));
     }
 
     render() {
@@ -57,12 +57,12 @@ class SignUp extends Component {
               <img src={logo} alt="logo" />
             </div>
             <div id="input--wraper">
-              <Input placeholder="Username" icon={faUser} name="username" />
-              <Input placeholder="Email" icon={faEnvelope} type="email" name="email" />
-              <Input placeholder="Password" icon={faUnlockAlt} type="password" name="password" />
-              <Input placeholder="Phone number" icon={faPhoneVolume} type="number" name="phone" />
-              <Input placeholder="Address" icon={faMapMarkerAlt} name="address" />
-              <Input placeholder="M-pesa number" icon={faAddressCard} name="mPesa" />
+              <Input placeholder="Username" icon={faUser} name="username" value={this.state.username} onChange={this.handleInputChange}/>
+              <Input placeholder="Email" icon={faEnvelope} type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
+              <Input placeholder="Password" icon={faUnlockAlt} type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
+              <Input placeholder="Phone number" icon={faPhoneVolume} type="number" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
+              <Input placeholder="Address" icon={faMapMarkerAlt} name="address" value={this.state.address} onChange={this.handleInputChange} />
+              <Input placeholder="M-pesa number" icon={faAddressCard} name="mPesa" value={this.state.mPesa} onChange={this.handleInputChange} />
             </div>
             <div id="button">
               <Input value="Sign Up" type="submit" />

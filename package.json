@@ -12,7 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "NODE_ENV=development istanbul cover test/index.js | tap-spec",
+    "test": "NODE_ENV=test istanbul cover test/index.js | tap-spec",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

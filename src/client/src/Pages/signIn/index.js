@@ -29,7 +29,7 @@ class SignIn extends Component {
       });
       fetch('/signin', {
         method: 'POST',
-        credentials: 'include',
+        credentials: 'same-origin',
         headers: {
           'content-type': 'application/json',
         },

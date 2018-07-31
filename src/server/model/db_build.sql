@@ -1,13 +1,15 @@
 BEGIN;
-DROP TABLE IF EXISTS users, items, orders;
+
+DROP TABLE IF EXISTS users, items, orders CASCADE;
 
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
 username VARCHAR(20) UNIQUE NOT NULL,
 email VARCHAR(100) UNIQUE NOT NULL,
+phone VARCHAR(100) UNIQUE NOT NULL,
 password VARCHAR(100),
 address TEXT,
-mPesaNumber VARCHAR
+m_pesa VARCHAR
 );
 
 CREATE TABLE items(
@@ -19,19 +21,12 @@ image VARCHAR
 
 CREATE TABLE orders(
 id SERIAL PRIMARY KEY,
-itemID INTEGER REFERENCES items(id),
-userID INTEGER REFERENCES users(id),
+item_id INTEGER REFERENCES items(id),
+user_id INTEGER REFERENCES users(id),
 quantity INTEGER,
 status VARCHAR,
-deliveryTime VARCHAR,
-trakingNumber VARCHAR
+delivery_time VARCHAR,
+traking_number VARCHAR
 );
-
-insert into users(username, email, password, address, mPesaNumber)values('salalm','sas','sdcdsc','dcsdc','sddc');
-insert into items(title, description, image)values('jewellery','sas','https://wallpaperbrowse.com/media/images/4052451-images.jpg' );
-insert into orders(itemID, userID, quantity, status, trakingNumber)values(1,1,1,'sallam','1');
-insert into orders(itemID, userID, quantity, status, trakingNumber)values(1,1,1,'israa','2');
-insert into orders(itemID, userID, quantity, status, trakingNumber,deliveryTime)values(1,1,1,'Ramy','3','2018-07-16');
-
 
 COMMIT;
