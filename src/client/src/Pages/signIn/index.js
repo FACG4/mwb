@@ -75,14 +75,14 @@ class SignIn extends Component {
 
             </div>
             <div id="button">
-              <Input value="sign Up" type="submit" />
+              <Input value="sign Ip" type="submit" />
             </div>
             <div className="signup--link">
               <p>
-Don’t have account?
+                Don’t have account?
               </p>
               <a href="/signup">
-Sign up now
+                Sign up now
               </a>
             </div>
           </div>
