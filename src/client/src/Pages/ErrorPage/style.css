@@ -1,0 +1,22 @@
+.continer--page {
+    background: #f59090;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.continer--page a {
+    text-decoration: none;
+    color: #fff;
+    background: #c56767;
+    padding: 10px;
+    margin: 20px;
+    display: block;
+    border-radius: 5px;
+}
+
+.continer--page a:hover {
+    background: #b94e4e;
+}
