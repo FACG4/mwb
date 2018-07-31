@@ -12,7 +12,8 @@ module.exports = {
         }]
     },
     "globals":{
-         "fetch":true // this means we can't overwrite the variable fetch
+         "fetch":true, // this means we can't overwrite the variable fetch
+         "window":true
     }
     
 };
