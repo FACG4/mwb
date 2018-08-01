@@ -1,0 +1,68 @@
+.ItemCardLabel {
+  color: #797979;
+}
+
+.ItemCardLabelBold {
+  color: #797979;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.itemCard {
+  width: 349px;
+  height: 133px;
+  background-color: #E7E7E7;
+  box-shadow: 0px 3px 10px grey;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-left: 12px;
+  margin-top: 15px;
+}
+
+.data {
+  text-align: left;
+  display: flex;
+  flex-flow: column;
+}
+
+.image {
+  text-align: right;
+}
+
+.img {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  margin-left: 120px;
+}
+
+.tab {
+  width: 349px;
+  height: 48px;
+  border-radius: 9px;
+  text-align: center;
+  overflow: hidden;
+  background-color: #E0E0E0;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.tab button {
+  width: 25%;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  color: #B2B0B0;
+}
+
+
+.tab button.active {
+  font-weight: bolder;
+  font-size: 16px;
+  color: #5f5f5f;
+ }
