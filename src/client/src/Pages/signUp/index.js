@@ -57,12 +57,12 @@ class SignUp extends Component {
               <img src={logo} alt="logo" />
             </div>
             <div id="input--wraper">
-              <Input placeholder="Username" icon={faUser} name="username" value={this.state.username} onChange={this.handleInputChange}/>
-              <Input placeholder="Email" icon={faEnvelope} type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
-              <Input placeholder="Password" icon={faUnlockAlt} type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
-              <Input placeholder="Phone number" icon={faPhoneVolume} type="number" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
-              <Input placeholder="Address" icon={faMapMarkerAlt} name="address" value={this.state.address} onChange={this.handleInputChange} />
-              <Input placeholder="M-pesa number" icon={faAddressCard} name="mPesa" value={this.state.mPesa} onChange={this.handleInputChange} />
+              <Input placeholder="Username" required icon={faUser} name="username" value={this.state.username} onChange={this.handleInputChange}/>
+              <Input placeholder="Email" required icon={faEnvelope} type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
+              <Input placeholder="Password" required icon={faUnlockAlt} type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
+              <Input placeholder="Phone number" required icon={faPhoneVolume} type="number" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
+              <Input placeholder="Address" required icon={faMapMarkerAlt} name="address" value={this.state.address} onChange={this.handleInputChange} />
+              <Input placeholder="M-pesa number" required icon={faAddressCard} name="mPesa" value={this.state.mPesa} onChange={this.handleInputChange} />
             </div>
             <div id="button">
               <Input value="Sign Up" type="submit" />
