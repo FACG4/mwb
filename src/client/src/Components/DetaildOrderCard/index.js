@@ -28,6 +28,7 @@ class DetaildOrderCard extends React.Component {
       changingDateIcon: '',
       color: '',
       changingStatusIcon: '',
+      disableTheButton:false
     };
 
     this.changeStatus = this.changeStatus.bind(this);
@@ -96,8 +97,8 @@ class DetaildOrderCard extends React.Component {
         } else if (this.state.buttonLabel == 'Recieved') {
           this.setState({ buttonLabel: 'Sent' });
         } else if (this.state.buttonLabel == 'Sent') {
-          console.log('seeeeeeeeeeeeeent');
-          this.setState({ buttonLabel: 'Do nothing!!' });
+
+           this.setState({ buttonLabel: ' Sent!' , disableTheButton:true} , ()=>{console.log(this.state.disableTheButton);});
         } // here we have to woooooorkkkkkkkkkkkkkkkkkkkk
       })
       .catch((err) => {
@@ -186,7 +187,7 @@ class DetaildOrderCard extends React.Component {
                   </div>
 
                   <div>
-                    <button onClick={this.changeStatus} className="redButton">
+                    <button onClick={this.changeStatus} className='redButton' disabled= {this.state.disableTheButton}>
                       Mark as {this.state.buttonLabel}
                     </button>
                   </div>
