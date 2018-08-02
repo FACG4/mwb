@@ -21,7 +21,7 @@ class DetaildOrderCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      myCursedArray: [],
+      newArrayAfterFetch: [],
       buttonLabel: 'Default',
       statusPopupMsg: false,
       datePopupMsg: false,
@@ -50,7 +50,7 @@ class DetaildOrderCard extends React.Component {
       },
       body: JSON.stringify({
         newStatus: this.state.buttonLabel,
-        orderId: this.state.myCursedArray[0].id
+        orderId: this.state.newArrayAfterFetch[0].id
       })
     })
       .then(res => res.json())
@@ -92,7 +92,7 @@ class DetaildOrderCard extends React.Component {
       },
       body: JSON.stringify({
         newDeliveryTime: e.target.value,
-        orderId: this.state.myCursedArray[0].id
+        orderId: this.state.newArrayAfterFetch[0].id
       })
     })
       .then(res => res.json())
@@ -123,7 +123,7 @@ class DetaildOrderCard extends React.Component {
       .then(response => response.json())
       .then(data => {
         const data2 = data.data.filter(itemData => itemData.id == id);
-        this.setState({ myCursedArray: data2, buttonLabel: data2[0].status });
+        this.setState({ newArrayAfterFetch: data2, buttonLabel: data2[0].status });
         if (this.state.buttonLabel == 'Pending') {
           this.setState({ buttonLabel: 'Recieved' });
         } else if (this.state.buttonLabel == 'Recieved') {
@@ -145,7 +145,7 @@ class DetaildOrderCard extends React.Component {
   render() {
     return (
       <div>
-        {this.state.myCursedArray.length == 0 ? (
+        {this.state.newArrayAfterFetch.length == 0 ? (
           <div className="centerLoadingIcon">
             <ReactLoading type="spokes" color="grey" height={367} width={75} />
           </div>
@@ -180,7 +180,7 @@ class DetaildOrderCard extends React.Component {
                 />
                 <div className="dataDetailed">
                   <img
-                    src={this.state.myCursedArray[0].image}
+                    src={this.state.newArrayAfterFetch[0].image}
                     className="imgInDetailedCard"
                   />
 
@@ -188,21 +188,21 @@ class DetaildOrderCard extends React.Component {
                     <span className="ItemCardLabelBold">
                       Item:
                       <span className="ItemCardLabel">
-                        {this.state.myCursedArray[0].title}
+                        {this.state.newArrayAfterFetch[0].title}
                       </span>
                     </span>
 
                     <span className="ItemCardLabelBold">
                       Order ID:
                       <span className="ItemCardLabel">
-                        {this.state.myCursedArray[0].id}
+                        {this.state.newArrayAfterFetch[0].id}
                       </span>
                     </span>
 
                     <span className="ItemCardLabelBold">
                       Quantity:
                       <span className="ItemCardLabel">
-                        {this.state.myCursedArray[0].quantity}
+                        {this.state.newArrayAfterFetch[0].quantity}
                       </span>
                     </span>
 
@@ -210,7 +210,7 @@ class DetaildOrderCard extends React.Component {
                       <span className="ItemCardLabelBold">
                         Delivered by:
                         <span className="ItemCardLabel">
-                          {this.state.myCursedArray[0].delivery_time}
+                          {this.state.newArrayAfterFetch[0].delivery_time}
                         </span>
                       </span>
                       <button
@@ -231,7 +231,7 @@ class DetaildOrderCard extends React.Component {
                     <span className="ItemCardLabelBold">
                       Status:
                       <span className="ItemCardLabel">
-                        {this.state.myCursedArray[0].status}{' '}
+                        {this.state.newArrayAfterFetch[0].status}{' '}
                       </span>
                     </span>
                   </div>
