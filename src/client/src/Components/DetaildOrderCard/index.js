@@ -1,8 +1,7 @@
+/*eslint-disable*/
 import React from 'react';
 import './index.css';
-import {
-  BrowserRouter, Route, Switch, Link,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link,} from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import { faCheckCircle, faExclamationCircle, faBatteryQuarter } from '@fortawesome/free-solid-svg-icons';
 import HeaderWithSideBar from '../HeaderWithSideBar/index.js';
@@ -47,13 +46,15 @@ class DetaildOrderCard extends React.Component {
       },
       body: JSON.stringify({ newStatus: this.state.buttonLabel, orderId: this.state.myCursedArray[0].id }),
     })
-      .then(res => res.json())
-      .then((res) => {
-        if (res.data.rowCount == 1) {
-          this.setState({ changingStatusPopup: 'Status was changed successfully!', changingStatusIcon: faCheckCircle, color: 'green' });
-        } else { this.setState({ changingStatusPopup: 'Something went wrong while updating status!!', changingStatusIcon: faExclamationCircle, color: 'red' }); }
-      })
-      .catch((err) => { console.log(err); });
+    .then(res => res.json())
+    .then((res) => {
+      if (res.data.rowCount == 1) {
+        this.setState({ changingStatusPopup: 'Status was changed successfully!', changingStatusIcon: faCheckCircle, color: 'green' });
+       } else {
+        this.setState({ changingStatusPopup: 'Something went wrong while updating status!!', changingStatusIcon: faExclamationCircle, color: 'red' });
+      }
+    })
+    .catch((err) => { console.log(err); });
     this.setState({ statusPopupMsg: true });
   }
 
@@ -107,9 +108,8 @@ class DetaildOrderCard extends React.Component {
   render() {
     return (
       <div>
-        {this.state.myCursedArray.length == 0
-          ? (
-            <div className="centerLoadingIcon">
+        {this.state.myCursedArray.length == 0 ?
+          (<div className="centerLoadingIcon">
               <ReactLoading type="spokes" color="grey" height={367} width={75} />
             </div>
           )
@@ -141,60 +141,61 @@ class DetaildOrderCard extends React.Component {
                   <i className="fas fa-long-arrow-alt-left back-arrow" onClick={this.context.router.history.goBack} />
                   <div className="dataDetailed">
                     <img src={this.state.myCursedArray[0].image} className="imgInDetailedCard" />
+
                     <div className="labels">
-                      <span className="ItemCardLabelBold">
-Item:
-            <span className="ItemCardLabel">
-                      {this.state.myCursedArray[0].title}
-                    </span>
-          </span>
-                      <span className="ItemCardLabelBold">
-Order ID:
-            <span className="ItemCardLabel">
-                      {this.state.myCursedArray[0].id}
-                    </span>
-          </span>
-                      <span className="ItemCardLabelBold">
-Quantity:
-            <span className="ItemCardLabel">
-                      {this.state.myCursedArray[0].quantity}
-                    </span>
-          </span>
-                      <div>
-            <span className="ItemCardLabelBold">
-Delivered by:
+                      <span className="ItemCardLabelBold">Item:
+                        <span className="ItemCardLabel">
+                          {this.state.myCursedArray[0].title}
+                        </span>
+                      </span>
+
+                    <span className="ItemCardLabelBold">Order ID:
                       <span className="ItemCardLabel">
-                        {this.state.myCursedArray[0].deliverytime}
+                        {this.state.myCursedArray[0].id}
                       </span>
                     </span>
-            <button className="editDeliveryTime" onClick={this.editDeliverytime}>
-Edit
-                    </button>
-          </div>
-                      <div>
-            <DateInput visible={this.state.showDateInput} onChange={this.handleDateInput} />
-          </div>
-                      <span className="ItemCardLabelBold">
-Status:
-            <span className="ItemCardLabel">
-                      {this.state.myCursedArray[0].status}
-                      {' '}
+
+                    <span className="ItemCardLabelBold">Quantity:
+                      <span className="ItemCardLabel">
+                        {this.state.myCursedArray[0].quantity}
+                      </span>
                     </span>
-          </span>
+
+                    <div>
+                      <span className="ItemCardLabelBold">Delivered by:
+                        <span className="ItemCardLabel">
+                          {this.state.myCursedArray[0].deliverytime}
+                        </span>
+                      </span>
+                      <button className="editDeliveryTime" onClick={this.editDeliverytime}>
+                        Edit
+                      </button>
+                    </div>
+
+                    <div>
+                      <DateInput visible={this.state.showDateInput} onChange={this.handleDateInput} />
+                    </div>
+
+                    <span className="ItemCardLabelBold">Status:
+                      <span className="ItemCardLabel">
+                        {this.state.myCursedArray[0].status}
+                      {' '}
+                      </span>
+                    </span>
                     </div>
                   </div>
+
                   <div>
                     <button onClick={this.changeStatus} className="redButton">
-Mark as
-                      {this.state.buttonLabel}
+                      Mark as {this.state.buttonLabel}
                     </button>
                   </div>
+
                 </div>
               </div>
             </div>
           )
       }
-
       </div>);
   }
 }
