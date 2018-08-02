@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './style.css';
 
-const Popup = ({icon, tittle, message, linkText, color, isVisible, onClick}) => (
-  <div className={"popup" + (isVisible ? ' visible' : '')} >
+const Popup = ({
+  icon, tittle, message, linkText, color, isVisible, onClick,
+}) => (
+  <div className={`popup${isVisible ? ' visible' : ''}`}>
     <div className="box--popup">
       <h3>
         { tittle }
@@ -14,7 +16,7 @@ const Popup = ({icon, tittle, message, linkText, color, isVisible, onClick}) => 
         { message }
       </p>
       <div className="button--popup">
-        <a href="#pop" onClick={onClick}>
+        <a onClick={onClick}>
           { linkText }
         </a>
       </div>

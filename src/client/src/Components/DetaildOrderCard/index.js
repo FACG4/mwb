@@ -164,7 +164,7 @@ class DetaildOrderCard extends React.Component {
                     <div>
                       <span className="ItemCardLabelBold">Delivered by:
                         <span className="ItemCardLabel">
-                          {this.state.myCursedArray[0].deliverytime}
+                          {this.state.myCursedArray[0].delivery_time}
                         </span>
                       </span>
                       <button className="editDeliveryTime" onClick={this.editDeliverytime}>

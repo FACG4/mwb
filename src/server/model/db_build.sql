@@ -29,4 +29,10 @@ delivery_time VARCHAR,
 traking_number VARCHAR
 );
 
+insert into users(username, email, password, address, m_pesa, phone)values('salalm','sas','sdcdsc','dcsdc','sddc', '123456');
+insert into items(title, description, image)values('jewellery','sas','https://wallpaperbrowse.com/media/images/4052451-images.jpg' );
+insert into orders(item_id, user_id, quantity, status, traking_number,delivery_time)values(1,1,1,'Pending','1','2018-07-16'),(1,1,1,'Recieved','2','2018-07-16'),(1,1,1,'Sent','3','2018-07-16');
+
+
+
 COMMIT;

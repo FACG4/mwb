@@ -13,7 +13,7 @@ exports.updateOrderStatus = (status, id, cb) => {
 
 
 exports.updateDeliveryTime = (deliveryTime, id, cb) => {
-  const sql = `UPDATE orders SET deliveryTime = '${deliveryTime}' WHERE id=${id}`;
+  const sql = `UPDATE orders SET delivery_time = '${deliveryTime}' WHERE id=${id}`;
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
