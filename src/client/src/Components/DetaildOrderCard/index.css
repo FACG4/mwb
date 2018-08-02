@@ -13,6 +13,11 @@
   margin-top: 10px;
 }
 
+
+.redButton:disabled{
+  background-color: #b1b1b1;
+}
+
 .data {
   display: flex;
   align-items: flex-start;
