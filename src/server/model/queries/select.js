@@ -5,6 +5,6 @@ exports.selecAllOrders = (cb) => {
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
-    return cb(result.rows);
+    cb(result.rows);
   });
 };
