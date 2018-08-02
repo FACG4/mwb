@@ -27,7 +27,7 @@
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+  color:  #A73542;
 }
 
 .sidenav .closebtn {
@@ -46,10 +46,14 @@
   border-radius: 50%;
   height: 90px;
   width: 90px;
+  outline: none;
+  border-color: white;
+
 }
 
 .sideBarImgDiv {
   text-align: center;
+  margin-top: 40px;
 }
 
 .headerDiv {

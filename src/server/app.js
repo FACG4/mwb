@@ -5,8 +5,8 @@ const controllers = require('./controllers/index');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(controllers);
 app.set('port', process.env.PORT || 3001);
 app.use(express.static(path.join(__dirname, '..', 'public')));

@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
+
+import React, { Component, Fragment } from 'react';
+import './App.css';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import Tracker from './Pages/tracker';
-import SignUp from './Pages/signUp';
+import HeaderWithSideBar from './Components/HeaderWithSideBar/index';
 import SignIn from './Pages/signIn';
 import ErrorPage from './Pages/ErrorPage';
+import Tracker from './Pages/tracker';
+import SignUp from './Pages/signUp';
 
 class App extends Component {
-  state={}
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return (
