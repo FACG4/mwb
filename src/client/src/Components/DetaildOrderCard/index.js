@@ -32,11 +32,12 @@ class DetaildOrderCard extends React.Component {
       changingDateIcon: '',
       color: '',
       changingStatusIcon: '',
-      disableTheButton: false
+      disableTheButton: false,
+      theDate:'',
+      theStatus:''
     };
 
     this.changeStatus = this.changeStatus.bind(this);
-    this.refreshTheCurrentPage = this.refreshTheCurrentPage.bind(this);
     this.editDeliverytime = this.editDeliverytime.bind(this);
     this.handleDateInput = this.handleDateInput.bind(this);
   }
@@ -59,7 +60,9 @@ class DetaildOrderCard extends React.Component {
           this.setState({
             changingStatusPopup: 'Status was changed successfully!',
             changingStatusIcon: faCheckCircle,
-            color: 'green'
+            color: 'green',
+            theStatus:res.data.rows[0].status
+
           });
         } else {
           this.setState({
@@ -68,15 +71,21 @@ class DetaildOrderCard extends React.Component {
             color: 'red'
           });
         }
+
+        if (this.state.theStatus == 'Pending') {
+              this.setState({ buttonLabel: 'Recieved' });
+            } else if (this.state.theStatus == 'Recieved') {
+              this.setState({ buttonLabel: 'Sent' });
+            } else if (this.state.theStatus == 'Sent') {
+               this.setState(
+                { buttonLabel: ' Sent!', disableTheButton: true }
+              );
+            }
       })
       .catch(err => {
         console.log(err);
       });
     this.setState({ statusPopupMsg: true });
-  }
-
-  refreshTheCurrentPage() {
-    window.location = `${this.props.match.url}`;
   }
 
   editDeliverytime() {
@@ -97,15 +106,16 @@ class DetaildOrderCard extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        if (res.data.rowCount == 1) {
+         if (res.data.rowCount == 1) {
           this.setState({
-            changingTimePopup: 'Deliverey date was updated success',
+            changingTimePopup: 'Deliverey date was updated successfully',
             changingDateIcon: faCheckCircle,
-            color: 'green'
+            color: 'green',
+            theDate:res.data.rows[0].delivery_time
           });
         } else {
           this.setState({
-            changingTimePopup: 'Something went wrong when updaing!!',
+            changingTimePopup: 'Something went wrong while updaing!!',
             changingDateIcon: faExclamationCircle,
             color: 'red'
           });
@@ -123,19 +133,16 @@ class DetaildOrderCard extends React.Component {
       .then(response => response.json())
       .then(data => {
         const data2 = data.data.filter(itemData => itemData.id == id);
-        this.setState({ newArrayAfterFetch: data2, buttonLabel: data2[0].status });
-        if (this.state.buttonLabel == 'Pending') {
-          this.setState({ buttonLabel: 'Recieved' });
-        } else if (this.state.buttonLabel == 'Recieved') {
-          this.setState({ buttonLabel: 'Sent' });
-        } else if (this.state.buttonLabel == 'Sent') {
-          this.setState(
-            { buttonLabel: ' Sent!', disableTheButton: true },
-            () => {
-              console.log(this.state.disableTheButton);
+        this.setState({ newArrayAfterFetch: data2, buttonLabel: data2[0].status, theDate:data2[0].delivery_time ,theStatus:data2[0].status });
+        if (this.state.theStatus == 'Pending') {
+              this.setState({ buttonLabel: 'Recieved' });
+            } else if (this.state.theStatus == 'Recieved') {
+              this.setState({ buttonLabel: 'Sent' });
+            } else if (this.state.theStatus == 'Sent') {
+               this.setState(
+                { buttonLabel: ' Sent!', disableTheButton: true }
+              );
             }
-          );
-        }
       })
       .catch(err => {
         console.log(err);
@@ -153,7 +160,7 @@ class DetaildOrderCard extends React.Component {
           <div>
             <Popup
               message="Status was updated successfully!"
-              onClick={this.refreshTheCurrentPage}
+              onClick={()=>{this.setState({statusPopupMsg:false})}}
               icon={this.state.changingStatusIcon}
               isVisible={this.state.statusPopupMsg}
               tittle="Updated!"
@@ -163,7 +170,7 @@ class DetaildOrderCard extends React.Component {
 
             <Popup
               message={this.state.changingTimePopup}
-              onClick={this.refreshTheCurrentPage}
+              onClick={()=>{this.setState({datePopupMsg:false, showDateInput:true})}}
               isVisible={this.state.datePopupMsg}
               color={this.state.color}
               icon={this.state.changingDateIcon}
@@ -210,8 +217,8 @@ class DetaildOrderCard extends React.Component {
                       <span className="ItemCardLabelBold">
                         Delivered by:
                         <span className="ItemCardLabel">
-                          {this.state.newArrayAfterFetch[0].delivery_time}
-                        </span>
+                        {this.state.theDate}
+                         </span>
                       </span>
                       <button
                         className="editDeliveryTime"
@@ -231,7 +238,7 @@ class DetaildOrderCard extends React.Component {
                     <span className="ItemCardLabelBold">
                       Status:
                       <span className="ItemCardLabel">
-                        {this.state.newArrayAfterFetch[0].status}{' '}
+                        {this.state.theStatus}
                       </span>
                     </span>
                   </div>

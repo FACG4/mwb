@@ -19,6 +19,7 @@ class TopTab extends React.Component {
         >
           All
         </button>
+
         <button
           className="tablinks"
           className={this.props.pendingActive}
@@ -28,6 +29,7 @@ class TopTab extends React.Component {
         >
           Pending
         </button>
+
         <button
           className="tablinks"
           className={this.props.recievedActive}
@@ -37,6 +39,7 @@ class TopTab extends React.Component {
         >
           Recieved
         </button>
+
         <button
           className="tablinks"
           className={this.props.sentActive}
@@ -46,6 +49,7 @@ class TopTab extends React.Component {
         >
           Sent
         </button>
+
       </div>
     );
   }
