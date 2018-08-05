@@ -7,6 +7,7 @@ const updateDeliveryTime = (req, res) => {
   const id = req.body.orderId;
 
   update.updateDeliveryTime(newDeliveryTime, id, (cb) => {
+    console.log(cb);
     res.send({ data: cb });
   });
 };

@@ -4,7 +4,7 @@
 
 }
 
-.sidenav {
+.sidenav{
   height: 100%;
   width: 0;
   position: fixed;
@@ -16,6 +16,64 @@
   transition: 0.5s;
   padding-top: 60px;
 }
+.sideNotification {
+  height: 100%;
+  /* width: 100%; */
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #E7E7E7;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+
+.notification-tab{
+  padding: 0px 25px;
+     min-height: 65px;
+     &:hover{
+       cursor: pointer;
+       background: $primary-color;
+       .fa, h4, .label{
+         color: #FFF;
+         display: inline-block;
+       }
+       .label{
+         background: $secondary-color;
+         border-color: $secondary-color;
+       }
+     }
+}
+
+.notification-group{
+  border-bottom: 1px solid grey;
+      overflow: hidden;
+      min-height: 65px;
+      &:last-child{
+        border-bottom: 0;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;}}
+
+
+
+        .notificationMenu{
+          -webkit-animation: fadein .5s;
+    -moz-animation: fadein .5s;
+    -ms-animation: fadein .5s;
+    -o-animation: fadein .5s;
+    animation: fadein .5s;
+    display: block;
+        }
+
+.sideNotification {
+  margin-top: 68px;
+}
+
+.sideNotification a{
+text-decoration: none;}
+
 
 .sidenav a {
   padding: 8px 8px 8px 32px;
@@ -30,7 +88,7 @@
   color:  #A73542;
 }
 
-.sidenav .closebtn {
+.sidenav .closebtn, .sideNotification .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
@@ -68,7 +126,8 @@
   color: white;
   font-family: lato;
   padding-top: 17px;
-  padding-left: 450px
+  padding-left: 450px;
+  font-weight:lighter;
 }
 
 .menuIcon, .notificationIcon {
@@ -82,9 +141,6 @@
   padding-right: 110px;
 }
 
-.notificationIcon {
-  padding-left: 580px;
-}
 
 @media screen and (max-width: 600px) {
   .headerTitle {
