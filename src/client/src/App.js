@@ -9,7 +9,7 @@ import signUp from './Pages/signUp/index';
 import homePage from './Pages/homePage/index';
 
 import ErrorPage from './Pages/ErrorPage';
-import Tracker from './Pages/tracker';
+import Tracker from './Pages/tracker/index';
 import OrdersPage from './Pages/OrdersPage/index';
 import DetaildOrderCard from './Components/DetaildOrderCard';
 
@@ -26,7 +26,7 @@ class App extends Component {
           <Route path="/signup" component={signUp} />
           <Route path="/signin" component={SignIn} />
           <Route exact path="/orders" component={OrdersPage} />
-          <Route path="/tracker" component={Tracker} />
+          <Route exact path="/tracker/:order_id_for_tracking" component={Tracker} />
           <Route exact path="/order/:order_id_to_render" component={DetaildOrderCard} />
 
 
