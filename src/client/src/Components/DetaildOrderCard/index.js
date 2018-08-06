@@ -80,6 +80,7 @@ class DetaildOrderCard extends React.Component {
                this.setState(
                 { buttonLabel: ' Sent!', disableTheButton: true }
               );
+              window.location = 'tracker';
             }
       })
       .catch(err => {
@@ -92,7 +93,13 @@ class DetaildOrderCard extends React.Component {
     this.setState({ showDateInput: false });
   }
 
+
+
+
+
+
   handleDateInput(e) {
+
     fetch('/updateDeliveryTime', {
       method: 'post',
       headers: {
@@ -100,7 +107,7 @@ class DetaildOrderCard extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        newDeliveryTime: e.target.value,
+        newDeliveryTime: e.target.value.replace(/-/g,''),
         orderId: this.state.newArrayAfterFetch[0].id
       })
     })
@@ -111,7 +118,7 @@ class DetaildOrderCard extends React.Component {
             changingTimePopup: 'Deliverey date was updated successfully',
             changingDateIcon: faCheckCircle,
             color: 'green',
-            theDate:res.data.rows[0].delivery_time
+            theDate:res.data.rows[0].delivery_time.split('T')[0]
           });
         } else {
           this.setState({
@@ -133,7 +140,10 @@ class DetaildOrderCard extends React.Component {
       .then(response => response.json())
       .then(data => {
         const data2 = data.data.filter(itemData => itemData.id == id);
-        this.setState({ newArrayAfterFetch: data2, buttonLabel: data2[0].status, theDate:data2[0].delivery_time ,theStatus:data2[0].status });
+
+
+
+        this.setState({ newArrayAfterFetch: data2, buttonLabel: data2[0].status, theDate:data2[0].delivery_time.split('T')[0] ,theStatus:data2[0].status });
         if (this.state.theStatus == 'Pending') {
               this.setState({ buttonLabel: 'Recieved' });
             } else if (this.state.theStatus == 'Recieved') {
@@ -142,6 +152,7 @@ class DetaildOrderCard extends React.Component {
                this.setState(
                 { buttonLabel: ' Sent!', disableTheButton: true }
               );
+              window.location = 'tracker';
             }
       })
       .catch(err => {

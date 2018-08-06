@@ -1,5 +1,3 @@
-
-
 const connect = require('../db_connect.js');
 
 exports.updateOrderStatus = (status, id, cb) => {
@@ -17,6 +15,9 @@ exports.updateDeliveryTime = (deliveryTime, id, cb) => {
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
-    cb(result);
+    {
+      console.log('hhhhhhhhhhhhhhhh', result.rows[0].delivery_time);
+      cb(result);
+    }
   });
 };

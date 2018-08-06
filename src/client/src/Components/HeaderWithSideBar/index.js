@@ -33,17 +33,11 @@ const HeaderWithSideBar = props => {
           <h2 className="headerTitle">{props.title}</h2>
         </div>
 
-
-
-
       <div>
       <i onClick={openNotification} className="fas fa-bell notificationIcon" />
       </div>
-
-
-
-
       </div>
+
 
       <div id="mySidenav" className="sidenav">
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
@@ -65,7 +59,6 @@ const HeaderWithSideBar = props => {
         <a href="/signup">
           <i className="fas fa-sign-out-alt" /> Logout
         </a>
-
       </div>
 
 
@@ -75,13 +68,9 @@ const HeaderWithSideBar = props => {
           <span className="crossIcon">&times;</span>
         </a>
 
-<div className="dropdown-container">
-<ul className="notificationMenu">
-<li className="notification-group">
+
       <div className="notification-tab">This is the first notification</div>
-</li>
-</ul>
-</div>
+
 
 
       </div>
