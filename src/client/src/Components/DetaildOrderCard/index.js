@@ -80,8 +80,7 @@ class DetaildOrderCard extends React.Component {
                this.setState(
                 { buttonLabel: ' Sent!', disableTheButton: true }
               );
-              console.log(res.data.rows[0].id,'kkkkkkkkkkk');
-              this.props.history.push(`/tracker/${res.data.rows[0].id}`)
+               this.props.history.push(`/tracker/${res.data.rows[0].id}`)
             }
       })
       .catch(err => {

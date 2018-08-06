@@ -1,0 +1,13 @@
+.crossIcon{
+  color: white;
+  font-size: 15px;
+  padding: 5px;
+  font-weight:bold;
+}
+
+.crossButton{
+  border-radius: 50%;
+  background-color: #A73542;
+  margin-left: 318px;
+  margin-top: -51px;
+}

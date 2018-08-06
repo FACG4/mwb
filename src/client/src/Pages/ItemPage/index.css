@@ -1,0 +1,17 @@
+.addNewItem{
+  border-radius: 50%;
+  background-color: #32689A;
+  height: 78px;
+  width: 78px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px  ;
+  box-shadow: 6px 6px 10px gray;
+
+
+}
+
+.addNewItemIcon{
+  color: white;
+  font-size: 30px;
+}
