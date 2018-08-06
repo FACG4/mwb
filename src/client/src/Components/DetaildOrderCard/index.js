@@ -80,7 +80,8 @@ class DetaildOrderCard extends React.Component {
                this.setState(
                 { buttonLabel: ' Sent!', disableTheButton: true }
               );
-              window.location = 'tracker';
+              console.log(res.data.rows[0].id,'kkkkkkkkkkk');
+              this.props.history.push(`/tracker/${res.data.rows[0].id}`)
             }
       })
       .catch(err => {
@@ -135,7 +136,7 @@ class DetaildOrderCard extends React.Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.order_id_to_render;
+     const id = this.props.match.params.order_id_to_render;
     fetch('/getAllOrders')
       .then(response => response.json())
       .then(data => {
@@ -152,8 +153,10 @@ class DetaildOrderCard extends React.Component {
                this.setState(
                 { buttonLabel: ' Sent!', disableTheButton: true }
               );
-              window.location = 'tracker';
-            }
+
+              this.props.history.push(`/tracker/${data2[0].id}`)
+
+             }
       })
       .catch(err => {
         console.log(err);
@@ -193,7 +196,7 @@ class DetaildOrderCard extends React.Component {
             <div className="detailedItemCard">
               <div className="itemCardWithDetails">
                 <i
-                  className="fas fa-long-arrow-alt-left back-arrow"
+                  className="fas fa-arrow-left back-arrow"
                   onClick={this.context.router.history.goBack}
                 />
                 <div className="dataDetailed">

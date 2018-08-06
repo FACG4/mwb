@@ -26,7 +26,7 @@ class App extends Component {
           <Route path="/signup" component={signUp} />
           <Route path="/signin" component={SignIn} />
           <Route exact path="/orders" component={OrdersPage} />
-          <Route exact path="/tracker" component={Tracker} />
+          <Route exact path="/tracker/:order_id_for_tracking" component={Tracker} />
           <Route exact path="/order/:order_id_to_render" component={DetaildOrderCard} />
 
 

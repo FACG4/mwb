@@ -36,8 +36,9 @@
   color: #3C5D62;
   font-size: 25px;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
   display: flex;
+  font-size: 20px;
   justify-content: flex-start;
 }
 

@@ -80,8 +80,10 @@
 .headerTitle {
   color: white;
   font-family: lato;
-  padding-top: 17px;
-  padding-left: 450px
+  padding-top: 23px;
+  padding-left: 450px;
+  font-size:23px;
+  font-weight:lighter;
 }
 
 .menuIcon, .notificationIcon {
