@@ -10,7 +10,7 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "node index",
+    "start": "node src/server/index",
     "heroku-postbuild": "cd src/client && npm install && npm run build",
     "build": "react-scripts build",
     "test": "NODE_ENV=test istanbul cover test/index.js | tap-spec",
