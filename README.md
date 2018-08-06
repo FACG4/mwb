@@ -1,5 +1,5 @@
 # Market Without Borders
-  ![logo](./public/mwb.png)
+  ![logo](https://www.marketwithoutborders.co.uk/wp-content/uploads/2018/07/logo-name-e1531999999611.jpg)
 
 ## Problem Statment :interrobang:
 Artisans in Kenya can’t trade online because they don’t have bank accounts or credit cards and because the internet connection is unreliable in Kenya. Kenya has established SMS-based payment systems but there is no way to allow them to utilize that system in online trade.
