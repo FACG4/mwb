@@ -11,12 +11,12 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node index",
-    "heroku-postbuild": "cd src/client && npm install && cd src/client && npm run build",
+    "heroku-postbuild": "cd src/client && npm install && npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "NODE_ENV=test istanbul cover test/index.js | tap-spec",
     "eject": "react-scripts eject"
-    
+
   },
   "dependencies": {
     "body-parser": "^1.18.3",
