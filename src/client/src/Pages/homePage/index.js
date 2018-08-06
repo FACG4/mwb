@@ -15,6 +15,10 @@ class Categories extends React.Component {
     window.location = 'orders';
   }
 
+  openItems() {
+    window.location = 'items';
+  }
+
 
   render() {
     return (<div>
@@ -32,7 +36,7 @@ Please select what you want,
         </div>
 
 
-        <div className="cetegory1">
+        <div className="cetegory1" onClick={this.openItems}>
           <div className="hierarchyIconDiv">
             <img src={shoppingBag} alt="shoppingBagIcon" className="hierarchyIcon" />
           </div>
