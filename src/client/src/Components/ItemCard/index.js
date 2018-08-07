@@ -16,7 +16,7 @@ class ItemCard extends React.Component {
       <div className="itemCard">
         <div className="data dataDiv">
 
-        <button className="crossButton"><i class="fas fa-times crossIcon"></i></button>
+        <button className="crossButton" onClick={this.props.deleteItem}><i class="fas fa-times crossIcon"></i></button>
 
           <div>
             <span className="ItemCardLabelBold">Item:</span> <span className="ItemCardLabel">{this.props.itemTitle}</span>

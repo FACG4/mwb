@@ -21,7 +21,7 @@ class ItemPage extends React.Component{
         this.setState({ itemsArray: data.data });
       })
       .catch((err) => {
-        console.log('Something error happened while trying getting all orders: ', err);
+        console.log('Something error happened while trying getting all items: ', err);
       });
   }
 
