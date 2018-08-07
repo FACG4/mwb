@@ -29,5 +29,4 @@ Artisans in Kenya can’t trade online because they don’t have bank accounts o
 Click [here](https://www.figma.com/proto/EjORhZFF4WbIIVlIhKo8NQ3y/MWB?node-id=130%3A18&scaling=scale-down)
 to see the figma prototype
 
-
-Click [here](https://www.canva.com/design/DAC_mnz8uvU/share?role=EDITOR&token=6BURU7qnkiDXjclewrxYHw&utm_content=DAC_mnz8uvU&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton) to see the presentation
+ 
