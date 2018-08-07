@@ -41,7 +41,7 @@ const HeaderWithSideBar = props => {
 
       <div id="mySidenav" className="sidenav">
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
-          <span className="crossIcon">&times;</span>
+          <span className="crossIconForHeader">&times;</span>
         </a>
 
         <div className="sideBarImgDiv">
@@ -65,7 +65,7 @@ const HeaderWithSideBar = props => {
 
       <div id="mySideNotification" className="sideNotification">
         <a href="javascript:void(0)" className="closebtn" onClick={closeNotification}>
-          <span className="crossIcon">&times;</span>
+          <span className="crossIconForHeader">&times;</span>
         </a>
 
 
