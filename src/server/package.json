@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-
-    "start": "NODE_ENV=production node index",
- "heroku-postbuild": "cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node index",
     "dev": "NODE_ENV=development node index",
     "dummy": "NODE_ENV=development  node ./database/pg/utils/createDummy.js",
     "db:init": "NODE_ENV=test node ./database/pg/initializeDB.js"

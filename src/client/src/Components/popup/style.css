@@ -1,74 +1,74 @@
 .popup {
-    background: #00000073;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 20px;
-    z-index: 99999;
-    height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
-    display: none;
+  background: #00000073;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  z-index: 99999;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  display: none;
 }
 
 .popup.visible {
-    display: block;
+  display: block;
 }
 
 .box--popup {
-    background: #fff;
-    padding: 20px;
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 70%;
-    border-radius: 5px;
-    
+  background: #fff;
+  padding: 20px;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 70%;
+  border-radius: 5px;
 }
 
 .box--popup svg {
-    display: block;
-    margin: 0 auto;
-    font-size: 5em;
+  display: block;
+  margin: 0 auto;
+  font-size: 5em;
 }
 
-.box--popup p{
-    text-align: center;
-    color: #3C5D62
+.box--popup p {
+  text-align: center;
+  color: #3C5D62
 }
+
 .box--popup h3 {
-    text-align: center;
-    color: #3C5D62
+  text-align: center;
+  color: #3C5D62
 }
 
 .box--popup a {
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    color: #3C5D62;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  color: #3C5D62;
 }
 
 .button--popup::before {
-    display: block;
-    content: '';
-    width: 100%;
-    height: 1px;
-    background: #9e9d9d;
-    margin-bottom: 15px;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #9e9d9d;
+  margin-bottom: 15px;
 }
 
 .green {
-    color:#245F1F;
+  color: #245F1F;
 }
 
 .blue {
-    color: #32689A;
+  color: #32689A;
 }
 
 .yellow {
-    color: #C3A84A;
+  color: #C3A84A;
 }
 
 .red {
-    color: #A73542;
+  color: #A73542;
 }

@@ -2,80 +2,162 @@
 import React from 'react';
 import './index.css';
 import logo from './images/logo.png';
+import NotificationDiv from '../NotificationDiv';
+import ReactLoading from 'react-loading';
+var a = [];
 
-const HeaderWithSideBar = props => {
-  const openNav = () => {
-    document.getElementById('mySidenav').style.width = '250px';
-  };
-
-  const closeNav = () => {
-    document.getElementById('mySidenav').style.width = '0';
-  };
-
-  const openNotification = (e)=>{
-    document.getElementById('mySideNotification').style.width = '250px';
+class HeaderWithSideBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ordersArray: [],
+      nearOrders: [{}],
+      showRedDot: false
+    };
+    this.openNav = this.openNav.bind(this);
+    this.closeNav = this.closeNav.bind(this);
+    this.openNotification = this.openNotification.bind(this);
+    this.closeNotification = this.closeNotification.bind(this);
   }
 
-  const closeNotification = (e)=>{
+  componentDidMount() {
+    fetch('/getAllOrders')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ ordersArray: data.data }, () => {
+          let orderDate;
+          let currentDate = new Date();
+
+          this.state.ordersArray.map(order => {
+            orderDate = new Date(order.delivery_time);
+            var timeDiff = Math.abs(
+              orderDate.getTime() - currentDate.getTime()
+            );
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            if (diffDays === 3) {
+              this.setState(prevState => ({
+                showRedDot: true,
+                nearOrders: prevState.nearOrders.map(obj => {
+                  a.push(order);
+                  return order;
+                })
+              }));
+            }
+          });
+        });
+      })
+      .catch(err => {
+        console.log(
+          'Something error happened while trying getting all orders: ',
+          err
+        );
+      });
+  }
+
+  openNav() {
+    document.getElementById('mySidenav').style.width = '250px';
+  }
+
+  closeNav() {
+    document.getElementById('mySidenav').style.width = '0';
+  }
+
+  openNotification(e) {
+    document.getElementById('mySideNotification').style.width = '250px';
+    document.getElementById('mySideNotification').classList.add('hidden47');
+  }
+
+  closeNotification(e) {
+    document.getElementById('mySideNotification').classList.remove('hidden47');
     document.getElementById('mySideNotification').style.width = '0';
   }
 
-
-
-  return (
-    <div>
-      <div className="headerDiv">
-        <div>
-          <i onClick={openNav} className="fas fa-bars menuIcon" />
-        </div>
-
-        <div>
-          <h2 className="headerTitle">{props.title}</h2>
-        </div>
-
+  render() {
+    return (
       <div>
-      <i onClick={openNotification} className="fas fa-bell notificationIcon" />
-      </div>
-      </div>
+        <div className="headerDiv">
+          <div>
+            <i onClick={this.openNav} className="fas fa-bars menuIcon" />
+          </div>
 
+          <div>
+            <h2
+              className={`headerTitle ${
+                this.props.newStyle ? 'takeNewStyle' : ''
+              }`}
+            >
+              {this.props.title}
+            </h2>
+          </div>
 
-      <div id="mySidenav" className="sidenav">
-        <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
-          <span className="crossIconForHeader">&times;</span>
-        </a>
-
-        <div className="sideBarImgDiv">
-          <img src={logo} className="sideBarImg" alt="LOGO" />
+          <div>
+            <i
+              onClick={this.openNotification}
+              className="fas fa-bell notificationIcon"
+            >
+              <span
+                className={`dot ${
+                  this.state.showRedDot ? 'visible' : 'hidden'
+                }`}
+              />
+            </i>
+          </div>
         </div>
 
-        <a href="/" className="sideMenuLabel">
-          <i className="fas fa-home sideMenuLabel" /> Home
-        </a>
+        <div id="mySidenav" className="sidenav">
+          <a
+            href="javascript:void(0)"
+            className="closebtn"
+            onClick={this.closeNav}
+          >
+            <span className="crossIconForHeader">&times;</span>
+          </a>
 
-        <a href="#">
-          <i className="fas fa-user" /> Profile
-        </a>
+          <div className="sideBarImgDiv">
+            <img src={logo} className="sideBarImg" alt="LOGO" />
+          </div>
 
-        <a href="/signup">
-          <i className="fas fa-sign-out-alt" /> Logout
-        </a>
+          <a href="/" className="sideMenuLabel">
+            <i className="fas fa-home sideMenuLabel" /> Home
+          </a>
+
+          <a href="#">
+            <i className="fas fa-user" /> Profile
+          </a>
+
+          <a href="/signup">
+            <i className="fas fa-sign-out-alt" /> Logout
+          </a>
+        </div>
+
+        <div id="mySideNotification" className="sideNotification">
+          <a
+            href="javascript:void(0)"
+            className="closebtn"
+            onClick={this.closeNotification}
+          >
+            <span className="crossIconForNotification">&times;</span>
+          </a>
+
+          <div>
+            {a.length === 0 ? (
+              <div className="centerLoadingIcon">
+                <h1>There is no notifications!!</h1>
+              </div>
+            ) : (
+              a.map((order, index) => (
+                <NotificationDiv
+                  id={order.id}
+                  delivery_time={order.delivery_time.split('T')[0]}
+                  key={index}
+                />
+              ))
+            )}
+          </div>
+        </div>
       </div>
-
-
-
-      <div id="mySideNotification" className="sideNotification">
-        <a href="javascript:void(0)" className="closebtn" onClick={closeNotification}>
-          <span className="crossIconForHeader">&times;</span>
-        </a>
-
-
-      <div className="notification-tab">This is the first notification</div>
-
-
-
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default HeaderWithSideBar;
