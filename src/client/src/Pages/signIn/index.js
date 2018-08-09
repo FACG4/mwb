@@ -69,7 +69,7 @@ class SignIn extends Component {
               <div className="checkbox--container">
 
                 <Input type="checkbox" name="keepLogin" id="keep-login" />
-                <label htmlFor="keep-login">
+                <label className="keepLoginMe" htmlFor="keep-login">
                   Keep me logged in
                 </label>
               </div>

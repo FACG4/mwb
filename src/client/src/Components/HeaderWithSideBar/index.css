@@ -1,7 +1,7 @@
 * {
   padding: 0px;
   margin: 0px;
-
+  text-decoration: none;
 }
 
 .sidenav {
@@ -16,17 +16,25 @@
   transition: 0.5s;
   padding-top: 60px;
 }
+
 .sideNotification {
-  height: 100%;
   width: 0;
+  height: auto;
   position: fixed;
   z-index: 1;
-  top: 0;
-  right: 0;
-  background-color: #E7E7E7;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+  top: 261px;
+  right: 125px;
+  background-color: black;
+  overflow-x:scroll;
+  transition: 1s;
+  margin: auto;
+}
+
+.hidden47 {
+  width: 250px;
+  height: auto;
+  transform: translate(50%, -50%) scale(1);
+  transition: all 1s ease infinite;
 }
 
 .sidenav a {
@@ -35,12 +43,11 @@
   font-size: 25px;
   display: block;
   transition: 0.3s;
-  color: #32689A;
-
+  color: black;
 }
 
 .sidenav a:hover {
-  color:  #A73542;
+  color: #A73542;
 }
 
 .sidenav .closebtn {
@@ -49,10 +56,17 @@
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  text-decoration: none;
 }
 
-.crossIcon {
+.crossIconForHeader {
   color: #A73542;
+}
+
+.crossIconForNotification {
+  color: white;
+  font-size: 30px;
+  margin-left: 212px;
 }
 
 .sideBarImg {
@@ -61,7 +75,6 @@
   width: 90px;
   outline: none;
   border-color: white;
-
 }
 
 .sideBarImgDiv {
@@ -72,18 +85,22 @@
 .headerDiv {
   width: 100%;
   height: 68px;
-  background-color: #32689A;
+  background-color: black;
   display: flex;
   flex-flow: row;
 }
 
 .headerTitle {
   color: white;
-  font-family: lato;
+  font-family: arial;
   padding-top: 23px;
   padding-left: 450px;
-  font-size:23px;
-  font-weight:lighter;
+  font-size: 23px;
+  font-weight: lighter;
+}
+
+.headerTitle.takeNewStyle {
+  padding-left: 6px;
 }
 
 .menuIcon, .notificationIcon {
@@ -101,12 +118,30 @@
   padding-left: 580px;
 }
 
+.dot {
+  height: 19px;
+  width: 19px;
+  background-color: red;
+  border-radius: 50%;
+  margin-left: -30px;
+}
+
+.dot.visible {
+  visibility: visible;
+  display: inline-block;
+}
+
+.dot.hidden {
+  visibility: hidden;
+  display: none;
+}
+
 @media screen and (max-width: 600px) {
   .headerTitle {
-    padding-left: 20px
+    padding-left: 30px;
   }
   .notificationIcon {
-    padding-left: 100px;
+    padding-left: 92px;
   }
   .sidenav {
     padding-top: 15px;

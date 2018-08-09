@@ -1,8 +1,5 @@
 /* eslint-disable */
-
-
 const update = require('../model/queries/update');
-
 
 const changeOrderStatus = (req, res) => {
   const status = req.body.newStatus;
@@ -12,6 +9,5 @@ const changeOrderStatus = (req, res) => {
      res.send({ data: cb});
   });
 };
-
 
 module.exports = { changeOrderStatus };

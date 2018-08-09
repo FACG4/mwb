@@ -17,7 +17,7 @@ class OrdersPage extends React.Component {
       pendingActive: '',
       recievedActive: '',
       sentActive: '',
-      allActive: 'active',
+      allActive: 'active'
     };
     this.diplayPendingOrders = this.diplayPendingOrders.bind(this);
     this.diplayRecievedOrders = this.diplayRecievedOrders.bind(this);
@@ -27,7 +27,10 @@ class OrdersPage extends React.Component {
 
   diplayPendingOrders() {
     this.setState({
-      pendingActive: 'active', recievedActive: '', sentActive: '', allActive: '',
+      pendingActive: 'active',
+      recievedActive: '',
+      sentActive: '',
+      allActive: ''
     });
     let requiredIndex;
     for (let i = 1; i <= this.state.ordersArray.length; i++) {
@@ -42,7 +45,10 @@ class OrdersPage extends React.Component {
 
   diplayRecievedOrders() {
     this.setState({
-      recievedActive: 'active', pendingActive: '', sentActive: '', allActive: '',
+      recievedActive: 'active',
+      pendingActive: '',
+      sentActive: '',
+      allActive: ''
     });
     let requiredIndex;
     for (let i = 1; i <= this.state.ordersArray.length; i++) {
@@ -57,7 +63,10 @@ class OrdersPage extends React.Component {
 
   diplaySentOrders() {
     this.setState({
-      recievedActive: '', pendingActive: '', sentActive: 'active', allActive: '',
+      recievedActive: '',
+      pendingActive: '',
+      sentActive: 'active',
+      allActive: ''
     });
     let requiredIndex;
     for (let i = 1; i <= this.state.ordersArray.length; i++) {
@@ -72,7 +81,10 @@ class OrdersPage extends React.Component {
 
   diplayAllOrders() {
     this.setState({
-      recievedActive: '', pendingActive: '', sentActive: '', allActive: 'active',
+      recievedActive: '',
+      pendingActive: '',
+      sentActive: '',
+      allActive: 'active'
     });
     let requiredIndex;
     for (let i = 1; i <= this.state.ordersArray.length; i++) {
@@ -86,11 +98,14 @@ class OrdersPage extends React.Component {
   componentDidMount() {
     fetch('/getAllOrders')
       .then(response => response.json())
-      .then((data) => {
+      .then(data => {
         this.setState({ ordersArray: data.data });
       })
-      .catch((err) => {
-        console.log('Something error happened while trying getting all orders: ', err);
+      .catch(err => {
+        console.log(
+          'Something error happened while trying getting all orders: ',
+          err
+        );
       });
   }
 
@@ -110,13 +125,17 @@ class OrdersPage extends React.Component {
         />
 
         <div>
-          {this.state.ordersArray.length === 0
-            ? (
-              <div className="centerLoadingIcon">
-                <ReactLoading type="spokes" color="grey" height={367} width={75} />
-              </div>
-            )
-            : this.state.ordersArray.map((order, index) => (
+          {this.state.ordersArray.length === 0 ? (
+            <div className="centerLoadingIcon">
+              <ReactLoading
+                type="spokes"
+                color="grey"
+                height={367}
+                width={75}
+              />
+            </div>
+          ) : (
+            this.state.ordersArray.map((order, index) => (
               <OrderCard
                 key={index}
                 props={this.props}
@@ -127,7 +146,8 @@ class OrdersPage extends React.Component {
                 status={order.status}
                 ref={'index'.concat(order.id)}
               />
-            ))}
+            ))
+          )}
         </div>
       </div>
     );

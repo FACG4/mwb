@@ -1,0 +1,13 @@
+.notification{
+  background-color: red;
+  border-radius: 6px;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: black;
+  padding: 10px;
+  width:85%;
+  background-color: white;
+  border: white 1px solid;
+  margin-left: 6px;
+}

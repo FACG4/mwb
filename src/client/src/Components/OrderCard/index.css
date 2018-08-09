@@ -1,24 +1,14 @@
 .ItemCardLabel {
-  color: #797979;
+  color: black;
 }
 
 .ItemCardLabelBold {
-  color: #797979;
+  color: black;
   font-weight: bold;
   margin-left: 20px;
 }
 
-.itemCard {
-  width: 349px;
-  height: 133px;
-  background-color: #E7E7E7;
-  box-shadow: 0px 3px 10px grey;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  margin-left: 12px;
-  margin-top: 15px;
-}
+
 
 .data {
   text-align: left;

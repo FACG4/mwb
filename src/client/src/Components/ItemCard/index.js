@@ -9,27 +9,28 @@ class ItemCard extends React.Component {
     this.state = {};
   }
 
-
   render() {
     return (
-
       <div className="itemCard">
         <div className="data dataDiv">
-
-        <button className="crossButton"><i class="fas fa-times crossIcon"></i></button>
+          <button className="crossButton" id={this.props.itemID}>
+            <i class="fas fa-times crossIcon" />
+          </button>
 
           <div>
-            <span className="ItemCardLabelBold">Item:</span> <span className="ItemCardLabel">{this.props.itemTitle}</span>
+            <span className="ItemCardLabelBold">Item:</span>{' '}
+            <span className="ItemCardLabel">{this.props.itemTitle}</span>
           </div>
 
           <div>
-            <span className="ItemCardLabelBold" >Item ID:</span> <span  className="ItemCardLabel">{this.props.itemID}</span>
+            <span className="ItemCardLabelBold">Item ID:</span>{' '}
+            <span className="ItemCardLabel">{this.props.itemID}</span>
           </div>
-
         </div>
-        <div className="image"><img src={this.props.src} className="img"/></div>
-    </div>
-
+        <div className="image">
+          <img src={this.props.src} className="img" />
+        </div>
+      </div>
     );
   }
 }

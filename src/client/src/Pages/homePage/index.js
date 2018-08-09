@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from 'react';
 import './index.css';
 import shoppingBag from './images/shoppingBag.png';
@@ -19,47 +20,33 @@ class Categories extends React.Component {
     window.location = 'items';
   }
 
-
   render() {
-    return (<div>
-      <HeaderWithSideBar title="Home" />
+    return (
+      <div>
+        <HeaderWithSideBar title="Home" />
 
-
-      <div className="categoriesDiv">
-        <h1 className="usernameInHomePage">
-Hey
-          {this.props.username}
-,
-        </h1>
-        <div className="selectCategorySentence">
-Please select what you want,
-        </div>
-
-
-        <div className="cetegory1" onClick={this.openItems}>
-          <div className="hierarchyIconDiv">
-            <img src={shoppingBag} alt="shoppingBagIcon" className="hierarchyIcon" />
+        <div className="categoriesDiv">
+          <h1 className="usernameInHomePage">
+            Hey Maxx
+            {this.props.username},
+          </h1>
+          <div className="selectCategorySentence">
+            Please select what you want,
           </div>
-          <h2 className="categoryTitle">
-Items
-          </h2>
-        </div>
 
-
-        <div className="cetegory2" onClick={this.openOrders}>
-          <div className="hierarchyIconDiv">
-            <img src={hierarchy} alt="hierarchy" className="hierarchyIcon" />
+          <div className="cetegory1" onClick={this.openItems}>
+            <div className="hierarchyIconDiv" />
+            <h2 className="categoryTitle">My Shop</h2>
           </div>
-          <h2 className="categoryTitle">
-Orders
-          </h2>
-        </div>
 
+          <div className="cetegory2" onClick={this.openOrders}>
+            <div className="hierarchyIconDiv" />
+            <h2 className="categoryTitle">Orders</h2>
+          </div>
+        </div>
       </div>
-            </div>
     );
   }
 }
-
 
 export default Categories;

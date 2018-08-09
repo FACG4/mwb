@@ -11,64 +11,58 @@ import './style.css';
 
 library.add(faArrowLeft, faCheckCircle);
 
-
 class Tracker extends Component {
   static contextTypes = {
-    router: () => true,
+    router: () => true
   };
 
   constructor(props) {
     super(props);
     this.state = {
       isModalVisible: false,
-      trakerNumberData: { },
+      trakerNumberData: {}
     };
   }
 
-  handelTrackNumber = (e) => {
+  handelTrackNumber = e => {
     e.preventDefault();
-  }
+  };
 
   visablePopUp = () => {
     this.setState({ isModalVisible: true });
-  }
+  };
 
   hiddenPopUp = () => {
     this.setState({ isModalVisible: false });
-  }
+  };
 
-  handelTrackNumber = (e) => {
+  handelTrackNumber = e => {
     e.preventDefault();
-    const {
-      trakerNumber,
-    } = e.target;
+    const { trakerNumber } = e.target;
+
     const { trakerNumberData } = this.state;
-    this.setState({
-      trakerNumberData: {
-        trakerNumber: trakerNumber.value,
+    this.setState(
+      {
+        trakerNumberData: {
+          trakerNumber: trakerNumber.value
+        }
       },
-    }, () => {
-
-
-      fetch('/tracker', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-             trakerNumber:this.state.trakerNumberData.trakerNumber,
-             orderId: this.props.match.params.order_id_for_tracking,
-          }) ,
-      })
-      .then(
-        () => this.visablePopUp(),
-      );
-    });
-  }
-
+      () => {
+        fetch('/tracker', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            trakerNumber: this.state.trakerNumberData.trakerNumber,
+            orderId: this.props.match.params.order_id_for_tracking
+          })
+        }).then(() => this.visablePopUp());
+      }
+    );
+  };
 
   render() {
-
     const { isModalVisible } = this.state;
     return (
       <Fragment>
@@ -77,16 +71,21 @@ class Tracker extends Component {
           <span onClick={() => this.context.router.history.go(-2)}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </span>
-          <h2>
-              Enter tracking number
-          </h2>
+          <h2>Enter tracking number</h2>
           <p>
-            This number is to Lorem Ipsum is simply dummy
-            text of the printing and typesetting industry.
+            Adding tracking number is a way to confirm sending the order. To do
+            so, please enter the tracking number in the field below
           </p>
-          <Input placeholder="Enter Tracking Number" type="text" name="trakerNumber" />
-          <Input value="send" type="submit" />
+          <Input
+            placeholder="Enter Tracking Number"
+            type="text"
+            name="trakerNumber"
+          />
+          <div className="buttonsDiv">
+            <Input value="Send" type="submit" className="green" />
+          </div>
         </form>
+
         <Popup
           onClick={this.hiddenPopUp}
           isVisible={isModalVisible}

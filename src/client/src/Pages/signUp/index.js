@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { Component } from 'react';
 
 import './style.css';
@@ -15,27 +16,27 @@ library.add(
 );
 
 const initState = {
-  username: "",
-  email: "",
-  password: "",
-  phone: "",
-  address: "",
-  mPesa: ""
-}
+  username: '',
+  email: '',
+  password: '',
+  phone: '',
+  address: '',
+  mPesa: '',
+};
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
-    this.state =  {...initState} ;
+    this.state = { ...initState };
   }
 
     handleInputChange = (e) => {
-      this.setState({[e.target.name]:e.target.value})
+      this.setState({ [e.target.name]: e.target.value });
     }
 
     handelSubmit = (e) => {
       e.preventDefault();
-      this.setState({...initState})
+      this.setState({ ...initState });
 
       fetch('/signup', {
         method: 'POST',
@@ -57,12 +58,12 @@ class SignUp extends Component {
               <img src={logo} alt="logo" />
             </div>
             <div id="input--wraper">
-              <Input placeholder="Username" required icon={faUser} name="username" value={this.state.username} onChange={this.handleInputChange}/>
-              <Input placeholder="Email" required icon={faEnvelope} type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
+              <Input placeholder="Full Name" required icon={faUser} name="username" value={this.state.username} onChange={this.handleInputChange} />
+              <Input placeholder="Emailbbb" required icon={faEnvelope} type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
               <Input placeholder="Password" required icon={faUnlockAlt} type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
-              <Input placeholder="Phone number" required icon={faPhoneVolume} type="number" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
+              <Input placeholder="Mobile number" required icon={faPhoneVolume} type="number" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
               <Input placeholder="Address" required icon={faMapMarkerAlt} name="address" value={this.state.address} onChange={this.handleInputChange} />
-              <Input placeholder="M-pesa number" required icon={faAddressCard} name="mPesa" value={this.state.mPesa} onChange={this.handleInputChange} />
+              <Input placeholder="Till Number" required icon={faAddressCard} name="mPesa" value={this.state.mPesa} onChange={this.handleInputChange} />
             </div>
             <div id="button">
               <Input value="Sign Up" type="submit" />
