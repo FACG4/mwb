@@ -22,12 +22,11 @@ exports.updateDeliveryTime = (deliveryTime, id, cb) => {
 };
 
 exports.updateTrackerNumber = (traking_number, id, cb) => {
-  const sql = `UPDATE orders SET traking_number = '${traking_number}', status='Sent' WHERE id=${id}`;
+  const sql = `UPDATE orders SET traking_number = '${traking_number}', status='Delivered' WHERE id=${id}`;
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
     {
-      console.log('hhhhhhhhhhhhhhhh', result.rows[0].delivery_time);
       cb(result);
     }
   });

@@ -15,21 +15,21 @@ class OrdersPage extends React.Component {
     this.state = {
       ordersArray: [],
       pendingActive: '',
-      recievedActive: '',
-      sentActive: '',
+      ApprovedActive: '',
+      DeliveredActive: '',
       allActive: 'active'
     };
     this.diplayPendingOrders = this.diplayPendingOrders.bind(this);
-    this.diplayRecievedOrders = this.diplayRecievedOrders.bind(this);
-    this.diplaySentOrders = this.diplaySentOrders.bind(this);
+    this.diplayApprovedOrders = this.diplayApprovedOrders.bind(this);
+    this.diplayDeliveredOrders = this.diplayDeliveredOrders.bind(this);
     this.diplayAllOrders = this.diplayAllOrders.bind(this);
   }
 
   diplayPendingOrders() {
     this.setState({
       pendingActive: 'active',
-      recievedActive: '',
-      sentActive: '',
+      ApprovedActive: '',
+      DeliveredActive: '',
       allActive: ''
     });
     let requiredIndex;
@@ -43,17 +43,17 @@ class OrdersPage extends React.Component {
     }
   }
 
-  diplayRecievedOrders() {
+  diplayApprovedOrders() {
     this.setState({
-      recievedActive: 'active',
+      ApprovedActive: 'active',
       pendingActive: '',
-      sentActive: '',
+      DeliveredActive: '',
       allActive: ''
     });
     let requiredIndex;
     for (let i = 1; i <= this.state.ordersArray.length; i++) {
       requiredIndex = 'index'.concat(i);
-      if (this.refs[requiredIndex].props.status !== 'Recieved') {
+      if (this.refs[requiredIndex].props.status !== 'Approved') {
         ReactDOM.findDOMNode(this.refs[requiredIndex]).style.display = 'none';
       } else {
         ReactDOM.findDOMNode(this.refs[requiredIndex]).style.display = 'flex';
@@ -61,17 +61,17 @@ class OrdersPage extends React.Component {
     }
   }
 
-  diplaySentOrders() {
+  diplayDeliveredOrders() {
     this.setState({
-      recievedActive: '',
+      ApprovedActive: '',
       pendingActive: '',
-      sentActive: 'active',
+      DeliveredActive: 'active',
       allActive: ''
     });
     let requiredIndex;
     for (let i = 1; i <= this.state.ordersArray.length; i++) {
       requiredIndex = 'index'.concat(i);
-      if (this.refs[requiredIndex].props.status !== 'Sent') {
+      if (this.refs[requiredIndex].props.status !== 'Delivered') {
         ReactDOM.findDOMNode(this.refs[requiredIndex]).style.display = 'none';
       } else {
         ReactDOM.findDOMNode(this.refs[requiredIndex]).style.display = 'flex';
@@ -81,9 +81,9 @@ class OrdersPage extends React.Component {
 
   diplayAllOrders() {
     this.setState({
-      recievedActive: '',
+      ApprovedActive: '',
       pendingActive: '',
-      sentActive: '',
+      DeliveredActive: '',
       allActive: 'active'
     });
     let requiredIndex;
@@ -116,12 +116,12 @@ class OrdersPage extends React.Component {
         <TopTab
           diplayAllOrders={this.diplayAllOrders}
           diplayPendingOrders={this.diplayPendingOrders}
-          diplayRecievedOrders={this.diplayRecievedOrders}
-          diplaySentOrders={this.diplaySentOrders}
+          diplayApprovedOrders={this.diplayApprovedOrders}
+          diplayDeliveredOrders={this.diplayDeliveredOrders}
           allActive={this.state.allActive}
           pendingActive={this.state.pendingActive}
-          recievedActive={this.state.recievedActive}
-          sentActive={this.state.sentActive}
+          ApprovedActive={this.state.ApprovedActive}
+          DeliveredActive={this.state.DeliveredActive}
         />
 
         <div>

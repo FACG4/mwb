@@ -32,22 +32,22 @@ class TopTab extends React.Component {
 
         <button
           className="tablinks"
-          className={this.props.recievedActive}
-          ref="recieved"
-          id="recieved"
-          onClick={this.props.diplayRecievedOrders}
+          className={this.props.ApprovedActive}
+          ref="Approved"
+          id="Approved"
+          onClick={this.props.diplayApprovedOrders}
         >
-          Recieved
+          Approved
         </button>
 
         <button
           className="tablinks"
-          className={this.props.sentActive}
-          ref="sent"
-          id="sent"
-          onClick={this.props.diplaySentOrders}
+          className={this.props.DeliveredActive}
+          ref="Delivered"
+          id="Delivered"
+          onClick={this.props.diplayDeliveredOrders}
         >
-          Sent
+          Delivered
         </button>
 
       </div>

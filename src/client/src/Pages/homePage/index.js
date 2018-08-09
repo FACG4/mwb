@@ -30,7 +30,7 @@ class Categories extends React.Component {
             Hey Maxx
             {this.props.username},
           </h1>
-          <div className="selectCategorySentence">
+          <div className="selectCategoryDeliveredence">
             Please select what you want,
           </div>
 

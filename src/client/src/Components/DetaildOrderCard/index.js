@@ -43,7 +43,7 @@ class DetaildOrderCard extends React.Component {
   }
 
   changeStatus() {
-    if (this.state.buttonLabel !== 'Sent') {
+    if (this.state.buttonLabel !== 'Delivered') {
       fetch('/changeOrderStatus', {
         method: 'post',
         headers: {
@@ -74,9 +74,9 @@ class DetaildOrderCard extends React.Component {
           }
 
           if (this.state.theStatus == 'Pending') {
-            this.setState({ buttonLabel: 'Recieved' });
-          } else if (this.state.theStatus == 'Recieved') {
-            this.setState({ buttonLabel: 'Sent' });
+            this.setState({ buttonLabel: 'Approved' });
+          } else if (this.state.theStatus == 'Approved') {
+            this.setState({ buttonLabel: 'Delivered' });
           }
         })
         .catch(err => {
@@ -84,7 +84,7 @@ class DetaildOrderCard extends React.Component {
         });
 
       this.setState({ statusPopupMsg: true });
-    } else if (this.state.buttonLabel == 'Sent') {
+    } else if (this.state.buttonLabel == 'Delivered') {
       this.props.history.push(
         `/tracker/${this.state.newArrayAfterFetch[0].id}`
       );
@@ -144,11 +144,11 @@ class DetaildOrderCard extends React.Component {
           theStatus: data2[0].status
         });
         if (this.state.theStatus == 'Pending') {
-          this.setState({ buttonLabel: 'Recieved' });
-        } else if (this.state.theStatus == 'Recieved') {
-          this.setState({ buttonLabel: 'Sent' });
-        } else if (this.state.theStatus == 'Sent') {
-          this.setState({ buttonLabel: ' Sent!', disableTheButton: true });
+          this.setState({ buttonLabel: 'Approved' });
+        } else if (this.state.theStatus == 'Approved') {
+          this.setState({ buttonLabel: 'Delivered' });
+        } else if (this.state.theStatus == 'Delivered') {
+          this.setState({ buttonLabel: ' Delivered!', disableTheButton: true });
 
           this.props.history.push(`/tracker/${data2[0].id}`);
         }
