@@ -17,7 +17,7 @@ class OrderCard extends React.Component {
   render() {
     return (
       <div
-        className="itemCard"
+        className={`orderCard ${this.props.color}`}
         id={this.props.orderID}
         onClick={this.showdetails}
       >

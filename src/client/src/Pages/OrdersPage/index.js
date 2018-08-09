@@ -145,7 +145,8 @@ class OrdersPage extends React.Component {
                 quantity={order.quantity}
                 status={order.status}
                 ref={'index'.concat(order.id)}
-              />
+                color={order.status}
+               />
             ))
           )}
         </div>

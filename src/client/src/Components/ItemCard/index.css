@@ -17,8 +17,7 @@
 .itemCard {
   width: 349px;
   height: 133px;
-  background-color: white;
-   display: flex;
+  display: flex;
   flex-flow: row;
   align-items: center;
   margin-left: 12px;
