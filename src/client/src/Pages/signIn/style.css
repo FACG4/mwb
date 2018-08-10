@@ -1,6 +1,6 @@
 img {
     width: 130px;
-}
+ }
 
 .logo--container {
     display: flex;
@@ -14,8 +14,9 @@ img {
     align-items: center;
     justify-content: space-around;
     height: 100vh;
-    background: #32689A;
-}
+    background: white;
+
+ }
 
 #button {
     width: 100%;
@@ -38,7 +39,7 @@ img {
  .checkbox--container input {
     width: 20px;
     padding-top: 13px;
-    
+
  }
 
  .input-container input[type="checkbox"] {
@@ -56,7 +57,12 @@ img {
      color: #fff;
      text-decoration: underline;
  }
- 
+
  .logo--container h1 {
      font-size: 1.5em;
+     color:black;
+ }
+
+ .keepLoginMe{
+   color: black;
  }

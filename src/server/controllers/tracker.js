@@ -1,8 +1,5 @@
 /* eslint-disable */
-
-
 const update = require('../model/queries/update');
-
 
 const tracker = (req, res) => {
   const trakerNumber = req.body.trakerNumber;
@@ -12,6 +9,5 @@ const tracker = (req, res) => {
      res.send({ data: cb});
   });
 };
-
 
 module.exports = { tracker };

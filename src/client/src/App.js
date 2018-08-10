@@ -1,5 +1,4 @@
 /*eslint-disable*/
-
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
@@ -23,15 +22,21 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-        <Route path="/" component={homePage} exact />
+          <Route path="/" component={homePage} exact />
           <Route path="/signup" component={signUp} />
           <Route path="/signin" component={SignIn} />
           <Route exact path="/orders" component={OrdersPage} />
-          <Route exact path="/tracker/:order_id_for_tracking" component={Tracker} />
-          <Route exact path="/order/:order_id_to_render" component={DetaildOrderCard} />
+          <Route
+            exact
+            path="/tracker/:order_id_for_tracking"
+            component={Tracker}
+          />
+          <Route
+            exact
+            path="/order/:order_id_to_render"
+            component={DetaildOrderCard}
+          />
           <Route exact path="/items" component={ItemPage} />
-
-
           <Route component={ErrorPage} />
         </Switch>
       </BrowserRouter>

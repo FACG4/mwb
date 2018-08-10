@@ -1,6 +1,4 @@
-
 const update = require('../model/queries/update');
-
 
 const updateDeliveryTime = (req, res) => {
   const newDeliveryTime = req.body.newDeliveryTime;
@@ -11,6 +9,5 @@ const updateDeliveryTime = (req, res) => {
     res.send({ data: cb });
   });
 };
-
 
 module.exports = { updateDeliveryTime };

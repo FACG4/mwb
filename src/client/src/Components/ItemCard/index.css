@@ -1,5 +1,5 @@
 .crossIcon{
-  color: white;
+  color: black;
   font-size: 15px;
   padding: 5px;
   font-weight:bold;
@@ -7,7 +7,20 @@
 
 .crossButton{
   border-radius: 50%;
-  background-color: #A73542;
+  background-color: white;
   margin-left: 318px;
   margin-top: -51px;
+  background: transparent;
+  border-style: none;
+}
+
+.itemCard {
+  width: 349px;
+  height: 133px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-left: 12px;
+  margin-top: 15px;
+  border: gray .5px solid;
 }
