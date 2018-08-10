@@ -3,7 +3,6 @@ const dbQuery = require('../model/queries/genericQuery');
 
 module.exports = (req, res) => {
   const { fullName, password, keepLogin } = req.body;
-  console.log(req.body);
   const sql = {
     text: 'SELECT * FROM users WHERE full_name = $1',
     values: [fullName],
@@ -13,7 +12,6 @@ module.exports = (req, res) => {
     if (result.rows.length === 0) return res.send({ message: 'Invalid username or password' });
     if (result.rows[0].full_name !== fullName) return res.send({ message: 'Invalid username or password' });
     return bcrypt.compare(password, result.rows[0].password).then((comparison) => {
-      console.log('comparison', comparison);
       if (!comparison) {
         res.clearCookie('session', { httpOnly: true, signed: true })
         return res.send({ message: 'invalid username or password' });
