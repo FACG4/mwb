@@ -8,7 +8,6 @@ exports.updateOrderStatus = (status, id, cb) => {
   });
 };
 
-
 exports.updateDeliveryTime = (deliveryTime, id, cb) => {
   const sql = `UPDATE orders SET delivery_time = '${deliveryTime}' WHERE id=${id} returning delivery_time`;
   connect.query(sql, (err, result) => {
@@ -17,8 +16,9 @@ exports.updateDeliveryTime = (deliveryTime, id, cb) => {
   });
 };
 
-exports.updateTrackerNumber = (deliveryTime, id, cb) => {
-  const sql = `UPDATE orders SET delivery_time = '${deliveryTime}' WHERE id=${id} returning delivery_time`;
+exports.updateTrackerNumber = (trakingNumber, id, cb) => {
+  const sql = `UPDATE orders SET traking_number = '${trakingNumber}', status='Delivered' WHERE id=${id}`;
+
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
     return cb(result);

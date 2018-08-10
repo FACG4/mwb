@@ -10,7 +10,6 @@ exports.selecAllOrders = (cb) => {
 
 exports.getAllItems = (cb) => {
   const sql = 'select title, id, image from items;';
-
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
     return cb(result.rows);

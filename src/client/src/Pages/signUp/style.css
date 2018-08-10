@@ -8,7 +8,7 @@ img {
     align-items: center;
     justify-content: space-around;
     height: 100vh;
-    background: #32689A;
+    background: white;
 }
 
 #button {
@@ -25,5 +25,5 @@ img {
     position: absolute;
     left: 30px;
     font-size: 1.5em;
-    color: #fff;
+    color: black;
 }

@@ -6,7 +6,7 @@ module.exports = (req, res) => {
     fullName, password, mobileNumber, address, tillNumber,
   } = req.body;
 
-  dbQuery({
+  dbQuery({st
     text: 'SELECT * FROM users WHERE full_name = $1',
     values: [fullName],
   }).then((result) => {
