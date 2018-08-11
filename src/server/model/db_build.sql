@@ -28,6 +28,8 @@ delivery_time TIMESTAMP,
 traking_number VARCHAR
 );
 
+insert into users(full_name, password, address, till_number, mobile_number)values('salalm','sdcdsc','dcsdc','sddc', '123456');
+
 
 insert into items(title, description, image)values
 ('Panda','sas','http://www.supercutekawaii.com/wp-content/uploads/maqaroon.jpg' ),

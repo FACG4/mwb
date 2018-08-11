@@ -8,7 +8,6 @@ module.exports = (req, res) => {
     values: [fullName],
   };
   dbQuery(sql).then((result) => {
-    console.log('response', result.rows);
     if (result.rows.length === 0) return res.send({ message: 'Invalid username or password' });
     if (result.rows[0].full_name !== fullName) return res.send({ message: 'Invalid username or password' });
     return bcrypt.compare(password, result.rows[0].password).then((comparison) => {
@@ -23,6 +22,7 @@ module.exports = (req, res) => {
             {
               username: result.rows[0].full_name,
               loggedIn: true,
+              secretMessage: 'this cookie is now safely signed',
             },
             {
               httpOnly: true,
@@ -37,6 +37,7 @@ module.exports = (req, res) => {
             {
               name: result.rows[0].full_name,
               loggedIn: true,
+              secretMessage: 'this cookie is now safely signed',
             },
             {
               httpOnly: true,
@@ -45,7 +46,7 @@ module.exports = (req, res) => {
           );
         }
       }
-      return res.send({ message: 'login successful' });
+      return res.send({ message: 'login successful', user: result.rows[0].full_name });
     }).catch(comparisonError => console.log(comparisonError));
   }).catch(err => console.log(err));
 };

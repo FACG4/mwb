@@ -27,3 +27,10 @@ img {
     font-size: 1.5em;
     color: black;
 }
+
+.sign-in-redirect {
+  margin-top: -30px;
+  display: flex;
+  align-items: center;
+  flex-direction: space-around;
+}

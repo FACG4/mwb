@@ -150,3 +150,8 @@
     font-size: 18px;
   }
 }
+
+.sign-out-link {
+  background: none;
+  border: none;
+}

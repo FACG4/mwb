@@ -18,12 +18,30 @@ class HeaderWithSideBar extends React.Component {
     this.closeNav = this.closeNav.bind(this);
     this.openNotification = this.openNotification.bind(this);
     this.closeNotification = this.closeNotification.bind(this);
+    this.handleSignout = this.handleSignout.bind(this);
+  }
+
+  handleSignout() {
+    fetch('/signout', {
+      method: 'POST',
+      credentials: 'same-origin',
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      console.log(res.message);
+      if (res.message) window.location = '/signin';
+    })
   }
 
   componentDidMount() {
-    fetch('/getAllOrders')
+    fetch('/getAllOrders', {
+      credentials: 'same-origin',
+    })
       .then(response => response.json())
       .then(data => {
+        if (data.message.includes('redirect to signin page')) window.location = '/signin';
+        if (data.message.includes('unauthorized')) window.location = '/signin';
         this.setState({ ordersArray: data.data }, () => {
           let orderDate;
           let currentDate = new Date();
@@ -125,9 +143,9 @@ class HeaderWithSideBar extends React.Component {
             <i className="fas fa-user" /> Profile
           </a>
 
-          <a href="/signup">
-            <i className="fas fa-sign-out-alt" /> Logout
-          </a>
+          <button className="sign-out-link" onClick={this.handleSignout} >
+            <i className="fas fa-sign-out-alt" /> Sign out
+          </button>
         </div>
 
         <div id="mySideNotification" className="sideNotification">

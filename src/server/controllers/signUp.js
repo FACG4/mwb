@@ -5,8 +5,7 @@ module.exports = (req, res) => {
   const {
     fullName, password, mobileNumber, address, tillNumber,
   } = req.body;
-
-  dbQuery({st
+  dbQuery({
     text: 'SELECT * FROM users WHERE full_name = $1',
     values: [fullName],
   }).then((result) => {
@@ -18,7 +17,9 @@ module.exports = (req, res) => {
       text: 'INSERT INTO users (full_name, password, mobile_number, address, till_number) VALUES($1, $2, $3, $4, $5)',
       values: [fullName, hash, mobileNumber, address, tillNumber],
     };
-    dbQuery(sql).catch((error) => {
+    dbQuery(sql).then((result) => {
+      if (result.rowCount === 1) res.send({ message: 'signup successful' });
+    }).catch((error) => {
       console.log(error);
     });
   });

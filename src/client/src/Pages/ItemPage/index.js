@@ -17,10 +17,14 @@ class ItemPage extends React.Component {
   deleteItem(id) {}
 
   componentDidMount() {
-    fetch('/getAllItems')
+    fetch('/getAllItems', {
+      credentials: 'same-origin',
+    })
       .then(response => response.json())
       .then(data => {
-        this.setState({ itemsArray: data.data });
+        if (data.message.includes('no signed')) window.location = '/signin';
+        if (data.message.includes('Unauthorized')) window.location = '/signup';
+        else this.setState({ itemsArray: data.data });
       })
       .catch(err => {
         console.log(

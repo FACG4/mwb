@@ -4,18 +4,17 @@ const query = require('./../model/queries/genericQuery');
 tape('testing the query function for the command "insert" on the users table', (t) => {
   const req = {
     body: {
-      username: 'farah',
+      fullName: 'farah',
       password: 'Zxuc%gy#nnis5tvaren&',
-      email: 'farah',
-      phone: '561516518',
+      mobileNumber: '561516518',
       address: 'some address',
-      mPesa: '256adf548wew3',
+      tillNumber: '256adf548wew3',
     },
   };
   const insert = {
-    text: 'INSERT INTO users (username, email, password, phone, address, m_pesa) values ($1, $2, $3, $4, $5, $6)',
-    values: [req.body.username, req.body.email, req.body.password, req.body.phone,
-      req.body.address, req.body.mPesa],
+    text: 'INSERT INTO users (full_name, password, mobile_number, address, till_number) values ($1, $2, $3, $4, $5)',
+    values: [req.body.fullName, req.body.password, req.body.mobileNumber,
+      req.body.address, req.body.tillNumber],
   };
   query(insert)
     .then((res) => {

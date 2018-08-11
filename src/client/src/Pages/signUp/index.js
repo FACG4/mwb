@@ -16,12 +16,11 @@ library.add(
 );
 
 const initState = {
-  username: '',
-  email: '',
+  fullName: '',
   password: '',
-  phone: '',
+  mobileNumber: '',
   address: '',
-  mPesa: '',
+  tillNumber: '',
 };
 
 class SignUp extends Component {
@@ -30,43 +29,48 @@ class SignUp extends Component {
     this.state = { ...initState };
   }
 
-    handleInputChange = (e) => {
-      this.setState({ [e.target.name]: e.target.value });
-    }
+  handleInputChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-    handelSubmit = (e) => {
-      e.preventDefault();
-      this.setState({ ...initState });
-
-      fetch('/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.state),
-      }).then(console.log(this.state));
-    }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ ...initState });
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state),
+    })
+      .then(res => res.json())
+      .then((res) => {
+        if (res.message === 'signup successful') window.location = '/signin';
+      });
+  }
 
     render() {
       return (
-        <form onSubmit={this.handelSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <div className="sign">
             <div className="logo--continer">
-              <span>
-                <FontAwesomeIcon icon={faArrowLeft} />
-              </span>
               <img src={logo} alt="logo" />
             </div>
             <div id="input--wraper">
-              <Input placeholder="Full Name" required icon={faUser} name="username" value={this.state.username} onChange={this.handleInputChange} />
-              <Input placeholder="Emailbbb" required icon={faEnvelope} type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
+              <Input placeholder="Full Name" required icon={faUser} name="fullName" value={this.state.username} onChange={this.handleInputChange} />
               <Input placeholder="Password" required icon={faUnlockAlt} type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
-              <Input placeholder="Mobile number" required icon={faPhoneVolume} type="number" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
+              <Input placeholder="Mobile number" required icon={faPhoneVolume} type="number" name="mobileNumber" value={this.state.phone} onChange={this.handleInputChange} />
               <Input placeholder="Address" required icon={faMapMarkerAlt} name="address" value={this.state.address} onChange={this.handleInputChange} />
-              <Input placeholder="Till Number" required icon={faAddressCard} name="mPesa" value={this.state.mPesa} onChange={this.handleInputChange} />
+              <Input placeholder="Till Number" required icon={faAddressCard} name="tillNumber" value={this.state.mPesa} onChange={this.handleInputChange} />
             </div>
             <div id="button">
               <Input value="Sign Up" type="submit" />
+            </div>
+            <div className="sign-in-redirect">
+            <p>Already have an account? </p>
+            <a href="/signin">
+              Sign in now
+            </a>
             </div>
           </div>
         </form>

@@ -46,6 +46,7 @@ class DetaildOrderCard extends React.Component {
     if (this.state.buttonLabel !== 'Delivered') {
       fetch('/changeOrderStatus', {
         method: 'post',
+        credentials: 'same-origin',
         headers: {
           Accept: 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
