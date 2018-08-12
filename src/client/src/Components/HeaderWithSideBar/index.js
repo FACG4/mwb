@@ -30,7 +30,7 @@ class HeaderWithSideBar extends React.Component {
     .then(res => {
       console.log(res);
       console.log(res.message);
-      if (res.message) window.location = '/signin';
+      if (res.message) window.location = 'signin';
     })
   }
 
@@ -40,8 +40,8 @@ class HeaderWithSideBar extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message.includes('redirect to signin page')) window.location = '/signin';
-        if (data.message.includes('unauthorized')) window.location = '/signin';
+        if (data.message.includes('redirect to signin page')) this.props.history.push('/signin');
+        if (data.message.includes('unauthorized')) this.props.history.push('/signin');
         this.setState({ ordersArray: data.data }, () => {
           let orderDate;
           let currentDate = new Date();

@@ -101,7 +101,7 @@ class OrdersPage extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message) window.location = '/signin'
+        if (data.message) this.props.history.push('/signin')
         else this.setState({ ordersArray: data.data });
       })
       .catch(err => {

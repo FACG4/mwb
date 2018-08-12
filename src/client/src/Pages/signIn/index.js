@@ -43,7 +43,7 @@ class SignIn extends Component {
     })
       .then(res => res.json())
       .then((res) => {
-        if (res.message === 'login successful') window.location = '/';
+        if (res.message === 'login successful') this.props.history.push('/');
         if (res.message !== 'login successful') document.querySelector('#message-container').textContent = res.message;
       });
   }

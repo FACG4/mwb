@@ -45,7 +45,7 @@ class SignUp extends Component {
     })
       .then(res => res.json())
       .then((res) => {
-        if (res.message === 'signup successful') window.location = '/signin';
+        if (res.message === 'signup successful') this.props.history.push('/signin');
       });
   }
 
