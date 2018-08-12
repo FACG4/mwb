@@ -29,7 +29,7 @@ delivery_time TIMESTAMP,
 traking_number VARCHAR
 );
 
-insert into users(username, email, password, address, m_pesa, phone)values('salalm','sas','sdcdsc','dcsdc','sddc', '123456');
+insert into users(username, email, password, address, m_pesa, phone)values('salalm','sas','sdcdsc','dcsdc','sddc', '+970567716309');
 
 
 insert into items(title, description, image)values
