@@ -4,7 +4,7 @@ exports.updateOrderStatus = (status, id, cb) => {
   const sql = `UPDATE orders SET status = '${status}' WHERE id=${id} returning status`;
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
-    return cb(result);
+    return cb(null, result);
   });
 };
 
@@ -12,7 +12,7 @@ exports.updateDeliveryTime = (deliveryTime, id, cb) => {
   const sql = `UPDATE orders SET delivery_time = '${deliveryTime}' WHERE id=${id} returning delivery_time`;
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
-    return cb(result);
+    return cb(null, result);
   });
 };
 
@@ -21,6 +21,6 @@ exports.updateTrackerNumber = (trakingNumber, id, cb) => {
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
-    return cb(result);
+    return cb(null, result);
   });
 };

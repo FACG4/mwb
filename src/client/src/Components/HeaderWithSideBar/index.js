@@ -40,8 +40,10 @@ class HeaderWithSideBar extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message.includes('redirect to signin page')) this.props.history.push('/signin');
-        if (data.message.includes('unauthorized')) this.props.history.push('/signin');
+        if (data.message) {
+          if (data.message.includes('redirect to signin page')) this.props.history.push('/signin');
+          if (data.message.includes('unauthorized')) this.props.history.push('/signin');
+        }
         this.setState({ ordersArray: data.data }, () => {
           let orderDate;
           let currentDate = new Date();

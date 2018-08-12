@@ -12,12 +12,12 @@ module.exports = (req, res) => {
     text: 'SELECT * FROM users WHERE full_name = $1',
     values: [fullName],
   };
-  dbQuery(sql).then((result) => {
+  return dbQuery(sql).then((result) => {
     if (result.rows.length === 0) return res.send({ message: 'Invalid username or password' });
     if (result.rows[0].full_name !== fullName) return res.send({ message: 'Invalid username or password' });
     return bcrypt.compare(password, result.rows[0].password).then((comparison) => {
       if (!comparison) {
-        res.clearCookie('session', { httpOnly: true, signed: true })
+        res.clearCookie('session', { httpOnly: true, signed: true });
         return res.send({ message: 'invalid username or password' });
       }
       if (comparison) {
@@ -52,6 +52,6 @@ module.exports = (req, res) => {
         }
       }
       return res.send({ message: 'login successful', user: result.rows[0].full_name });
-    }).catch(comparisonError => console.log(comparisonError));
-  }).catch(err => console.log(err));
+    }).catch(comparisonError => res.send({ message: 'server error', body: comparisonError }));
+  }).catch(err => res.send({ message: 'server error', body: err }));
 };
