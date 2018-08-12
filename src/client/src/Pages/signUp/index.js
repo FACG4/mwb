@@ -46,6 +46,7 @@ class SignUp extends Component {
       .then(res => res.json())
       .then((res) => {
         if (res.message === 'signup successful') this.props.history.push('/signin');
+        document.getElementById('message-paragraph').textContent = res.message;
       });
   }
 
@@ -60,8 +61,11 @@ class SignUp extends Component {
               <Input placeholder="Full Name" required icon={faUser} name="fullName" value={this.state.username} onChange={this.handleInputChange} />
               <Input placeholder="Password" required icon={faUnlockAlt} type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
               <Input placeholder="Mobile number" required icon={faPhoneVolume} type="number" name="mobileNumber" value={this.state.phone} onChange={this.handleInputChange} />
-              <Input placeholder="Address" required icon={faMapMarkerAlt} name="address" value={this.state.address} onChange={this.handleInputChange} />
-              <Input placeholder="Till Number" required icon={faAddressCard} name="tillNumber" value={this.state.mPesa} onChange={this.handleInputChange} />
+              <Input placeholder="Address" icon={faMapMarkerAlt} name="address" value={this.state.address} onChange={this.handleInputChange} />
+              <Input placeholder="Till Number" icon={faAddressCard} name="tillNumber" value={this.state.mPesa} onChange={this.handleInputChange} />
+            </div>
+            <div>
+              <h5 id="message-paragraph"/>
             </div>
             <div id="button">
               <Input value="Sign Up" type="submit" />
