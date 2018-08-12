@@ -28,9 +28,8 @@ class HeaderWithSideBar extends React.Component {
     })
     .then(res => res.json())
     .then(res => {
-      console.log(res);
-      console.log(res.message);
       if (res.message) window.location = 'signin';
+      localStorage.removeItem('user')
     })
   }
 
