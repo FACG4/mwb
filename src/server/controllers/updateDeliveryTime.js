@@ -2,7 +2,7 @@ const update = require('../model/queries/update');
 const select = require('../model/queries/select');
 
 const updateDeliveryTime = (req, res) => {
-  const newDeliveryTime = req.body.newDeliveryTime;
+  const { newDeliveryTime } = req.body;
   const id = req.body.orderId;
 
   update.updateDeliveryTime(newDeliveryTime, id, (cb) => {
@@ -13,7 +13,11 @@ const updateDeliveryTime = (req, res) => {
       const client = require('twilio')(accountSid, authToken);
       const ChangedTime = cb.rows[0].delivery_time;
       client.messages
-        .create({ from: '+17192203059', body: `your order has changed to: ${ChangedTime}`, to: targetPhone })
+        .create({
+          from: '+17192203059',
+          body: `your order has changed to: ${ChangedTime}`,
+          to: targetPhone,
+        })
         .then(message => console.log(message.sid))
         .done();
     });
