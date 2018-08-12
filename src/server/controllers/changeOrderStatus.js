@@ -6,7 +6,7 @@ const changeOrderStatus = (req, res) => {
   const status = req.body.newStatus;
   const id = req.body.orderId;
 
-  update.updateOrderStatus(status, id , (cb) => {
+  update.updateOrderStatus(status, id, (cb) => {
     select.selectUserBasedOnOrderId(id, cb1 => {
       const targetPhone = cb1.rows[0].phone;
       const accountSid = 'AC31f266fae63a02c957861b2d77ef11e3';
@@ -23,8 +23,12 @@ const changeOrderStatus = (req, res) => {
 
     });
 
-     res.send({ data: cb});
+    res.send({
+      data: cb
+    });
   });
 };
 
-module.exports = { changeOrderStatus };
+module.exports = {
+  changeOrderStatus
+};
