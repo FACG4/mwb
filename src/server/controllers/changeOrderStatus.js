@@ -9,8 +9,8 @@ const changeOrderStatus = (req, res) => {
   update.updateOrderStatus(status, id, (cb) => {
     select.selectUserBasedOnOrderId(id, cb1 => {
       const targetPhone = cb1.rows[0].phone;
-      const accountSid = 'AC31f266fae63a02c957861b2d77ef11e3';
-      const authToken = 'f7b78d3882f3a9cb068f921e473660f4';
+      const accountSid = process.env.accountSid;
+      const authToken = process.env.authToken;
       const client = require('twilio')(accountSid, authToken);
       client.messages
         .create({
