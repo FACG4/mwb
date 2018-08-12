@@ -28,7 +28,10 @@ exports.selectOneUser = (id, cb) => {
 };
 
 exports.selectUserBasedOnOrderId = (order_id, cb) => {
-  const sql = `select phone from users u inner join orders o on u.id=o.user_id where o.id=${order_id};`;
+  const sql = {
+    text: 'select phone from users u inner join orders o on u.id=o.user_id where o.id=$1;',
+    values: [order_id],
+  };
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
