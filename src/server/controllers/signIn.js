@@ -25,7 +25,6 @@ module.exports = (req, res) => {
           res.cookie(
             'session',
             {
-              username: result.rows[0].full_name,
               loggedIn: true,
               secretMessage: 'this cookie is now safely signed',
             },
@@ -40,7 +39,6 @@ module.exports = (req, res) => {
           res.cookie(
             'session',
             {
-              name: result.rows[0].full_name,
               loggedIn: true,
               secretMessage: 'this cookie is now safely signed',
             },
