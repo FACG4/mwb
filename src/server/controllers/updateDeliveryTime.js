@@ -1,5 +1,6 @@
 const update = require('../model/queries/update');
 const select = require('../model/queries/select');
+const { sendSMS } = require('./sendSMS');
 
 const updateDeliveryTime = (req, res) => {
   const {
@@ -13,18 +14,10 @@ const updateDeliveryTime = (req, res) => {
     select.selectOneUser(result.rows[0].user_id, (err1, result1) => {
       if (err1) return res.json({ status: false, error: err1 });
       const targetPhone = result1.rows[0].phone;
-      const accountSid = process.env.accountSid;
-      const authToken = process.env.authToken;
-      const client = require('twilio')(accountSid, authToken);
+
       const ChangedTime = result.rows[0].delivery_time;
-      client.messages
-        .create({
-          from: '+17192203059',
-          body: `your order date has changed to: ${ChangedTime}`,
-          to: targetPhone,
-        })
-        .then(message => console.log(message.sid))
-        .done();
+
+      sendSMS('+17192203059', `your order date has changed to: ${ChangedTime}`, targetPhone);
 
       res.send({
         state: true,
