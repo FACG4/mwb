@@ -5,7 +5,7 @@ exports.selecAllOrders = (cb) => {
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
-    cb(result.rows);
+    cb(null, result.rows);
   });
 };
 
@@ -14,7 +14,7 @@ exports.getAllItems = (cb) => {
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
-    cb(result.rows);
+    cb(null, result.rows);
   });
 };
 
@@ -23,7 +23,7 @@ exports.selectOneUser = (id, cb) => {
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
-    cb(result);
+    cb(null, result);
   });
 };
 
@@ -35,6 +35,6 @@ exports.selectUserBasedOnOrderId = (order_id, cb) => {
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
-    cb(result);
+    cb(null, result);
   });
 };

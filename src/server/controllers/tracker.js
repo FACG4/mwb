@@ -6,9 +6,10 @@ const tracker = (req, res) => {
   const trakerNumber = req.body.trakerNumber;
   const orderId = req.body.orderId;
 
-  update.updateTrackerNumber(trakerNumber, orderId, (cb) => {
-    select.selectUserBasedOnOrderId(cb.rows[0].orderid, cb1 => {
-      const targetPhone = cb1.rows[0].phone;
+  update.updateTrackerNumber(trakerNumber, orderId, (err, result) => {
+    if (err) return console.log('in updating tracker number: ', err);    select.selectUserBasedOnOrderId(result.rows[0].orderid, (err1,result1) => {
+      if (err1) return console.log('in updating tracker number: ', err1);
+      const targetPhone = result1.rows[0].phone;
       const accountSid = process.env.accountSid;
       const authToken = process.env.authToken;
       const client = require('twilio')(accountSid, authToken);
@@ -23,7 +24,7 @@ const tracker = (req, res) => {
 
     });
     res.send({
-      data: cb
+      data: result
     });
   });
 };

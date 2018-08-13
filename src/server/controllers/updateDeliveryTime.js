@@ -2,16 +2,21 @@ const update = require('../model/queries/update');
 const select = require('../model/queries/select');
 
 const updateDeliveryTime = (req, res) => {
-  const { newDeliveryTime } = req.body;
+  const {
+    newDeliveryTime,
+  } = req.body;
   const id = req.body.orderId;
 
-  update.updateDeliveryTime(newDeliveryTime, id, (cb) => {
-    select.selectOneUser(cb.rows[0].user_id, (cb1) => {
-      const targetPhone = cb1.rows[0].phone;
+  update.updateDeliveryTime(newDeliveryTime, id, (err, result) => {
+    if (err) return console.log('in updating tracker number: ', err);
+    select.selectOneUser(result.rows[0].user_id, (err1, result1) => {
+      if (err1) return console.log('in selecting user: ', err1);
+
+      const targetPhone = result1.rows[0].phone;
       const accountSid = process.env.accountSid;
       const authToken = process.env.authToken;
       const client = require('twilio')(accountSid, authToken);
-      const ChangedTime = cb.rows[0].delivery_time;
+      const ChangedTime = result.rows[0].delivery_time;
       client.messages
         .create({
           from: '+17192203059',
@@ -21,9 +26,14 @@ const updateDeliveryTime = (req, res) => {
         .then(message => console.log(message.sid))
         .done();
     });
-
-    res.send({ data: cb });
+    res.send({
+      state: true,
+      message: 'the data was updated successfully',
+      data: result,
+    });
   });
 };
 
-module.exports = { updateDeliveryTime };
+module.exports = {
+  updateDeliveryTime,
+};

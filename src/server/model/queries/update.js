@@ -9,8 +9,8 @@ exports.updateOrderStatus = (status, id, cb) => {
   }
 
   connect.query(sql, (err, result) => {
-    if (err) return cb(new Error(err));
-    cb(result);
+    if (err) return cb(err);
+    cb(null,result);
   });
 };
 
@@ -21,8 +21,8 @@ exports.updateDeliveryTime = (deliveryTime, id, cb) => {
   }
 
   connect.query(sql, (err, result) => {
-    if (err) return cb(new Error(err)); {
-      cb(result);
+    if (err) return cb(err); {
+      cb(null,result);
     }
   });
 };
@@ -34,8 +34,8 @@ exports.updateTrackerNumber = (traking_number, id, cb) => {
   }
 
   connect.query(sql, (err, result) => {
-    if (err) return cb(new Error(err)); {
-      cb(result);
+    if (err) return cb(err); {
+      cb(null,result);
     }
   });
 };
