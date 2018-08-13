@@ -2,8 +2,7 @@ const select = require('../model/queries/select');
 
 const getAllItems = (req, res) => {
   select.getAllItems((err, result) => {
-    if (err) return console.log('in getting all items: ', err);
-    console.log(result);
+    if (err) return res.json({ status: false, error: err });
     res.send({
       data: result,
     });

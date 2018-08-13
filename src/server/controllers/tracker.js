@@ -7,8 +7,10 @@ const tracker = (req, res) => {
   const orderId = req.body.orderId;
 
   update.updateTrackerNumber(trakerNumber, orderId, (err, result) => {
-    if (err) return console.log('in updating tracker number: ', err);    select.selectUserBasedOnOrderId(result.rows[0].orderid, (err1,result1) => {
-      if (err1) return console.log('in updating tracker number: ', err1);
+   if (err) return res.json({status:false,error : err})
+
+    select.selectUserBasedOnOrderId(result.rows[0].orderid, (err1,result1) => {
+      if (err1) return res.json({status:false,error : err1})
       const targetPhone = result1.rows[0].phone;
       const accountSid = process.env.accountSid;
       const authToken = process.env.authToken;
@@ -22,9 +24,10 @@ const tracker = (req, res) => {
         .then(message => console.log(message.sid))
         .done();
 
-    });
-    res.send({
-      data: result
+        res.send({status:true,
+          message: 'Success',
+          data: result
+        });
     });
   });
 };
