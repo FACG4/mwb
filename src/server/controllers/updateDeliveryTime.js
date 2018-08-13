@@ -17,12 +17,14 @@ const updateDeliveryTime = (req, res) => {
 
       const ChangedTime = result.rows[0].delivery_time;
 
-      sendSMS('+17192203059', `your order date has changed to: ${ChangedTime}`, targetPhone);
+      sendSMS('+17192203059', `your order date has changed to: ${ChangedTime}`, targetPhone, (err2, done) => {
+        if (err2) return res.json({ status: false, error: err2 });
 
-      res.send({
-        state: true,
-        message: 'the data was updated successfully',
-        data: result,
+        res.send({
+          status: true,
+          message: 'the data was updated successfully',
+          data: result,
+        });
       });
     });
   });

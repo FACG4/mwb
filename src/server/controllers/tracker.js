@@ -24,12 +24,14 @@ const tracker = (req, res) => {
       }
       const targetPhone = result1.rows[0].phone;
 
-      sendSMS('+17192203059', `your tracking number is: ${trakerNumber}`, targetPhone);
+      sendSMS('+17192203059', `your tracking number is: ${trakerNumber}`, targetPhone, (err2, done) => {
+        if (err2) return res.json({ status: false, error: err2 });
 
-      res.send({
-        status: true,
-        message: 'Success',
-        data: result,
+        res.send({
+          status: true,
+          message: 'Success',
+          data: result,
+        });
       });
     });
   });
