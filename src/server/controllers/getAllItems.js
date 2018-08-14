@@ -1,4 +1,4 @@
-const dbQuery = require('../model/queries/genericQuery');
+const select = require('../model/queries/select');
 
 const getAllItems = (req, res) => {
   select.getAllItems((err, result) => {

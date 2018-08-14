@@ -3,13 +3,6 @@ const select = require('../model/queries/select');
 const { sendSMS } = require('./sendSMS');
 
 const updateDeliveryTime = (req, res) => {
-<<<<<<< HEAD
-  const { newDeliveryTime } = req.body;
-  const id = req.body.orderId;
-
-  update.updateDeliveryTime(newDeliveryTime, id, (cb) => {
-    res.send({ data: cb });
-=======
   const {
     newDeliveryTime,
   } = req.body;
@@ -35,7 +28,6 @@ const updateDeliveryTime = (req, res) => {
         });
       });
     });
->>>>>>> fcb82b2348ecdc743f504fe0f8b1729b046acb0d
   });
 };
 
