@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS users, items, orders CASCADE;
 
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
-full_name VARCHAR(20) UNIQUE NOT NULL,
+full_name VARCHAR(50) UNIQUE NOT NULL,
 mobile_number VARCHAR(100) UNIQUE NOT NULL,
 password VARCHAR(100),
 address TEXT,
