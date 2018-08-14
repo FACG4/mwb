@@ -39,3 +39,23 @@ exports.updateTrackerNumber = (traking_number, id, cb) => {
     }
   });
 };
+
+
+exports.updateSeenValue = (ids, cb) => {
+
+for(let i=0; i<ids.length; i++){
+  const  sql = `update orders as t set
+    seen = c.seen
+from (values
+    (${ids[i]}, true)
+) as c(id, seen)
+where c.id = t.id;`
+
+connect.query(sql, (err, result) => {
+  if (err) return cb(new Error(err));
+  {
+    console.log('ok');
+  }
+});
+}
+};

@@ -6,6 +6,7 @@ import NotificationDiv from '../NotificationDiv';
 import ReactLoading from 'react-loading';
 var a = [];
 
+
 class HeaderWithSideBar extends React.Component {
   constructor(props) {
     super(props);
@@ -30,18 +31,18 @@ class HeaderWithSideBar extends React.Component {
 
           this.state.ordersArray.map(order => {
             orderDate = new Date(order.delivery_time);
-            var timeDiff = Math.abs(
-              orderDate.getTime() - currentDate.getTime()
-            );
+            var timeDiff = Math.abs(orderDate.getTime() - currentDate.getTime());
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            if (diffDays === 3) {
+            if (diffDays === 3 || diffDays ===2 || diffDays ===1) {
               this.setState(prevState => ({
-                showRedDot: true,
                 nearOrders: prevState.nearOrders.map(obj => {
                   a.push(order);
+                  this.setState({showRedDot:a.filter((ord)=>( ord.seen === false)).length === a.length})
                   return order;
                 })
               }));
+
+
             }
           });
         });
@@ -52,6 +53,8 @@ class HeaderWithSideBar extends React.Component {
           err
         );
       });
+
+
   }
 
   openNav() {
@@ -65,12 +68,23 @@ class HeaderWithSideBar extends React.Component {
   openNotification(e) {
     document.getElementById('mySideNotification').style.width = '250px';
     document.getElementById('mySideNotification').classList.add('hidden47');
+    this.setState({showRedDot:false})
   }
 
   closeNotification(e) {
     document.getElementById('mySideNotification').classList.remove('hidden47');
     document.getElementById('mySideNotification').style.width = '0';
-  }
+    fetch('/updateSeenValue', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        ids:a.map((order)=>order.id)
+
+      })
+    }).then(console.log(a.map((o)=>o.id)));
+   }
 
   render() {
     return (
@@ -82,24 +96,15 @@ class HeaderWithSideBar extends React.Component {
 
           <div>
             <h2
-              className={`headerTitle ${
-                this.props.newStyle ? 'takeNewStyle' : ''
-              }`}
+              className={`headerTitle ${this.props.newStyle ? 'takeNewStyle' : ''}`}
             >
               {this.props.title}
             </h2>
           </div>
 
           <div>
-            <i
-              onClick={this.openNotification}
-              className="fas fa-bell notificationIcon"
-            >
-              <span
-                className={`dot ${
-                  this.state.showRedDot ? 'visible' : 'hidden'
-                }`}
-              />
+            <i onClick={this.openNotification} className="fas fa-bell notificationIcon" >
+              <span className={`dot ${this.state.showRedDot ? 'visible' : 'hidden'}`} ref="dot" />
             </i>
           </div>
         </div>
@@ -140,24 +145,36 @@ class HeaderWithSideBar extends React.Component {
           </a>
 
           <div>
-            {a.length === 0 ? (
-              <div className="centerLoadingIcon">
-                <h1>There is no notifications!!</h1>
-              </div>
-            ) : (
-              a.map((order, index) => (
-                <NotificationDiv
+            {(a.length !== 0 && a.filter((ord)=>{return ord.seen === false}).length === a.length)?
+              (
+                a.map((order, index) => {
+
+
+                  return <NotificationDiv
                   id={order.id}
                   delivery_time={order.delivery_time.split('T')[0]}
                   key={index}
-                />
-              ))
-            )}
+                  />
+                }
+
+              )
+
+              ) : (
+
+                <div className="centerLoadingIcon">
+                  <span className="noNotification">There is no notifications!!</span>
+                </div>
+
+
+
+            )
+          }
           </div>
         </div>
       </div>
     );
   }
 }
+
 
 export default HeaderWithSideBar;

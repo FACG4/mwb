@@ -26,8 +26,11 @@ user_id INTEGER REFERENCES users(id),
 quantity INTEGER,
 status VARCHAR,
 delivery_time TIMESTAMP,
-traking_number VARCHAR
+traking_number VARCHAR,
+seen BOOLEAN DEFAULT false
 );
+
+
 
 insert into users(username, email, password, address, m_pesa, phone)values('salalm','sas','sdcdsc','dcsdc','sddc', '+970567716309');
 
@@ -91,12 +94,12 @@ insert into items(title, description, image)values
 
 
 insert into orders(item_id, user_id, quantity, status, traking_number, delivery_time)values
-  (1,1,1,'Pending','1', '2018-08-12'),
-  (2,1,1,'Approved','1', '2018-08-12'),
-  (3,1,1,'Delivered','1', '2018-08-12'),
-  (4,1,1,'Pending','1', '2018-08-12'),
-  (5,1,1,'Approved','1', '2018-08-12'),
-  (6,1,1,'Delivered','1', '2018-08-11'),
+  (1,1,1,'Pending','1', '2018-08-17'),
+  (2,1,1,'Approved','1', '2018-08-16'),
+  (3,1,1,'Delivered','1', '2018-08-15'),
+  (4,1,1,'Pending','1', '2018-08-22'),
+  (5,1,1,'Approved','1', '2018-08-22'),
+  (6,1,1,'Delivered','1', '2018-08-22'),
   (7,1,1,'Pending','1', '2018-08-22'),
   (8,1,1,'Approved','1', '2018-08-22'),
   (9,1,1,'Delivered','1', '2018-08-22'),
