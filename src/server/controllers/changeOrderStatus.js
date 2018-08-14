@@ -15,17 +15,18 @@ const changeOrderStatus = (req, res) => {
       });
     }
 
-    select.selectUserBasedOnOrderId(id, (err1, result1) => {
-      if (err1) return console.log('in selecting user: ', err1);
+    select.selectUserBasedOnOrderId(id, (err, result1) => {
+      if (err) return console.log('in selecting user: ', err);
       const targetPhone = result1.rows[0].phone;
 
-      sendSMS('+17192203059', `your new status is: ${result.rows[0].status}`, targetPhone, (err2, done) => {
-        if (err2) return res.json({ status: false, error: err2 });
+      sendSMS('+17192203059', `your new status is: ${result.rows[0].status}`, targetPhone, (err, done) => {
+        if (err) return res.json({ status: false, error: err });
 
         res.send({
           status: true,
           message: 'the data was updated successfully',
           data: result,
+          smsResult: done,
         });
       });
     });

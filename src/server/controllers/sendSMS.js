@@ -8,8 +8,8 @@ const sendSMS = (from, body, to, cb) => {
       body,
       to,
     })
-    .then(message => console.log(message.sid))
-    .catch(err => console.log(err))
+    .then(message => cb(null, message.sid))
+    .catch(err => cb(err))
     .done();
 };
 

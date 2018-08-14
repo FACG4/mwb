@@ -15,22 +15,23 @@ const tracker = (req, res) => {
       });
     }
 
-    select.selectUserBasedOnOrderId(result.rows[0].orderid, (err1, result1) => {
-      if (err1) {
+    select.selectUserBasedOnOrderId(result.rows[0].orderid, (err, result1) => {
+      if (err) {
         return res.json({
           status: false,
-          error: err1,
+          error: err,
         });
       }
       const targetPhone = result1.rows[0].phone;
 
-      sendSMS('+17192203059', `your tracking number is: ${trakerNumber}`, targetPhone, (err2, done) => {
-        if (err2) return res.json({ status: false, error: err2 });
+      sendSMS('+17192203059', `your tracking number is: ${trakerNumber}`, targetPhone, (err, done) => {
+        if (err) return res.json({ status: false, error: err });
 
         res.send({
           status: true,
           message: 'Success',
           data: result,
+          smsResult: done,
         });
       });
     });
