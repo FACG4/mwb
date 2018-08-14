@@ -8,7 +8,8 @@ module.exports = (req, res) => {
   } = req.body;
   if (fullName === '') return res.send({ message: 'Please enter your Full Name here' });
   if (nameRegex(fullName) === false) return res.send({ message: 'Please enter both your first name and last name' });
-  if (regexNumber(mobileNumber) === true) return res.send({ message: 'mobileNumber must be a number' });
+  // probably should use parseInt instead
+  if (regexNumber(mobileNumber) === false) return res.send({ message: 'mobileNumber must be a number' });
   return dbQuery({
     text: 'SELECT * FROM users WHERE full_name = $1',
     values: [fullName],
