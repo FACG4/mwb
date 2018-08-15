@@ -13,7 +13,7 @@ class NotificationDiv extends React.Component {
       <div className="notification">
         <span>
           <strong>Reminder:</strong> Order id {this.props.id} should be deliverd
-          on {this.props.delivery_time}
+          on {this.props.delivery_date}
         </span>
       </div>
     );

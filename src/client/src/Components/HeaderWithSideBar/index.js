@@ -49,7 +49,7 @@ class HeaderWithSideBar extends React.Component {
           let currentDate = new Date();
 
           this.state.ordersArray.map(order => {
-            orderDate = new Date(order.delivery_time);
+            orderDate = new Date(order.delivery_date);
             var timeDiff = Math.abs(
               orderDate.getTime() - currentDate.getTime()
             );
@@ -102,7 +102,8 @@ class HeaderWithSideBar extends React.Component {
       body: JSON.stringify({
         ids: arrayToSaveNearOrders.map(order => order.id)
       })
-    }).then(console.log(arrayToSaveNearOrders.map(o => o.id)));
+    }).then()
+    .catch(err=>console.log('Something went wrong white update seen value'))
   }
 
   render() {
@@ -182,7 +183,7 @@ class HeaderWithSideBar extends React.Component {
                 return (
                   <NotificationDiv
                     id={order.id}
-                    delivery_time={order.delivery_time.split('T')[0]}
+                    delivery_date={order.delivery_date.split('T')[0]}
                     key={index}
                   />
                 );

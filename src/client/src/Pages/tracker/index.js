@@ -68,7 +68,7 @@ class Tracker extends Component {
       <Fragment>
         <HeaderWithSideBar title="Orders" />
         <form onSubmit={this.handelTrackNumber} className="track--form">
-          <span onClick={() => this.context.router.history.go(-2)}>
+            <span onClick={() => this.context.router.history.go(-2)}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </span>
           <h2>Enter tracking number</h2>
@@ -76,13 +76,20 @@ class Tracker extends Component {
             Adding tracking number is a way to confirm sending the order. To do
             so, please enter the tracking number in the field below
           </p>
+
+
+
           <Input
             placeholder="Enter Tracking Number"
             type="text"
             name="trakerNumber"
           />
+
+
+
           <div className="buttonsDiv">
             <Input value="Send" type="submit" className="green" />
+            <Input value="Cancel" type="button" className="redBtn" onClick={()=>window.location='/orders' }/>
           </div>
         </form>
 

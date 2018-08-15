@@ -18,7 +18,7 @@ router.post('/signin', signIn);
 router.get('/getAllOrders', getAllOrders.getAllOrders);
 router.get('/getAllItems', getAllItems.getAllItems);
 router.post('/updateSeenValue', updateSeenValue.updateSeenValue);
-router.post('/changeOrderStatus', changeOrderStatus.changeOrderStatus);
+router.post('/changeOrderData', changeOrderStatus.changeOrderStatus);
 router.post('/updateDeliveryTime', updateDeliveryTime.updateDeliveryTime);
 router.post('/tracker', tracker.tracker);
 
