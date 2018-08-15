@@ -4,7 +4,10 @@ const sendSMS = (from, body, to, cb) => {
   console.log('===========================================================');
   console.log('accountSid', accountSid);
   console.log('authToken', authToken);
+  console.log();
   const client = require('twilio')(accountSid, authToken);
+
+  console.log('inputs', from, body, to);
   client.messages
     .create({
       from,
