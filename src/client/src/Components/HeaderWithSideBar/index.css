@@ -131,9 +131,19 @@
   display: inline-block;
 }
 
+.visible {visibility: visible;
+  display: inline-block;
+}
+
 .dot.hidden {
   visibility: hidden;
   display: none;
+}
+
+.noNotification{
+  color: white;
+  text-align: center;
+  margin-bottom: 76px;
 }
 
 @media screen and (max-width: 600px) {

@@ -4,7 +4,7 @@ import './index.css';
 import logo from './images/logo.png';
 import NotificationDiv from '../NotificationDiv';
 import ReactLoading from 'react-loading';
-var a = [];
+var arrayToSaveNearOrders = [];
 
 class HeaderWithSideBar extends React.Component {
   constructor(props) {
@@ -53,11 +53,14 @@ class HeaderWithSideBar extends React.Component {
               orderDate.getTime() - currentDate.getTime()
             );
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            if (diffDays === 3) {
+            if (diffDays === 3 || diffDays === 2 || diffDays === 1) {
               this.setState(prevState => ({
-                showRedDot: true,
                 nearOrders: prevState.nearOrders.map(obj => {
-                  a.push(order);
+                  arrayToSaveNearOrders.push(order);
+                  this.setState({
+                    showRedDot:
+                      arrayToSaveNearOrders.filter(order => order.seen === false).length === arrayToSaveNearOrders.length
+                  });
                   return order;
                 })
               }));
@@ -84,11 +87,21 @@ class HeaderWithSideBar extends React.Component {
   openNotification(e) {
     document.getElementById('mySideNotification').style.width = '250px';
     document.getElementById('mySideNotification').classList.add('hidden47');
+    this.setState({ showRedDot: false });
   }
 
   closeNotification(e) {
     document.getElementById('mySideNotification').classList.remove('hidden47');
     document.getElementById('mySideNotification').style.width = '0';
+    fetch('/updateSeenValue', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        ids: arrayToSaveNearOrders.map(order => order.id)
+      })
+    }).then(console.log(arrayToSaveNearOrders.map(o => o.id)));
   }
 
   render() {
@@ -118,6 +131,7 @@ class HeaderWithSideBar extends React.Component {
                 className={`dot ${
                   this.state.showRedDot ? 'visible' : 'hidden'
                 }`}
+                ref="dot"
               />
             </i>
           </div>
@@ -159,18 +173,25 @@ class HeaderWithSideBar extends React.Component {
           </a>
 
           <div>
-            {a.length === 0 ? (
-              <div className="centerLoadingIcon">
-                <h1>There is no notifications!!</h1>
-              </div>
+            {arrayToSaveNearOrders.length !== 0 &&
+            arrayToSaveNearOrders.filter(order => {
+              return order.seen === false;
+            }).length === arrayToSaveNearOrders.length ? (
+              arrayToSaveNearOrders.map((order, index) => {
+                return (
+                  <NotificationDiv
+                    id={order.id}
+                    delivery_time={order.delivery_time.split('T')[0]}
+                    key={index}
+                  />
+                );
+              })
             ) : (
-              a.map((order, index) => (
-                <NotificationDiv
-                  id={order.id}
-                  delivery_time={order.delivery_time.split('T')[0]}
-                  key={index}
-                />
-              ))
+              <div className="centerLoadingIcon">
+                <span className="noNotification">
+                  There is no notifications!!
+                </span>
+              </div>
             )}
           </div>
         </div>
