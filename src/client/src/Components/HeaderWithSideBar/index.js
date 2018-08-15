@@ -11,7 +11,7 @@ class HeaderWithSideBar extends React.Component {
     super(props);
     this.state = {
       ordersArray: [],
-      nearOrders: [{}],
+      nearOrders: [],
       showRedDot: false
     };
     this.openNav = this.openNav.bind(this);
@@ -22,7 +22,7 @@ class HeaderWithSideBar extends React.Component {
   }
 
   handleSignout() {
-    fetch('/signout', {
+    fetch('/api/signout', {
       method: 'POST',
       credentials: 'same-origin',
     })
@@ -35,7 +35,7 @@ class HeaderWithSideBar extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/getAllOrders', {
+    fetch('/api/getAllOrders', {
       credentials: 'same-origin',
     })
       .then(response => response.json())
@@ -45,7 +45,8 @@ class HeaderWithSideBar extends React.Component {
           if (data.message.includes('redirect to signin page')) this.props.history.push('/signin');
           if (data.message.includes('unauthorized')) this.props.history.push('/signin');
         }
-        this.setState({ ordersArray: data.data }, () => {
+
+        this.setState({ ordersArray: data.data ? data.data : [] }, () => {
           let orderDate;
           let currentDate = new Date();
 
@@ -95,7 +96,7 @@ class HeaderWithSideBar extends React.Component {
   closeNotification(e) {
     document.getElementById('mySideNotification').classList.remove('hidden47');
     document.getElementById('mySideNotification').style.width = '0';
-    fetch('/updateSeenValue', {
+    fetch('/api/updateSeenValue', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

@@ -49,7 +49,7 @@ class DetaildOrderCard extends React.Component {
 
     if (this.state.buttonLabel == 'Approved') {
 
-      fetch('/changeOrderData', {
+      fetch('/api/changeOrderData', {
         method: 'post',
         credentials: 'same-origin',
         headers: {
@@ -120,7 +120,7 @@ class DetaildOrderCard extends React.Component {
   }
 
   handleDateInput(e) {
-    fetch('/updateDeliveryTime', {
+    fetch('/api/updateDeliveryTime', {
       method: 'post',
       headers: {
         Accept: 'application/json, text/plain, */*',
@@ -156,7 +156,7 @@ class DetaildOrderCard extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.order_id_to_render;
-    fetch('/getAllOrders')
+    fetch('/api/getAllOrders')
       .then(response => response.json())
       .then(data => {
         const data2 = data.data.filter(itemData => itemData.id == id);

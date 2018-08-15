@@ -37,7 +37,7 @@ class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ ...initState });
-    fetch('/signup', {
+    fetch('/api/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

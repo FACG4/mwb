@@ -17,7 +17,7 @@ class ItemPage extends React.Component {
   deleteItem(id) {}
 
   componentDidMount() {
-    fetch('/getAllItems', {
+    fetch('/api/getAllItems', {
       credentials: 'same-origin',
     })
       .then(response => response.json())
