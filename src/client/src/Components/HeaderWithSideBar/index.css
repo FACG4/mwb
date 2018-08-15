@@ -154,4 +154,6 @@
 .sign-out-link {
   background: none;
   border: none;
+  margin-left: 32px;
+  font-size: 25px;
 }
