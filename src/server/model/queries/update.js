@@ -4,7 +4,7 @@ const connect = require('../db_connect.js');
 exports.updateOrderStatus = (status, id, cb) => {
 
   const sql =  {
-    text:`UPDATE orders SET status = $1 WHERE id=$2 returning status`,
+    text:`UPDATE orders SET status = $1, approved_date=Now() WHERE id=$2 returning status`,
     values:[status, id]
   }
 
@@ -16,7 +16,7 @@ exports.updateOrderStatus = (status, id, cb) => {
 
 exports.updateDeliveryTime = (deliveryTime, id, cb) => {
   const sql =  {
-    text:`UPDATE orders SET delivery_time =$1 WHERE id=$2 returning delivery_time, user_id`,
+    text:`UPDATE orders SET delivery_date =$1 WHERE id=$2 returning delivery_date, user_id`,
     values:[deliveryTime, id]
   }
 
@@ -43,19 +43,14 @@ exports.updateTrackerNumber = (traking_number, id, cb) => {
 
 exports.updateSeenValue = (ids, cb) => {
 
-for(let i=0; i<ids.length; i++){
-  const  sql = `update orders as t set
-    seen = c.seen
-from (values
-    (${ids[i]}, true)
-) as c(id, seen)
-where c.id = t.id;`
+  const sqlTemplate = 'UPDATE orders SET seen = true WHERE ID IN ($);'
+  const idstr= ids.reduce((series,id)=> series+=id+',' , '')
+  const sql = sqlTemplate.replace('$' , idstr.slice(0,idstr.length-1))
 
-connect.query(sql, (err, result) => {
-  if (err) return cb(new Error(err));
-  {
-    console.log('ok');
-  }
-});
-}
+  connect.query(sql, (err, result) => {
+    if (err) return cb(err); {
+      cb(null,result);
+    }
+  });
+
 };
