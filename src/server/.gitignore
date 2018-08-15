@@ -3,8 +3,7 @@
 # dependencies
 /node_modules
 node_modules
-convig.env
-
+config.env
 # testing
 /coverage
 
