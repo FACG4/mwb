@@ -19,7 +19,7 @@ exports.getAllItems = (cb) => {
 };
 
 exports.selectOneUser = (id, cb) => {
-  const sql = `select phone from users where id=${id};`;
+  const sql = `select mobile_number from users where id=${id};`;
 
   connect.query(sql, (err, result) => {
     if (err) return cb(new Error(err));
@@ -29,7 +29,7 @@ exports.selectOneUser = (id, cb) => {
 
 exports.selectUserBasedOnOrderId = (order_id, cb) => {
   const sql = {
-    text: 'select phone from users u inner join orders o on u.id=o.user_id where o.id=$1;',
+    text: 'select mobile_number from users u inner join orders o on u.id=o.user_id where o.id=$1;',
     values: [order_id],
   };
 

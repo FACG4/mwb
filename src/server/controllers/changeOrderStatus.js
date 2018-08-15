@@ -17,7 +17,7 @@ const changeOrderStatus = (req, res) => {
 
     select.selectUserBasedOnOrderId(id, (err, result1) => {
       if (err) return console.log('in selecting user: ', err);
-      const targetPhone = result1.rows[0].phone;
+      const targetPhone = result1.rows[0].mobile_number;
 
       sendSMS('+17192203059', `your new status is: ${result.rows[0].status}`, targetPhone, (err, done) => {
         if (err) return res.json({ status: false, error: err });
