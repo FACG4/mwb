@@ -19,22 +19,23 @@
 
 .sideNotification {
   width: 0;
-  height: auto;
+  height: 0;
   position: fixed;
   z-index: 1;
-  top: 261px;
-  right: 125px;
+  top: 60px;
+  right: 0px;
   background-color: black;
-  overflow-x:scroll;
-  transition: 1s;
+  overflow-x: hidden;
+  transform: scale3d(0, 0, 0);
+  transition: all 3s ease;
   margin: auto;
 }
 
 .hidden47 {
-  width: 250px;
+  width: auto;
   height: auto;
-  transform: translate(50%, -50%) scale(1);
-  transition: all 1s ease infinite;
+  transform: scale3d(1, 1, 1);
+  transition: all 3s ease;
 }
 
 .sidenav a {
@@ -42,7 +43,7 @@
   text-decoration: none;
   font-size: 25px;
   display: block;
-  transition: 0.3s;
+  /* transition: 0.3s; */
   color: black;
 }
 
@@ -131,7 +132,8 @@
   display: inline-block;
 }
 
-.visible {visibility: visible;
+.visible {
+  visibility: visible;
   display: inline-block;
 }
 
@@ -140,7 +142,7 @@
   display: none;
 }
 
-.noNotification{
+.noNotification {
   color: white;
   text-align: center;
   margin-bottom: 76px;
