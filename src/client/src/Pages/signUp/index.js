@@ -58,11 +58,11 @@ class SignUp extends Component {
               <img src={logo} alt="logo" />
             </div>
             <div id="input--wraper">
-              <Input placeholder="Full Name" required icon={faUser} name="fullName" value={this.state.username} onChange={this.handleInputChange} />
-              <Input placeholder="Password" required icon={faUnlockAlt} type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
-              <Input placeholder="Mobile number" required icon={faPhoneVolume} type="number" name="mobileNumber" value={this.state.phone} onChange={this.handleInputChange} />
-              <Input placeholder="Address" icon={faMapMarkerAlt} name="address" value={this.state.address} onChange={this.handleInputChange} />
-              <Input placeholder="Till Number" icon={faAddressCard} name="tillNumber" value={this.state.mPesa} onChange={this.handleInputChange} />
+              <Input placeholder="Full Name" required name="fullName" value={this.state.username} onChange={this.handleInputChange} />
+              <Input placeholder="Password" required type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
+              <Input placeholder="Mobile number" required type="number" name="mobileNumber" value={this.state.phone} onChange={this.handleInputChange} />
+              <Input placeholder="Address" name="address" value={this.state.address} onChange={this.handleInputChange} />
+              <Input placeholder="Till Number" name="tillNumber" value={this.state.mPesa} onChange={this.handleInputChange} />
             </div>
             <div>
               <h5 id="message-paragraph"/>

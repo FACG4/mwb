@@ -76,8 +76,8 @@ class SignIn extends Component {
             <img src={logo} alt="logo" />
           </div>
           <div id="input--wraper">
-            <Input placeholder="Full Name" icon={faEnvelope} name="fullName" onChange={this.handleChange} />
-            <Input placeholder="Password" icon={faUnlockAlt} name="password" onChange={this.handleChange} />
+            <Input placeholder="Full Name" name="fullName" onChange={this.handleChange} />
+            <Input placeholder="Password" name="password" type="password" onChange={this.handleChange} />
             <div>
               <h3 id="message-container" />
             </div>
