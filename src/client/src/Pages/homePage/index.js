@@ -9,8 +9,7 @@ class Categories extends React.Component {
   constructor(props) {
     super(props);
     this.openOrders = this.openOrders.bind(this);
-    console.log(props);
-  }
+   }
 
   openOrders() {
     window.location = 'orders';
