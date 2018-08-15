@@ -31,6 +31,7 @@ class HeaderWithSideBar extends React.Component {
       if (res.message) window.location = 'signin';
       localStorage.removeItem('user')
     })
+    .catch(err => console.log('network error'));
   }
 
   componentDidMount() {
