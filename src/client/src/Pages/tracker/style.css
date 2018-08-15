@@ -24,11 +24,27 @@
 .track--form input[class="green"] {
   color: black;
   cursor: pointer;
-  width: 100%;
+  width: 140px;
   border: black 1px solid;
   background: inheret;
 }
 
 .track--form input[type="text"]::placeholder {
   color: gray
+}
+
+.redBtn{
+color: #A73542;
+cursor: pointer;
+width: 140px;
+border: #A73542 1px solid;
+background: inheret;
+height: 50px;
+font-size: 1em;
+}
+
+.buttonsDiv {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
 }

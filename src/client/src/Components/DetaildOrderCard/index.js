@@ -12,6 +12,8 @@ import HeaderWithSideBar from '../HeaderWithSideBar/index.js';
 import DateInput from '../DateInput/index.js';
 import Popup from '../popup/index.js';
 import TopTab from '../TopTab/index.js';
+let  date1='';
+
 
 class DetaildOrderCard extends React.Component {
   static contextTypes = {
@@ -34,7 +36,8 @@ class DetaildOrderCard extends React.Component {
       changingStatusIcon: '',
       disableTheButton: false,
       theDate: '',
-      theStatus: ''
+      theStatus: '',
+      approvedOrDeliveredText:''
     };
 
     this.changeStatus = this.changeStatus.bind(this);
@@ -43,8 +46,10 @@ class DetaildOrderCard extends React.Component {
   }
 
   changeStatus() {
-    if (this.state.buttonLabel !== 'Delivered') {
-      fetch('/changeOrderStatus', {
+
+    if (this.state.buttonLabel == 'Approved') {
+
+      fetch('/changeOrderData', {
         method: 'post',
         headers: {
           Accept: 'application/json, text/plain, */*',
@@ -63,6 +68,7 @@ class DetaildOrderCard extends React.Component {
               changingStatusIcon: faCheckCircle,
               color: 'green',
               theStatus: res.data.rows[0].status
+
             });
           } else {
             this.setState({
@@ -72,7 +78,6 @@ class DetaildOrderCard extends React.Component {
               color: 'red'
             });
           }
-
           if (this.state.theStatus == 'Pending') {
             this.setState({ buttonLabel: 'Approved' });
           } else if (this.state.theStatus == 'Approved') {
@@ -82,9 +87,27 @@ class DetaildOrderCard extends React.Component {
         .catch(err => {
           console.log(err);
         });
-
       this.setState({ statusPopupMsg: true });
-    } else if (this.state.buttonLabel == 'Delivered') {
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     else if (this.state.buttonLabel == 'Delivered') {
       this.props.history.push(
         `/tracker/${this.state.newArrayAfterFetch[0].id}`
       );
@@ -114,7 +137,7 @@ class DetaildOrderCard extends React.Component {
             changingTimePopup: 'Deliverey date was updated successfully',
             changingDateIcon: faCheckCircle,
             color: 'green',
-            theDate: res.data.rows[0].delivery_time.split('T')[0]
+            theDate: res.data.rows[0].delivery_date.split('T')[0]
           });
         } else {
           this.setState({
@@ -137,20 +160,28 @@ class DetaildOrderCard extends React.Component {
       .then(data => {
         const data2 = data.data.filter(itemData => itemData.id == id);
 
+
+        if(data2[0].status === 'Approved')
+        {date1 = data2[0].approved_date.split('T')[0];}
+        else {date1= data2[0].delivery_date.split('T')[0];}
+
+
         this.setState({
           newArrayAfterFetch: data2,
           buttonLabel: data2[0].status,
-          theDate: data2[0].delivery_time.split('T')[0],
+          theDate: date1,
           theStatus: data2[0].status
         });
         if (this.state.theStatus == 'Pending') {
-          this.setState({ buttonLabel: 'Approved' });
+          this.setState({ buttonLabel: 'Approved' , showDateDiv:false });
         } else if (this.state.theStatus == 'Approved') {
-          this.setState({ buttonLabel: 'Delivered' });
+          this.setState({ buttonLabel: 'Delivered', showDateDiv:true , approvedOrDeliveredText:'Approved on'});
         } else if (this.state.theStatus == 'Delivered') {
-          this.setState({ buttonLabel: ' Delivered!', disableTheButton: true });
+          this.setState({ buttonLabel: ' Delivered', disableTheButton: true, showDateDiv:true, approvedOrDeliveredText:'Delivered by' });
 
-          this.props.history.push(`/tracker/${data2[0].id}`);
+           if(!data2[0].traking_number){
+ this.props.history.push(`/tracker/${data2[0].id}`);           }
+           else{}
         }
       })
       .catch(err => {
@@ -226,9 +257,9 @@ class DetaildOrderCard extends React.Component {
                       </span>
                     </span>
 
-                    <div>
+                    <div className={this.state.showDateDiv? 'showDateDiv':'hideDateDiv'}>
                       <span className="ItemCardLabelBold">
-                        Delivered by:
+                        {this.state.approvedOrDeliveredText}:
                         <span className="ItemCardLabel">
                           {this.state.theDate}
                         </span>

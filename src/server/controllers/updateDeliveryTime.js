@@ -15,7 +15,7 @@ const updateDeliveryTime = (req, res) => {
       if (err) return res.json({ status: false, error: err });
       const targetPhone = result1.rows[0].phone;
 
-      const ChangedTime = result.rows[0].delivery_time;
+      const ChangedTime = result.rows[0].delivery_date;
 
       sendSMS('+17192203059', `your order date has changed to: ${ChangedTime}`, targetPhone, (err, done) => {
         if (err) return res.json({ status: false, error: err });
