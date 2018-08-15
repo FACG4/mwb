@@ -49,7 +49,7 @@ class DetaildOrderCard extends React.Component {
 
     if (this.state.buttonLabel == 'Approved') {
 
-      fetch('/changeOrderStatusAndApprovedDate', {
+      fetch('/changeOrderData', {
         method: 'post',
         headers: {
           Accept: 'application/json, text/plain, */*',
