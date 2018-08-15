@@ -30,9 +30,6 @@ class SignIn extends Component {
 
   handleSingIn = (e) => {
     e.preventDefault();
-    // this.setState({
-    //   ...initState,
-    // });
     fetch('/signin', {
       method: 'POST',
       credentials: 'same-origin',

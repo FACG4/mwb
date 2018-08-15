@@ -47,7 +47,6 @@ class SignUp extends Component {
       .then(res => res.json())
       .then((res) => {
         if (res.message === 'signup successful') this.props.history.push('/signin');
-        // document.getElementById('message-paragraph').textContent = res.message;
         this.setState({message:res.message})
 
       });
