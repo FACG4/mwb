@@ -67,14 +67,14 @@
    margin-top: 15px;
   }
 
- .Pending{
+ .Pending {
    background-color: #FCF951;
  }
 
- .Approved{
+ .Approved {
    background-color: #5DAAD8;
  }
 
- .Delivered{
+ .Delivered {
    background-color: #F8CBC6;
  }

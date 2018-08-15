@@ -96,10 +96,13 @@ class OrdersPage extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/getAllOrders')
+    fetch('/getAllOrders', {
+      credentials: 'same-origin',
+    })
       .then(response => response.json())
       .then(data => {
-        this.setState({ ordersArray: data.data });
+        if (data.message) this.props.history.push('/signin')
+        else this.setState({ ordersArray: data.data });
       })
       .catch(err => {
         console.log(

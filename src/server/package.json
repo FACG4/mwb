@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "istanbul cover test/index.js | tap-spec",
     "start": "NODE_ENV=production node index",
     "dev": "NODE_ENV=development node index",
     "dummy": "NODE_ENV=development  node ./database/pg/utils/createDummy.js",
@@ -14,7 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "env2": "^2.2.2",
     "express": "^4.16.3",

@@ -4,12 +4,11 @@ DROP TABLE IF EXISTS users, items, orders CASCADE;
 
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
-username VARCHAR(20) UNIQUE NOT NULL,
-email VARCHAR(100) UNIQUE NOT NULL,
-phone VARCHAR(100) UNIQUE NOT NULL,
+full_name VARCHAR(50) UNIQUE NOT NULL,
+mobile_number VARCHAR(100) UNIQUE NOT NULL,
 password VARCHAR(100),
 address TEXT,
-m_pesa VARCHAR
+till_number VARCHAR
 );
 
 CREATE TABLE items(
@@ -31,9 +30,7 @@ traking_number VARCHAR,
 seen BOOLEAN DEFAULT false
 );
 
-
-
-insert into users(username, email, password, address, m_pesa, phone)values('salalm','sas','sdcdsc','dcsdc','sddc', '+970567716309');
+insert into users(full_name, password, address, till_number, mobile_number)values('salalm','sdcdsc','dcsdc','sddc', '123456');
 
 
 insert into items(title, description, image)values

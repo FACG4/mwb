@@ -49,12 +49,12 @@ img {
  .signup--link {
      display: flex;
      align-items: center;
-     color: #fff;
+     color: #black;
  }
 
  .signup--link a {
      margin-left: 2px;
-     color: #fff;
+     color: black;
      text-decoration: underline;
  }
 

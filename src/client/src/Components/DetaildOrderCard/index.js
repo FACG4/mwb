@@ -51,6 +51,7 @@ class DetaildOrderCard extends React.Component {
 
       fetch('/changeOrderData', {
         method: 'post',
+        credentials: 'same-origin',
         headers: {
           Accept: 'application/json, text/plain, */*',
           'Content-Type': 'application/json'

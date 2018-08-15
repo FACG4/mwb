@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React from 'react';
 import './index.css';
 import shoppingBag from './images/shoppingBag.png';
@@ -26,8 +25,7 @@ class Categories extends React.Component {
 
         <div className="categoriesDiv">
           <h1 className="usernameInHomePage">
-            Hey Maxx
-            {this.props.username},
+            Welcome {localStorage.getItem('user')}!
           </h1>
           <div className="selectCategoryDeliveredence">
             Please select what you want,

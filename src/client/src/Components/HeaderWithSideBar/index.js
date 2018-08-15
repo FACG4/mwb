@@ -18,12 +18,33 @@ class HeaderWithSideBar extends React.Component {
     this.closeNav = this.closeNav.bind(this);
     this.openNotification = this.openNotification.bind(this);
     this.closeNotification = this.closeNotification.bind(this);
+    this.handleSignout = this.handleSignout.bind(this);
+  }
+
+  handleSignout() {
+    fetch('/signout', {
+      method: 'POST',
+      credentials: 'same-origin',
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.message) window.location = 'signin';
+      localStorage.removeItem('user')
+    })
+    .catch(err => console.log('network error'));
   }
 
   componentDidMount() {
-    fetch('/getAllOrders')
+    fetch('/getAllOrders', {
+      credentials: 'same-origin',
+    })
       .then(response => response.json())
       .then(data => {
+        console.log(data);
+        if (data.message) {
+          if (data.message.includes('redirect to signin page')) this.props.history.push('/signin');
+          if (data.message.includes('unauthorized')) this.props.history.push('/signin');
+        }
         this.setState({ ordersArray: data.data }, () => {
           let orderDate;
           let currentDate = new Date();
@@ -140,9 +161,9 @@ class HeaderWithSideBar extends React.Component {
             <i className="fas fa-user" /> Profile
           </a>
 
-          <a href="/signup">
-            <i className="fas fa-sign-out-alt" /> Logout
-          </a>
+          <button className="sign-out-link" onClick={this.handleSignout} >
+            <i className="fas fa-sign-out-alt" /> Sign out
+          </button>
         </div>
 
         <div id="mySideNotification" className="sideNotification">

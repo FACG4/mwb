@@ -1,4 +1,3 @@
-/*eslint-disable*/
 const connect = require('../db_connect.js');
 
 exports.updateOrderStatus = (status, id, cb) => {
