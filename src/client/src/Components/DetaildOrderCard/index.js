@@ -63,7 +63,7 @@ class DetaildOrderCard extends React.Component {
       })
         .then(res => res.json())
         .then(res => {
-          if (res.data.rowCount == 1) {
+          if (res.data && res.data.rowCount == 1) {
             this.setState({
               changingStatusPopup: 'Status was changed successfully!',
               changingStatusIcon: faCheckCircle,
