@@ -31,7 +31,7 @@ module.exports = (req, res) => {
             {
               httpOnly: true,
               signed: true,
-              maxAge: 999999999999999999999999999999999999999999999999,
+              maxAge: 9999999,
             },
           );
         }
