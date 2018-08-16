@@ -52,7 +52,6 @@ module.exports = (req, res) => {
       return res.send({ message: 'login successful', user: result.rows[0].full_name });
     }).catch(comparisonError => res.send({ message: 'server error1', body: comparisonError }));
   }).catch((err) => {
-    console.log('err', err);
     res.send({ message: 'server error2', body: err });
   });
 };

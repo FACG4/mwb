@@ -6,8 +6,8 @@ module.exports = (req, res) => {
   const {
     fullName, password, mobileNumber, address, tillNumber,
   } = req.body;
-  if (fullName === '') return res.send({ message: 'Please enter your Full Name here' });
-  if (nameRegex(fullName) === false) return res.send({ message: 'Please enter both your first name and last name' });
+  // if (fullName === '') return res.send({ message: 'Please enter your Full Name here' });
+  // if (nameRegex(fullName) === false) return res.send({ message: 'Please enter both your first name and last name' });
   // probably should use parseInt instead
   if (regexNumber(mobileNumber) === false) return res.send({ message: 'mobileNumber must be a number' });
   return dbQuery({
