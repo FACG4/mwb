@@ -37,7 +37,8 @@ class DetaildOrderCard extends React.Component {
       disableTheButton: false,
       theDate: '',
       theStatus: '',
-      approvedOrDeliveredText:''
+      approvedOrDeliveredText:'',
+      changePendingStatu:''
     };
 
     this.changeStatus = this.changeStatus.bind(this);
@@ -49,7 +50,7 @@ class DetaildOrderCard extends React.Component {
 
     if (this.state.buttonLabel == 'Approved') {
 
-      fetch('/changeOrderData', {
+      fetch('/api/changeOrderData', {
         method: 'post',
         credentials: 'same-origin',
         headers: {
@@ -63,12 +64,16 @@ class DetaildOrderCard extends React.Component {
       })
         .then(res => res.json())
         .then(res => {
-          if (res.data.rowCount == 1) {
+          if (res.data && res.data.rowCount == 1) {
             this.setState({
               changingStatusPopup: 'Status was changed successfully!',
               changingStatusIcon: faCheckCircle,
               color: 'green',
-              theStatus: res.data.rows[0].status
+              theStatus: res.data.rows[0].status,
+              showDateDiv:true,
+              approvedOrDeliveredText:true,
+               approvedOrDeliveredText:'Approved on'
+              //hereeeeeeeeeeee
 
             });
           } else {
@@ -120,12 +125,13 @@ class DetaildOrderCard extends React.Component {
   }
 
   handleDateInput(e) {
-    fetch('/updateDeliveryTime', {
+    fetch('/api/updateDeliveryTime', {
       method: 'post',
       headers: {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
+      credentials: 'same-origin',
       body: JSON.stringify({
         newDeliveryTime: e.target.value.replace(/-/g, ''),
         orderId: this.state.newArrayAfterFetch[0].id
@@ -138,7 +144,8 @@ class DetaildOrderCard extends React.Component {
             changingTimePopup: 'Deliverey date was updated successfully',
             changingDateIcon: faCheckCircle,
             color: 'green',
-            theDate: res.data.rows[0].delivery_date.split('T')[0]
+            theDate: res.data.rows[0].delivery_date.split('T')[0],
+            showDateDiv:true
           });
         } else {
           this.setState({
@@ -156,10 +163,12 @@ class DetaildOrderCard extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.order_id_to_render;
-    fetch('/getAllOrders')
+    fetch('/api/getAllOrders', {
+      credentials: 'same-origin',
+    })
       .then(response => response.json())
       .then(data => {
-        const data2 = data.data.filter(itemData => itemData.id == id);
+         const data2 = data.data.filter(itemData => itemData.id == id);
 
 
         if(data2[0].status === 'Approved')
@@ -214,7 +223,7 @@ class DetaildOrderCard extends React.Component {
             <Popup
               message={this.state.changingTimePopup}
               onClick={() => {
-                this.setState({ datePopupMsg: false, showDateInput: true });
+                this.setState({ datePopupMsg: false, showDateInput: true , showDateDiv:true});
               }}
               isVisible={this.state.datePopupMsg}
               color={this.state.color}

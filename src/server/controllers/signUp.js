@@ -6,8 +6,8 @@ module.exports = (req, res) => {
   const {
     fullName, password, mobileNumber, address, tillNumber,
   } = req.body;
-  if (fullName === '') return res.send({ message: 'Please enter your Full Name here' });
-  if (nameRegex(fullName) === false) return res.send({ message: 'Please enter both your first name and last name' });
+  // if (fullName === '') return res.send({ message: 'Please enter your Full Name here' });
+  // if (nameRegex(fullName) === false) return res.send({ message: 'Please enter both your first name and last name' });
   // probably should use parseInt instead
   if (regexNumber(mobileNumber) === false) return res.send({ message: 'mobileNumber must be a number' });
   return dbQuery({
@@ -25,9 +25,9 @@ module.exports = (req, res) => {
           if (response.rowCount === 1) res.send({ message: 'signup successful' });
         })
           .catch((error) => {
-            res.send({ message: 'server error', body: error });
+            res.send({ message: `server error1 ${error}`, body: error });
           });
       });
     })
-    .catch(err => res.send({ message: 'server error', body: err }));
+    .catch(err => res.send({ message: `server error2 ${error}`, body: err }));
 };

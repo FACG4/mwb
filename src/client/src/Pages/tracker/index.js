@@ -48,7 +48,7 @@ class Tracker extends Component {
         }
       },
       () => {
-        fetch('/tracker', {
+        fetch('/api/tracker', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

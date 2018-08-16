@@ -21,6 +21,7 @@ const initState = {
   mobileNumber: '',
   address: '',
   tillNumber: '',
+  message:''
 };
 
 class SignUp extends Component {
@@ -36,7 +37,7 @@ class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ ...initState });
-    fetch('/signup', {
+    fetch('/api/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +47,8 @@ class SignUp extends Component {
       .then(res => res.json())
       .then((res) => {
         if (res.message === 'signup successful') this.props.history.push('/signin');
-        document.getElementById('message-paragraph').textContent = res.message;
+        this.setState({message:res.message})
+
       });
   }
 
@@ -65,7 +67,7 @@ class SignUp extends Component {
               <Input placeholder="Till Number" name="tillNumber" value={this.state.mPesa} onChange={this.handleInputChange} />
             </div>
             <div>
-              <h5 id="message-paragraph"/>
+              <h5 id="message-paragraph">{this.state.message}</h5>
             </div>
             <div id="button">
               <Input value="Sign Up" type="submit" />

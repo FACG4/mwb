@@ -30,7 +30,7 @@ traking_number VARCHAR,
 seen BOOLEAN DEFAULT false
 );
 
-insert into users(full_name, password, address, till_number, mobile_number)values('salalm','sdcdsc','dcsdc','sddc', '123456');
+insert into users(full_name, password, address, till_number, mobile_number)values('salalm','sdcdsc','dcsdc','sddc', '+970567716309');
 
 
 insert into items(title, description, image)values
