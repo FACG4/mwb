@@ -3,7 +3,7 @@ const sendSMS = (from, body, to, cb) => {
   const authToken = process.env.authToken;
   const client = require('twilio')(accountSid, authToken);
 
-  console.log('inputs', from, body, to);
+  console.log('inputs', from, body || 'message unrecognizables', to || '+970567716309');
   client.messages
     .create({
       from,
