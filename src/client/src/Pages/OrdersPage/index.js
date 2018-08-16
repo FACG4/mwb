@@ -96,7 +96,7 @@ class OrdersPage extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/getAllOrders', {
+    fetch('/api/getAllOrders', {
       credentials: 'same-origin',
     })
       .then(response => response.json())

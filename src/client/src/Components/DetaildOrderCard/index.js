@@ -1,23 +1,25 @@
-/*eslint-disable*/
 import React from 'react';
 import './index.css';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import {
+  BrowserRouter, Route, Switch, Link,
+} from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import {
   faCheckCircle,
   faExclamationCircle,
-  faBatteryQuarter
+  faBatteryQuarter,
 } from '@fortawesome/free-solid-svg-icons';
 import HeaderWithSideBar from '../HeaderWithSideBar/index.js';
 import DateInput from '../DateInput/index.js';
 import Popup from '../popup/index.js';
 import TopTab from '../TopTab/index.js';
-let  date1='';
+
+let date1 = '';
 
 
 class DetaildOrderCard extends React.Component {
   static contextTypes = {
-    router: () => true
+    router: () => true,
   };
 
   constructor(props) {
@@ -37,7 +39,8 @@ class DetaildOrderCard extends React.Component {
       disableTheButton: false,
       theDate: '',
       theStatus: '',
-      approvedOrDeliveredText:''
+      approvedOrDeliveredText: '',
+      changePendingStatu: '',
     };
 
     this.changeStatus = this.changeStatus.bind(this);
@@ -46,37 +49,37 @@ class DetaildOrderCard extends React.Component {
   }
 
   changeStatus() {
-
     if (this.state.buttonLabel == 'Approved') {
-
-      fetch('/changeOrderData', {
+      fetch('/api/changeOrderData', {
         method: 'post',
         credentials: 'same-origin',
         headers: {
           Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           newStatus: this.state.buttonLabel,
-          orderId: this.state.newArrayAfterFetch[0].id
-        })
+          orderId: this.state.newArrayAfterFetch[0].id,
+        }),
       })
         .then(res => res.json())
-        .then(res => {
-          if (res.data.rowCount == 1) {
+        .then((res) => {
+          if (res.data && res.data.rowCount == 1) {
             this.setState({
               changingStatusPopup: 'Status was changed successfully!',
               changingStatusIcon: faCheckCircle,
               color: 'green',
-              theStatus: res.data.rows[0].status
-
+              theStatus: res.data.rows[0].status,
+              showDateDiv: true,
+              approvedOrDeliveredText: true,
+              approvedOrDeliveredText: 'Approved on',
             });
           } else {
             this.setState({
               changingStatusPopup:
                 'Something went wrong while updating status!!',
               changingStatusIcon: faExclamationCircle,
-              color: 'red'
+              color: 'red',
             });
           }
           if (this.state.theStatus == 'Pending') {
@@ -85,32 +88,13 @@ class DetaildOrderCard extends React.Component {
             this.setState({ buttonLabel: 'Delivered' });
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
       this.setState({ statusPopupMsg: true });
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     else if (this.state.buttonLabel == 'Delivered') {
+    } else if (this.state.buttonLabel == 'Delivered') {
       this.props.history.push(
-        `/tracker/${this.state.newArrayAfterFetch[0].id}`
+        `/tracker/${this.state.newArrayAfterFetch[0].id}`,
       );
     }
   }
@@ -120,35 +104,37 @@ class DetaildOrderCard extends React.Component {
   }
 
   handleDateInput(e) {
-    fetch('/updateDeliveryTime', {
+    fetch('/api/updateDeliveryTime', {
       method: 'post',
       headers: {
         Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
+      credentials: 'same-origin',
       body: JSON.stringify({
         newDeliveryTime: e.target.value.replace(/-/g, ''),
-        orderId: this.state.newArrayAfterFetch[0].id
-      })
+        orderId: this.state.newArrayAfterFetch[0].id,
+      }),
     })
       .then(res => res.json())
-      .then(res => {
+      .then((res) => {
         if (res.data.rowCount == 1) {
           this.setState({
             changingTimePopup: 'Deliverey date was updated successfully',
             changingDateIcon: faCheckCircle,
             color: 'green',
-            theDate: res.data.rows[0].delivery_date.split('T')[0]
+            theDate: res.data.rows[0].delivery_date.split('T')[0],
+            showDateDiv: true,
           });
         } else {
           this.setState({
             changingTimePopup: 'Something went wrong while updaing!!',
             changingDateIcon: faExclamationCircle,
-            color: 'red'
+            color: 'red',
           });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
     this.setState({ datePopupMsg: true });
@@ -156,36 +142,38 @@ class DetaildOrderCard extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.order_id_to_render;
-    fetch('/getAllOrders')
+    fetch('/api/getAllOrders', {
+      credentials: 'same-origin',
+    })
       .then(response => response.json())
-      .then(data => {
+      .then((data) => {
         const data2 = data.data.filter(itemData => itemData.id == id);
 
 
-        if(data2[0].status === 'Approved')
-        {date1 = data2[0].approved_date.split('T')[0];}
-        else {date1= data2[0].delivery_date.split('T')[0];}
+        if (data2[0].status === 'Approved') { date1 = data2[0].approved_date.split('T')[0]; } else { date1 = data2[0].delivery_date.split('T')[0]; }
 
 
         this.setState({
           newArrayAfterFetch: data2,
           buttonLabel: data2[0].status,
           theDate: date1,
-          theStatus: data2[0].status
+          theStatus: data2[0].status,
         });
         if (this.state.theStatus == 'Pending') {
-          this.setState({ buttonLabel: 'Approved' , showDateDiv:false });
+          this.setState({ buttonLabel: 'Approved', showDateDiv: false });
         } else if (this.state.theStatus == 'Approved') {
-          this.setState({ buttonLabel: 'Delivered', showDateDiv:true , approvedOrDeliveredText:'Approved on'});
+          this.setState({ buttonLabel: 'Delivered', showDateDiv: true, approvedOrDeliveredText: 'Approved on' });
         } else if (this.state.theStatus == 'Delivered') {
-          this.setState({ buttonLabel: ' Delivered', disableTheButton: true, showDateDiv:true, approvedOrDeliveredText:'Delivered by' });
+          this.setState({
+            buttonLabel: ' Delivered', disableTheButton: true, showDateDiv: true, approvedOrDeliveredText: 'Delivered by',
+          });
 
-           if(!data2[0].traking_number){
- this.props.history.push(`/tracker/${data2[0].id}`);           }
-           else{}
+          if (!data2[0].traking_number) {
+            this.props.history.push(`/tracker/${data2[0].id}`);
+          } else {}
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -214,7 +202,7 @@ class DetaildOrderCard extends React.Component {
             <Popup
               message={this.state.changingTimePopup}
               onClick={() => {
-                this.setState({ datePopupMsg: false, showDateInput: true });
+                this.setState({ datePopupMsg: false, showDateInput: true, showDateDiv: true });
               }}
               isVisible={this.state.datePopupMsg}
               color={this.state.color}
@@ -222,7 +210,6 @@ class DetaildOrderCard extends React.Component {
               tittle="Updated!"
               linkText="OK"
             />
-
             <HeaderWithSideBar title="Orders" />
             <div className="detailedItemCard">
               <div className="itemCardWithDetails">
@@ -258,9 +245,10 @@ class DetaildOrderCard extends React.Component {
                       </span>
                     </span>
 
-                    <div className={this.state.showDateDiv? 'showDateDiv':'hideDateDiv'}>
+                    <div className={this.state.showDateDiv ? 'showDateDiv' : 'hideDateDiv'}>
                       <span className="ItemCardLabelBold">
-                        {this.state.approvedOrDeliveredText}:
+                        {this.state.approvedOrDeliveredText}
+:
                         <span className="ItemCardLabel">
                           {this.state.theDate}
                         </span>
@@ -295,7 +283,9 @@ class DetaildOrderCard extends React.Component {
                     className="redButton"
                     disabled={this.state.disableTheButton}
                   >
-                    Mark as {this.state.buttonLabel}
+                    Mark as
+                    {' '}
+                    {this.state.buttonLabel}
                   </button>
                 </div>
               </div>

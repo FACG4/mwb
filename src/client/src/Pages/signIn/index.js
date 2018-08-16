@@ -30,10 +30,7 @@ class SignIn extends Component {
 
   handleSingIn = (e) => {
     e.preventDefault();
-    this.setState({
-      ...initState,
-    });
-    fetch('/signin', {
+    fetch('/api/signin', {
       method: 'POST',
       credentials: 'same-origin',
       headers: {

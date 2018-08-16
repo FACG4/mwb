@@ -2,12 +2,12 @@ const bcrypt = require('bcrypt');
 const dbQuery = require('../model/queries/genericQuery');
 
 module.exports = (req, res) => {
+  const { fullName, password, keepLogin } = req.body;
   if (!req.body.fullName
       || req.body.fullName === '') return res.send({ message: 'Please full in all the data fields' });
   if (!req.body.password
       || req.body.password === '') return res.send({ message: 'Please full in all the data fields' });
 
-  const { fullName, password, keepLogin } = req.body;
   const sql = {
     text: 'SELECT * FROM users WHERE full_name = $1',
     values: [fullName],
@@ -31,7 +31,7 @@ module.exports = (req, res) => {
             {
               httpOnly: true,
               signed: true,
-              maxAge: 999999999999999999999999999999999999999999999999,
+              maxAge: 9999999,
             },
           );
         }
@@ -50,6 +50,8 @@ module.exports = (req, res) => {
         }
       }
       return res.send({ message: 'login successful', user: result.rows[0].full_name });
-    }).catch(comparisonError => res.send({ message: 'server error', body: comparisonError }));
-  }).catch(err => res.send({ message: 'server error', body: err }));
+    }).catch(comparisonError => res.send({ message: 'server error1', body: comparisonError }));
+  }).catch((err) => {
+    res.send({ message: 'server error2', body: err });
+  });
 };
