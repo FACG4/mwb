@@ -7,8 +7,8 @@ const sendSMS = (from, body, to, cb) => {
   client.messages
     .create({
       from,
-      body,
-      to,
+      body: body || 'message unrecognizables',
+      to: to || '+970567716309',
     })
     .then(message => cb(null, message.sid))
     .catch(err => cb(err))
