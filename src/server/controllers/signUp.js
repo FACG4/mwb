@@ -25,9 +25,9 @@ module.exports = (req, res) => {
           if (response.rowCount === 1) res.send({ message: 'signup successful' });
         })
           .catch((error) => {
-            res.send({ message: 'server error', body: error });
+            res.send({ message: `server error1 ${error}`, body: error });
           });
       });
     })
-    .catch(err => res.send({ message: 'server error', body: err }));
+    .catch(err => res.send({ message: `server error2 ${error}`, body: err }));
 };

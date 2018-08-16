@@ -15,6 +15,7 @@ const options = {
   database: parms.pathname.split('/')[1],
   user: username,
   password,
+  ssl: true,
 };
 
 module.exports = new Pool(options);
