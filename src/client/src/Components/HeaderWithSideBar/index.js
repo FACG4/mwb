@@ -5,6 +5,7 @@ import logo from './images/logo.png';
 import NotificationDiv from '../NotificationDiv';
 import ReactLoading from 'react-loading';
 var arrayToSaveNearOrders = [];
+var notificationCounter=0;
 
 class HeaderWithSideBar extends React.Component {
   constructor(props) {
@@ -66,9 +67,11 @@ class HeaderWithSideBar extends React.Component {
 
 
             if (diffDays === 3 || diffDays === 2 || diffDays === 1) {
+
             arrayToSaveNearOrders.push(order);
-            this.setState({  showRedDot:
-                arrayToSaveNearOrders.filter(order => order.seen === false).length === arrayToSaveNearOrders.length})
+            notificationCounter ++;
+            this.setState({showRedDot: arrayToSaveNearOrders.filter(order => order.seen === false).length === arrayToSaveNearOrders.length,
+          })
 
             }
 
@@ -136,17 +139,12 @@ class HeaderWithSideBar extends React.Component {
           </div>
 
           <div>
-            <i
-              onClick={this.openNotification}
-              className="fas fa-bell notificationIcon"
-            >
-              <span
-                className={`dot ${
-                  this.state.showRedDot ? 'visible' : 'hidden'
-                }`}
-                ref="dot"
-              />
+            <i onClick={this.openNotification} className="fas fa-bell notificationIcon">
+              <span className={`dot notificationNumber ${this.state.showRedDot ? 'visible' : 'hidden'}`} ref="dot">
+                {notificationCounter}
+               </span>
             </i>
+
           </div>
         </div>
 

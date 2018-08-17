@@ -40,7 +40,6 @@ exports.updateTrackerNumber = (traking_number, id, cb) => {
 
 
 exports.updateSeenValue = (ids, cb) => {
-  console.log('seeeeeeeeeeen');
   const sqlTemplate = 'UPDATE orders SET seen = true WHERE ID IN ($);';
   const idstr = ids.reduce((series, id) => series += `${id},`, '');
   const sql = sqlTemplate.replace('$', idstr.slice(0, idstr.length - 1));
