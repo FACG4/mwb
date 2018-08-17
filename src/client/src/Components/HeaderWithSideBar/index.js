@@ -58,6 +58,7 @@ class HeaderWithSideBar extends React.Component {
           this.state.ordersArray.map(order => {
 
             orderDate = new Date(order.delivery_date);
+
             var timeDiff = Math.abs(orderDate.getTime() - currentDate.getTime());
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
@@ -65,16 +66,16 @@ class HeaderWithSideBar extends React.Component {
 
 
             if (diffDays === 3 || diffDays === 2 || diffDays === 1) {
-              arrayToSaveNearOrders.push(order);
-              this.setState({  showRedDot:
-                  arrayToSaveNearOrders.filter(order => order.seen === false).length === arrayToSaveNearOrders.length})
+            arrayToSaveNearOrders.push(order);
+            this.setState({  showRedDot:
+                arrayToSaveNearOrders.filter(order => order.seen === false).length === arrayToSaveNearOrders.length})
 
             }
 
 
 
 
-          });
+           });
         });
       })
       .catch(err => {
@@ -104,6 +105,7 @@ class HeaderWithSideBar extends React.Component {
     document.getElementById('mySideNotification').style.width = '0';
     fetch('/api/updateSeenValue', {
       method: 'POST',
+      credentials: 'same-origin',
       headers: {
         'content-type': 'application/json'
       },
@@ -115,6 +117,7 @@ class HeaderWithSideBar extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <div className="headerDiv">
