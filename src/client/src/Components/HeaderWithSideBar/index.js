@@ -35,14 +35,6 @@ class HeaderWithSideBar extends React.Component {
   }
 
 
-
-
-
-
-
-
-
-
   componentDidMount() {
     fetch('/api/getAllOrders', {
       method:'POST',
@@ -58,33 +50,30 @@ class HeaderWithSideBar extends React.Component {
           if (data.message.includes('unauthorized')) this.props.history.push('/signin');
         }
 
+
         this.setState({ ordersArray: data.data ? data.data : [] }, () => {
           let orderDate;
           let currentDate = new Date();
 
           this.state.ordersArray.map(order => {
+
             orderDate = new Date(order.delivery_date);
-            var timeDiff = Math.abs(
-              orderDate.getTime() - currentDate.getTime()
-            );
+            var timeDiff = Math.abs(orderDate.getTime() - currentDate.getTime());
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+
+
+
             if (diffDays === 3 || diffDays === 2 || diffDays === 1) {
-              this.setState(prevState => ({
-                nearOrders: prevState.nearOrders.map(obj => {
-                  arrayToSaveNearOrders.push(order);
-                  this.setState({
-                    showRedDot:
-                      arrayToSaveNearOrders.filter(order => order.seen === false).length === arrayToSaveNearOrders.length
-                  });
-                  return order;
-                })
+              arrayToSaveNearOrders.push(order);
+              this.setState({  showRedDot:
+                  arrayToSaveNearOrders.filter(order => order.seen === false).length === arrayToSaveNearOrders.length})
 
-
-
-
-
-              }));
             }
+
+
+
+
           });
         });
       })
