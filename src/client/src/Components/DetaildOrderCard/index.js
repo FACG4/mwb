@@ -143,7 +143,16 @@ class DetaildOrderCard extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.order_id_to_render;
     fetch('/api/getAllOrders', {
+      method: 'POST',
       credentials: 'same-origin',
+      headers: {
+        'content-type': 'application/json',
+
+
+      },
+      body: JSON.stringify({
+        userId: localStorage.getItem('userId'),
+      }),
     })
       .then(response => response.json())
       .then((data) => {
@@ -159,11 +168,11 @@ class DetaildOrderCard extends React.Component {
           theDate: date1,
           theStatus: data2[0].status,
         });
-        if (this.state.theStatus == 'Pending') {
+        if (this.state.theStatus === 'Pending') {
           this.setState({ buttonLabel: 'Approved', showDateDiv: false });
-        } else if (this.state.theStatus == 'Approved') {
+        } else if (this.state.theStatus === 'Approved') {
           this.setState({ buttonLabel: 'Delivered', showDateDiv: true, approvedOrDeliveredText: 'Approved on' });
-        } else if (this.state.theStatus == 'Delivered') {
+        } else if (this.state.theStatus === 'Delivered') {
           this.setState({
             buttonLabel: ' Delivered', disableTheButton: true, showDateDiv: true, approvedOrDeliveredText: 'Delivered by',
           });
@@ -181,7 +190,7 @@ class DetaildOrderCard extends React.Component {
   render() {
     return (
       <div>
-        {this.state.newArrayAfterFetch.length == 0 ? (
+        {this.state.newArrayAfterFetch.length === 0 ? (
           <div className="centerLoadingIcon">
             <ReactLoading type="spokes" color="grey" height={367} width={75} />
           </div>

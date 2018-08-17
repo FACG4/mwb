@@ -89,8 +89,8 @@ class Tracker extends Component {
 
           <div className="buttonsDiv">
             <Input value="Send" type="submit" className="green" />
-            <button className="redBtn" onClick={() => window.location = '/orders'}>Cancel </button>
-          </div>
+            <Input value="Cancel"  className="redBtn" onClick={() => window.location = '/orders'} />
+           </div>
         </form>
 
         <Popup

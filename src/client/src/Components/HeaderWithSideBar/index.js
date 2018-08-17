@@ -5,6 +5,7 @@ import logo from './images/logo.png';
 import NotificationDiv from '../NotificationDiv';
 import ReactLoading from 'react-loading';
 var arrayToSaveNearOrders = [];
+var notificationCounter=0;
 
 class HeaderWithSideBar extends React.Component {
   constructor(props) {
@@ -34,41 +35,50 @@ class HeaderWithSideBar extends React.Component {
     .catch(err => console.log('network error'));
   }
 
+
   componentDidMount() {
     fetch('/api/getAllOrders', {
+      method:'POST',
       credentials: 'same-origin',
+      headers :{'content-type': 'application/json'},
+      body:JSON.stringify({userId: localStorage.getItem('userId') })
+
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         if (data.message) {
           if (data.message.includes('redirect to signin page')) this.props.history.push('/signin');
           if (data.message.includes('unauthorized')) this.props.history.push('/signin');
         }
+
 
         this.setState({ ordersArray: data.data ? data.data : [] }, () => {
           let orderDate;
           let currentDate = new Date();
 
           this.state.ordersArray.map(order => {
+
             orderDate = new Date(order.delivery_date);
-            var timeDiff = Math.abs(
-              orderDate.getTime() - currentDate.getTime()
-            );
+
+            var timeDiff = Math.abs(orderDate.getTime() - currentDate.getTime());
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+
+
+
             if (diffDays === 3 || diffDays === 2 || diffDays === 1) {
-              this.setState(prevState => ({
-                nearOrders: prevState.nearOrders.map(obj => {
-                  arrayToSaveNearOrders.push(order);
-                  this.setState({
-                    showRedDot:
-                      arrayToSaveNearOrders.filter(order => order.seen === false).length === arrayToSaveNearOrders.length
-                  });
-                  return order;
-                })
-              }));
+
+            arrayToSaveNearOrders.push(order);
+            notificationCounter ++;
+            this.setState({showRedDot: arrayToSaveNearOrders.filter(order => order.seen === false).length === arrayToSaveNearOrders.length,
+          })
+
             }
-          });
+
+
+
+
+           });
         });
       })
       .catch(err => {
@@ -98,6 +108,7 @@ class HeaderWithSideBar extends React.Component {
     document.getElementById('mySideNotification').style.width = '0';
     fetch('/api/updateSeenValue', {
       method: 'POST',
+      credentials: 'same-origin',
       headers: {
         'content-type': 'application/json'
       },
@@ -109,6 +120,7 @@ class HeaderWithSideBar extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <div className="headerDiv">
@@ -127,17 +139,12 @@ class HeaderWithSideBar extends React.Component {
           </div>
 
           <div>
-            <i
-              onClick={this.openNotification}
-              className="fas fa-bell notificationIcon"
-            >
-              <span
-                className={`dot ${
-                  this.state.showRedDot ? 'visible' : 'hidden'
-                }`}
-                ref="dot"
-              />
+            <i onClick={this.openNotification} className="fas fa-bell notificationIcon">
+              <span className={`dot notificationNumber ${this.state.showRedDot ? 'visible' : 'hidden'}`} ref="dot">
+                {notificationCounter}
+               </span>
             </i>
+
           </div>
         </div>
 

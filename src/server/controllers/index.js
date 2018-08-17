@@ -8,6 +8,7 @@ const updateSeenValue = require('./updateSeenValue');
 const tracker = require('./tracker');
 const checkAuth = require('./checkAuth');
 const signIn = require('./signIn');
+const addNewOrder = require('./addNewOrder');
 
 const router = express.Router();
 
@@ -21,5 +22,6 @@ router.post('/updateSeenValue', updateSeenValue.updateSeenValue);
 router.post('/changeOrderData', changeOrderStatus.changeOrderStatus);
 router.post('/updateDeliveryTime', updateDeliveryTime.updateDeliveryTime);
 router.post('/tracker', tracker.tracker);
+router.post('/addNewOrder', addNewOrder.addNewOrder);
 
 module.exports = router;
