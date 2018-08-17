@@ -13,18 +13,18 @@ library.add(faArrowLeft, faCheckCircle);
 
 class Tracker extends Component {
   static contextTypes = {
-    router: () => true
+    router: () => true,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       isModalVisible: false,
-      trakerNumberData: {}
+      trakerNumberData: {},
     };
   }
 
-  handelTrackNumber = e => {
+  handelTrackNumber = (e) => {
     e.preventDefault();
   };
 
@@ -36,31 +36,31 @@ class Tracker extends Component {
     this.setState({ isModalVisible: false });
   };
 
-  handelTrackNumber = e => {
+  handelTrackNumber = (e) => {
     e.preventDefault();
     const { trakerNumber } = e.target;
-
     const { trakerNumberData } = this.state;
     this.setState(
       {
         trakerNumberData: {
-          trakerNumber: trakerNumber.value
-        }
+          trakerNumber: trakerNumber.value,
+        },
       },
       () => {
         fetch('/api/tracker', {
           method: 'POST',
+          credentials: 'same-origin',
           headers: {
             'content-type': 'application/json',
-            credentials: 'same-origin'
+
 
           },
           body: JSON.stringify({
             trakerNumber: this.state.trakerNumberData.trakerNumber,
-            orderId: this.props.match.params.order_id_for_tracking
-          })
+            orderId: this.props.match.params.order_id_for_tracking,
+          }),
         }).then(() => this.visablePopUp());
-      }
+      },
     );
   };
 
@@ -70,7 +70,7 @@ class Tracker extends Component {
       <Fragment>
         <HeaderWithSideBar title="Orders" />
         <form onSubmit={this.handelTrackNumber} className="track--form">
-            <span onClick={() => this.context.router.history.go(-2)}>
+          <span onClick={() => this.context.router.history.go(-2)}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </span>
           <h2>Enter tracking number</h2>
@@ -80,7 +80,6 @@ class Tracker extends Component {
           </p>
 
 
-
           <Input
             placeholder="Enter Tracking Number"
             type="text"
@@ -88,10 +87,9 @@ class Tracker extends Component {
           />
 
 
-
           <div className="buttonsDiv">
             <Input value="Send" type="submit" className="green" />
-            <Input value="Cancel" type="button" className="redBtn" onClick={()=>window.location='/orders' }/>
+            <button className="redBtn" onClick={() => window.location = '/orders'}>Cancel </button>
           </div>
         </form>
 

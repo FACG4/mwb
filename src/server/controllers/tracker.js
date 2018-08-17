@@ -1,4 +1,3 @@
-
 const update = require('../model/queries/update');
 const select = require('../model/queries/select');
 const { sendSMS } = require('./sendSMS');
