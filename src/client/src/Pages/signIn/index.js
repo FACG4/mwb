@@ -41,6 +41,7 @@ class SignIn extends Component {
       .then(res => res.json())
       .then((res) => {
         if (res.user) localStorage.setItem('user', res.user.split(' ')[0]);
+        if (res.userId) localStorage.setItem('userId', res.userId);
         if (res.message === 'login successful') this.props.history.push('/');
         if (res.message !== 'login successful') document.querySelector('#message-container').textContent = res.message;
       });

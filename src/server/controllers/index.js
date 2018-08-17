@@ -15,7 +15,7 @@ const router = express.Router();
 router.use(checkAuth);
 router.post('/signup', signUp);
 router.post('/signin', signIn);
-router.get('/getAllOrders', getAllOrders.getAllOrders);
+router.post('/getAllOrders', getAllOrders.getAllOrders);
 router.get('/getAllItems', getAllItems.getAllItems);
 router.post('/updateSeenValue', updateSeenValue.updateSeenValue);
 router.post('/changeOrderData', changeOrderStatus.changeOrderStatus);

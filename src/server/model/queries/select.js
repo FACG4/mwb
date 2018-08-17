@@ -1,7 +1,11 @@
 const connect = require('../db_connect.js');
 
-exports.selecAllOrders = (cb) => {
-  const sql = 'select i.title, o.id, o.quantity, o.traking_number, o.approved_date, o.seen ,o.status, o.delivery_date, i.image from orders o inner join items i on o.item_id=i.id;';
+exports.selecAllOrders = (userId, cb) => {
+  console.log('hhhhhhhhhh', userId);
+  const sql = {
+    text: 'select i.title, o.id, o.quantity, o.traking_number, o.approved_date, o.seen ,o.status, o.delivery_date, i.image from orders o inner join items i on o.item_id=i.id where o.user_id=$1;',
+    values: [userId],
+  };
 
   connect.query(sql, (err, result) => {
     if (err) cb(err);
