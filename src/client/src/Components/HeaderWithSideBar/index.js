@@ -34,13 +34,25 @@ class HeaderWithSideBar extends React.Component {
     .catch(err => console.log('network error'));
   }
 
+
+
+
+
+
+
+
+
+
   componentDidMount() {
     fetch('/api/getAllOrders', {
+      method:'POST',
       credentials: 'same-origin',
+      headers :{'content-type': 'application/json'},
+      body:JSON.stringify({userId: localStorage.getItem('userId') })
+
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         if (data.message) {
           if (data.message.includes('redirect to signin page')) this.props.history.push('/signin');
           if (data.message.includes('unauthorized')) this.props.history.push('/signin');
@@ -66,6 +78,11 @@ class HeaderWithSideBar extends React.Component {
                   });
                   return order;
                 })
+
+
+
+
+
               }));
             }
           });

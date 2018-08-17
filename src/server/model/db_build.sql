@@ -30,7 +30,7 @@ traking_number VARCHAR,
 seen BOOLEAN DEFAULT false
 );
 
-insert into users(full_name, password, address, till_number, mobile_number)values('koko koko','$2b$10$QSlBaorIsHAilDaawqa2tuqq7RLfp5eUqevNNt8AviXd7H9WeFLTO','dcsdc','sddc', '+970567716309');
+insert into users(full_name, password, address, till_number, mobile_number)values('maxx maxx','$2b$10$tPwGIHCiVMryQIZI0M2Z9.oBROWbOUd3q/T0O3gyVUlHmc6gTFQ/i','dcsdc','sddc', '+970567716309');
 
 
 insert into items(title, description, image)values
@@ -93,14 +93,14 @@ insert into items(title, description, image)values
 
 insert into orders(item_id, user_id, quantity, status,  delivery_date)values
   (1,1,1,'Pending', '2018-08-17'),
-  (2,1,1,'Pending','2018-08-16'),
-  (3,1,1,'Delivered', '2018-08-15'),
-  (4,1,1,'Pending', '2018-08-22'),
-  (5,1,1,'Pending', '2018-08-22'),
-  (6,1,1,'Delivered', '2018-08-22'),
-  (7,1,1,'Pending', '2018-08-22'),
-  (8,1,1,'Pending', '2018-08-22'),
-  (9,1,1,'Delivered', '2018-08-22'),
+  (2,1,1,'Pending','2018-08-18'),
+  (3,1,1,'Delivered', '2018-08-19'),
+  (4,1,1,'Pending', '2018-08-20'),
+  (5,1,1,'Pending', '2018-08-21'),
+  (6,1,1,'Delivered', '2018-08-17'),
+  (7,1,1,'Pending', '2018-08-16'),
+  (8,1,1,'Pending', '2018-08-18'),
+  (9,1,1,'Delivered', '2018-08-19'),
   (9,1,1,'Delivered', '2018-08-22'),
   (10,1,1,'Pending', '2018-08-22'),
   (11,1,1,'Pending', '2018-08-22'),
