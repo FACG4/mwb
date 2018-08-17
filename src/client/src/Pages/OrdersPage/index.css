@@ -7,3 +7,8 @@
 .img {
   margin-left: 56px;
 }
+
+.noOrders{
+  color: gray;
+  font-weight: bold;
+}

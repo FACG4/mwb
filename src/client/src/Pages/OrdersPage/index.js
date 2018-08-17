@@ -95,9 +95,13 @@ class OrdersPage extends React.Component {
     }
   }
 
+
   componentDidMount() {
     fetch('/api/getAllOrders', {
+      method:'POST',
       credentials: 'same-origin',
+      headers :{'content-type': 'application/json'},
+      body:JSON.stringify({userId: localStorage.getItem('userId') })
     })
       .then(response => response.json())
       .then(data => {
@@ -130,12 +134,8 @@ class OrdersPage extends React.Component {
         <div>
           {this.state.ordersArray.length === 0 ? (
             <div className="centerLoadingIcon">
-              <ReactLoading
-                type="spokes"
-                color="grey"
-                height={367}
-                width={75}
-              />
+
+              <span className="noOrders">You do not have any orders yet!</span>
             </div>
           ) : (
             this.state.ordersArray.map((order, index) => (
