@@ -13,7 +13,7 @@ const addNewOrder = require('./addNewOrder');
 const router = express.Router();
 
 
-router.use(checkAuth);
+// router.use(checkAuth);
 router.post('/signup', signUp);
 router.post('/signin', signIn);
 router.post('/getAllOrders', getAllOrders.getAllOrders);

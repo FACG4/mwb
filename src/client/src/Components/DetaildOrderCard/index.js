@@ -159,7 +159,7 @@ class DetaildOrderCard extends React.Component {
         const data2 = data.data.filter(itemData => itemData.id == id);
 
 
-        if (data2[0].status === 'Approved') { date1 = data2[0].approved_date.split('T')[0]; } else { date1 = data2[0].delivery_date.split('T')[0]; }
+        if (data2[0] && data2[0].status === 'Approved') { date1 = data2[0].approved_date.split('T')[0]; } else { date1 = data2[0].delivery_date.split('T')[0]; }
 
 
         this.setState({
