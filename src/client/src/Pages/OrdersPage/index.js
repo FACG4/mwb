@@ -37,6 +37,7 @@ class OrdersPage extends React.Component {
       requiredIndex = 'index'.concat(i);
       if (this.refs[requiredIndex].props.status !== 'Pending') {
         ReactDOM.findDOMNode(this.refs[requiredIndex]).style.display = 'none';
+        console.log('fuck',  ReactDOM.findDOMNode(this.refs[requiredIndex]));
       } else {
         ReactDOM.findDOMNode(this.refs[requiredIndex]).style.display = 'flex';
       }
