@@ -24,7 +24,7 @@ item_id INTEGER REFERENCES items(id),
 user_id INTEGER REFERENCES users(id),
 quantity INTEGER,
 status VARCHAR DEFAULT 'Pending',
-delivery_date TIMESTAMP ,
+delivery_date TIMESTAMP DEFAULT now(),
 approved_date TIMESTAMP,
 traking_number VARCHAR,
 seen BOOLEAN DEFAULT false
