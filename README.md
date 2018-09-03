@@ -26,10 +26,16 @@ Artisans in Kenya can’t trade online because they don’t have bank accounts o
 - postgresql
 - CSS3
 
+## How to use this app:
+* Locally:
+- Clone this repository by copying the following command into your terminal: ```git clone https://github.com/FACG4/mwb.git```
+- ```npm install``` in both the ```client``` directory and the ```server``` directory.
+- ```npm start``` in both the ```client``` and ```server``` directories.
+- Run ```localhost 3000```.
 
+On Heroku:
+- Use this [link] (https://market-w-borders.herokuapp.com/)
 
 ## Figma prototype :sparkles:
 Click [here](https://www.figma.com/proto/EjORhZFF4WbIIVlIhKo8NQ3y/MWB?node-id=130%3A18&scaling=scale-down)
 to see the figma prototype
-
- 
